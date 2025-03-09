@@ -1,6 +1,5 @@
 # Repositories where Homebrew keeps is own software
 tap "homebrew/bundle"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "microsoft/git"   # Git
 tap "nikitabobko/tap" # AeroSpace
@@ -21,10 +20,10 @@ brew "eza"
 brew "fd"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU Privacy Guard - a complete and free implementation of the OpenPGP standard
+brew "gnupg"
 # Distributed revision control system
 brew "git"
-# Node version manager
-brew "n"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Theme for zsh
@@ -52,8 +51,12 @@ brew "zsh-syntax-highlighting"
 cask "aerospace"
 # Application launcher and productivity software
 cask "alfred"
+# URL handler
+cask "choosy"
 # Write, edit, and chat about your code with AI
 cask "cursor"
+# Redirect browser requests to different apps
+cask "finicky"
 # Fonts
 cask "font-meslo-lg-nerd-font"
 # Google Chrome

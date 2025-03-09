@@ -1731,20 +1731,5 @@
 # Tell `p10k configure` which file it should overwrite.
 typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
-
-#### Custom values
-# Find the "Define default values" section and update these colors:
-typeset -g POWERLEVEL9K_COLOR_SCHEME='dark'
-
-# Catppuccin Mocha colors
-typeset -g POWERLEVEL9K_DIR_BACKGROUND='#313244'          # surface0
-typeset -g POWERLEVEL9K_DIR_FOREGROUND='#cdd6f4'         # text
-typeset -g POWERLEVEL9K_VCS_BACKGROUND='#45475a'         # surface1
-typeset -g POWERLEVEL9K_VCS_FOREGROUND='#a6e3a1'         # green
-typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND='#f38ba8' # red
-typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND='#11111b' # base
-typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_FOREGROUND='#cba6f7' # mauve
-typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_FOREGROUND='#f38ba8' # red
-
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'

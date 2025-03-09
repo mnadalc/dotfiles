@@ -1,6 +1,6 @@
 # dotfiles
 
-## Setps to bootstrap a new Mac
+## Setup
 
 1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
    This is not needed if you already have the repo downloaded, since it's part of the installation process.
@@ -19,9 +19,8 @@ git clone git@github.com:mnadalc/dotfiles.git .dotfiles
 git clone https://github.com/mnadalc/dotfiles.git .dotfiles
 ```
 
-3. Make install.sh executable and run it
+3. Execute install script
 
 ```bash
-chmod +x install.sh
-./install.sh
+cd .dotfiles && ./install.sh
 ```

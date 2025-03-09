@@ -22,3 +22,10 @@ alias lt='eza --tree --level=2'
 
 # bat
 alias cat='bat'
+
+# others
+alias rm='rm -i'
+alias mkdir='mkdir -pv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias myip='curl ip.appspot.com' # Public facing IP Address

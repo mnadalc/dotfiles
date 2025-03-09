@@ -274,7 +274,7 @@ run = 'move-node-to-workspace T'
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 # https://ghostty.org/docs/help/macos-tiling-wms#aerospace
-run = ['move-node-to-workspace T', 'layout tiling']
+run = ['layout tiling', 'move-node-to-workspace T']
 
 # Music
 [[on-window-detected]]
