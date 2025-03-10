@@ -59,5 +59,11 @@ module.exports = {
       match: ({ opener }) => opener.bundleId === "net.whatsapp.WhatsApp",
       browser: "app.zen-browser.zen",
     },
+    /* Open any links from Alfred 5 in Zen Browser */
+    {
+      match: ({ opener }) =>
+        opener.bundleId === "com.runningwithcrayons.Alfred",
+      browser: "app.zen-browser.zen",
+    },
   ],
 };
