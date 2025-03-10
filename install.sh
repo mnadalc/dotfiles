@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source './osx/utils.sh'
 
 # Get the directory where the script is located
@@ -25,6 +27,7 @@ chmod u+x ./shell/*.sh
 print_info "Symlinking .gitconfig, .gitignore, .finicky.js to $HOME directory."
 for file in $SCRIPT_DIR/.{finicky.js,gitconfig,gitignore}; do
   file_name=$(basename "$file")
+  file_exists "$HOME/$file_name"
 	execute "ln -s "$(realpath "$file")" $HOME/$file_name"
 done;
 unset file;
@@ -50,16 +53,6 @@ done;
 unset file;
 print_success "zsh configured"
 
-# echo "# -------------- mnadalc: Reload files ---------------"
-# if [ -d "$HOME/.aerospace.toml" ]; then
-#     echo "Removing ~/.aerospace.toml"
-#     rm "$HOME/.aerospace.toml"
-# fi
-# if [ -d "$HOME/.config/aerospace" ]; then
-#     echo "Reloading aerospace .config"
-#     aerospace reload-config --no-gui
-# fi
-
 ./packages/brew-install.sh
 ./packages/brew-packages.sh
 ./packages/zsh.sh
@@ -68,4 +61,5 @@ print_success "zsh configured"
 ./packages/gems.sh
 ./packages/ghostty.sh
 ./packages/aerospace.sh
+
 restart

@@ -6,7 +6,6 @@ install_asdf_plugin() {
   if ! asdf plugin list | grep -q "^$plugin$"; then
     asdf plugin add "$plugin"
     asdf install "$plugin" latest
-    asdf global "$plugin" latest
     print_success "Plugin $plugin installed"
   else
     print_info "Plugin $plugin is already installed"

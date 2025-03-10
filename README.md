@@ -22,5 +22,5 @@ git clone https://github.com/mnadalc/dotfiles.git .dotfiles
 3. Execute install script
 
 ```bash
-cd .dotfiles && ./install.sh
+cd .dotfiles && bash ./install.sh
 ```

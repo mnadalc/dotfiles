@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+source './osx/utils.sh'
 
 # Only change shell if it's not already zsh
 ZShell() {
@@ -9,6 +9,8 @@ ZShell() {
   else
     print_info "Shell is already set to zsh"
   fi
+
+  source $HOME/.zshrc
 }
 
 ZShell

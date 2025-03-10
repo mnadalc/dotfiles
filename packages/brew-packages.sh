@@ -3,7 +3,7 @@ source './osx/utils.sh'
 brew_packages() {
   if cmd_exists "brew"; then
 		print_in_blue "Updating brew packages ..."
-		execute "brew update"
+		brew update
 		brew upgrade --all
 		brew cleanup
 
