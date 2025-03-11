@@ -24,3 +24,12 @@ git clone https://github.com/mnadalc/dotfiles.git .dotfiles
 ```bash
 cd .dotfiles && bash ./install.sh
 ```
+
+## Individual scripts
+
+You can run each script individually by executing them from the root directory.
+Example:
+
+```bash
+cd .dotfiles && bash ./scripts/config_folder.sh
+```

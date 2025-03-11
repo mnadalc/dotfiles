@@ -17,7 +17,7 @@ xcode_install() {
 	fi
 
 	# backing up .gitconfig file incase exists, we are going to create .gitconfig later
-	file_exists "$HOME/.gitconfig"
+	# file_exists "$HOME/.gitconfig"
 }
 
 xcode_install

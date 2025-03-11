@@ -16,6 +16,7 @@ print_in_purple '\n.dotfiles - Miguel Nadal\n\n'
 chmod u+x ./osx/*.sh
 chmod u+x ./packages/*.sh
 chmod u+x ./shell/*.sh
+chmod u+x ./scripts/*.sh
 
 ./osx/xcode-install.sh
 ./osx/osx-preferences.sh
@@ -24,34 +25,39 @@ chmod u+x ./shell/*.sh
 # .gitconfig, .gitignore, .finicky.js -> $HOME
 ## TODO: When finicky is updated to v4, move it into .config
 ## https://github.com/johnste/finicky/issues/315
-print_info "Symlinking .gitconfig, .gitignore, .finicky.js to $HOME directory."
-for file in $SCRIPT_DIR/.{finicky.js,gitconfig,gitignore}; do
-  file_name=$(basename "$file")
-  file_exists "$HOME/$file_name"
-	execute "ln -s "$(realpath "$file")" $HOME/$file_name"
-done;
-unset file;
-print_success "Symlinked .gitconfig, .gitignore to $HOME directory."
+# print_info "Symlinking .gitconfig, .gitignore, .finicky.js to $HOME directory."
+# for file in $SCRIPT_DIR/.{finicky.js,gitconfig,gitignore}; do
+#   file_name=$(basename "$file")
+#   file_exists "$HOME/$file_name"
+# 	execute "ln -s "$(realpath "$file")" $HOME/$file_name"
+# done;
+# unset file;
+# print_success "Symlinked .gitconfig, .gitignore to $HOME directory."
+
+./scripts/root_dotfiles.sh
 
 # Symlink the .config folder
-print_info "Symlinking configuration files to $HOME/.config directory."
-for folder in $SCRIPT_DIR/.config/*; do
-	folder_name=$(basename "$folder")
-	execute "ln -s "$(realpath "$folder")" $HOME/.config/$folder_name"
-  print_info "Symlinked $folder_name to $HOME/.config/$folder_name"
-done;
-unset folder;
-print_success "Symlinked configuration files to $HOME/.config directory."
+
+# print_info "Symlinking configuration files to $HOME/.config directory."
+# for folder in $SCRIPT_DIR/.config/*; do
+# 	folder_name=$(basename "$folder")
+# 	execute "ln -s "$(realpath "$folder")" $HOME/.config/$folder_name"
+#   print_info "Symlinked $folder_name to $HOME/.config/$folder_name"
+# done;
+# unset folder;
+# print_success "Symlinked configuration files to $HOME/.config directory."
+./scripts/config_folder.sh
 
 # Configure zsh
-print_info "Configuring zsh"
-for file in $SCRIPT_DIR/shell/*.sh; do
-  filename=$(basename "$file")
-  echo "source $(realpath "$file")" >> "$SH"
-  print_info "Sourced $filename"
-done;
-unset file;
-print_success "zsh configured"
+# print_info "Configuring zsh"
+# for file in $SCRIPT_DIR/shell/*.sh; do
+#   filename=$(basename "$file")
+#   echo "source $(realpath "$file")" >> "$SH"
+#   print_info "Sourced $filename"
+# done;
+# unset file;
+# print_success "zsh configured"
+./scripts/configure_zsh.sh
 
 ./packages/brew-install.sh
 ./packages/brew-packages.sh

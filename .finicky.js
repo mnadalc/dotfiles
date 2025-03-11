@@ -33,6 +33,8 @@ module.exports = {
         finicky.matchDomains(/amazon.com/),
         finicky.matchDomains(/apple.com/),
         finicky.matchDomains(/spotify.com/),
+        finicky.matchDomains(/frontendmasters.com/),
+        finicky.matchDomains(/obsidian.md/),
       ],
       browser: "app.zen-browser.zen",
     },
@@ -63,6 +65,11 @@ module.exports = {
     {
       match: ({ opener }) =>
         opener.bundleId === "com.runningwithcrayons.Alfred",
+      browser: "app.zen-browser.zen",
+    },
+    /* Open any links from Obsidian in Zen Browser */
+    {
+      match: ({ opener }) => opener.bundleId === "md.obsidian",
       browser: "app.zen-browser.zen",
     },
   ],

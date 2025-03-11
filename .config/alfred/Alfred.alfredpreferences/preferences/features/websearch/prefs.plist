@@ -2,6 +2,75 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>customSites</key>
+	<dict>
+		<key>2BAE5A43-579B-4F1D-B0A3-6B68AC241C19</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>forocoches</string>
+			<key>text</key>
+			<string>Search forocoches for '{query}'</string>
+			<key>url</key>
+			<string>https://www.google.com/search?q={query}+site:forocoches.com</string>
+		</dict>
+		<key>36880141-A64C-492A-B8D4-D5934CD16E9E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>forocoches</string>
+			<key>text</key>
+			<string>Open forocoches</string>
+			<key>url</key>
+			<string>https://www.forocoches.com/foro</string>
+		</dict>
+		<key>3F1E0951-AEF8-4D70-BBF4-9952A56B827F</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>mediavida</string>
+			<key>text</key>
+			<string>Search mediavida for '{query}'</string>
+			<key>url</key>
+			<string>https://www.google.com/search?q={query}+site:mediavida.com</string>
+		</dict>
+		<key>475C9733-0A72-4C84-9A69-31E876E36597</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>mediavida</string>
+			<key>text</key>
+			<string>Open Mediavida</string>
+			<key>url</key>
+			<string>https://www.mediavida.com/foro</string>
+		</dict>
+		<key>4E5D5465-29C8-4D20-A9A6-83DC65F802F5</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>reddit</string>
+			<key>text</key>
+			<string>Open Reddit</string>
+			<key>url</key>
+			<string>https://www.reddit.com</string>
+		</dict>
+		<key>F89E9B7D-34B1-404B-ABBE-85564BD9BA74</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>reddit</string>
+			<key>text</key>
+			<string>Search Reddit for '{query}'</string>
+			<key>url</key>
+			<string>https://www.google.com/search?q={query}+site:reddit.com</string>
+		</dict>
+	</dict>
 	<key>onlyShowEnabledInPrefs</key>
 	<true/>
 </dict>

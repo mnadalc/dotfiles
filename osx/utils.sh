@@ -143,23 +143,23 @@ print_error() {
 }
 
 print_in_green() {
-    printf "\e[0;32m$1\e[0m"
+    echo -e "\033[0;32m$1\033[0m"
 }
 
 print_in_purple() {
-    printf "\e[0;35m$1\e[0m"
+    echo -e "\033[0;35m$1\033[0m"
 }
 
 print_in_red() {
-    printf "\e[0;31m$1\e[0m"
+    echo -e "\033[0;31m$1\033[0m"
 }
 
 print_in_yellow() {
-    printf "\e[0;33m$1\e[0m"
+    echo -e "\033[0;33m$1\033[0m"
 }
 
 print_in_blue() {
-    printf "  \e[0;34m$1\e[0m\n"
+    echo -e "  \033[0;34m$1\033[0m"
 }
 
 print_info() {

@@ -67,6 +67,8 @@ cask "ghostty"
 cask "hiddenbar"
 # Notion
 cask "notion"
+# Obsidian
+cask "obsidian"
 # Spotify
 cask "spotify"
 # Telegram
