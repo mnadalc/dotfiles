@@ -7,7 +7,7 @@ configure_zsh() {
   print_info "Configuring zsh"
 
   # Create the .zshrc file if it doesn't exist
-  if [ ! -f "$SH" ]; thens
+  if [ ! -f "$SH" ]; then
     touch "$SH"
   fi
 

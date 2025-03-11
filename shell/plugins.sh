@@ -43,6 +43,20 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
+
+#######################
+### BAT as MANPAGER ###
+#######################
+# Configure bat as the manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Alternative simpler version if the above doesn't work well
+# export MANPAGER="bat -l man -p"
+
+# Create batman function for better compatibility
+batman() {
+    bat -l man -p "$(man -w $@)"
+}
+
 ###############
 ### IMPORTS ###
 ###############
