@@ -118,3 +118,5 @@
 # https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects
 # [includeIf "gitdir:~/projects/"]
 #   path = .gitconfig-projects  
+# [includeIf "gitdir:~/personal/"]
+#   path = .gitconfig-personal  
