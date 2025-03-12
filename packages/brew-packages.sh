@@ -7,7 +7,7 @@ brew_packages() {
   if cmd_exists "brew"; then
 		print_in_blue "Updating brew packages ..."
 		brew update
-		brew upgrade --all
+		brew upgrade
 		brew cleanup
 
     # Install packages

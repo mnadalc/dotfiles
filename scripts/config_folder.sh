@@ -14,9 +14,8 @@ config_folder() {
     folder_name=$(basename "$folder")
     # Remove existing symlink if it exists
     [ -L "$HOME/.config/$folder_name" ] && rm "$HOME/.config/$folder_name"
-    
-    # Create new symlink using relative path
-    execute "ln -s '$folder' '$HOME/.config/$folder_name'"
+    execute "ln -s $(realpath "$folder") $HOME/.config/$folder_name"
+
     print_info "Symlinked $folder_name to $HOME/.config/$folder_name"
   done
   unset folder

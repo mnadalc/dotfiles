@@ -45,6 +45,15 @@ module.exports = {
         finicky.matchDomains(/.*frontastic\..*/),
         finicky.matchDomains(/.*\.leapsome\..*/),
         finicky.matchDomains(/.*\.rydoo.com\..*/),
+        finicky.matchDomains(/atlassian.net/),
+        finicky.matchDomains(/jira.atlassian.com/),
+        finicky.matchDomains(/commercetools.atlassian.net/),
+        finicky.matchDomains(/figma.com/),
+        finicky.matchDomains(/meet.google.com/),
+        finicky.matchDomains(/docs.google.com/),
+        finicky.matchDomains(/drive.google.com/),
+        finicky.matchDomains(/calendar.google.com/),
+        finicky.matchDomains(/keep.google.com/),
       ],
       browser: {
         name: "Google Chrome",
@@ -70,6 +79,17 @@ module.exports = {
     /* Open any links from Obsidian in Zen Browser */
     {
       match: ({ opener }) => opener.bundleId === "md.obsidian",
+      browser: "app.zen-browser.zen",
+    },
+    // {
+    //   match: ({ opener }) => opener.bundleId === "com.tinyspeck.slackmacgap",
+    //   browser: "app.zen-browser.zen",
+    // },
+    /* Github */
+    {
+      match: ({ url }) =>
+        url.host === "github.com" &&
+        !url.pathname.toLowerCase().includes("frontasticgmbh"),
       browser: "app.zen-browser.zen",
     },
   ],

@@ -21,8 +21,7 @@ root_dotfiles() {
     # Remove existing symlink if it exists
     [ -L "$HOME/$file_name" ] && rm "$HOME/$file_name"
     
-    # Create new symlink using direct path
-    execute "ln -s '$file' '$HOME/$file_name'"
+    execute "ln -s "$(realpath "$ ")" $HOME/.$folder_name"
   done
   unset file
   

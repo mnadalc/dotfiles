@@ -13,12 +13,24 @@ install_asdf_plugin() {
 }
 
 install_asdf () {
+  print_info "Installing asdf"
+
   # Install plugins
   install_asdf_plugin nodejs # https://mac.install.guide/rubyonrails/6
-  bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
+  bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
   
   install_asdf_plugin yarn # https://mac.install.guide/rubyonrails/6
   install_asdf_plugin ruby # https://mac.install.guide/rubyonrails/7
+
+  # Add a .asdfrc configuration file to your user home directory to enable asdf to read .ruby-version files.
+  touch $HOME/.asdfrc
+  echo "# ASDF_CONFIG_FILE" >> $HOME/.asdfrc
+  echo "legacy_version_file = yes" >> $HOME/.asdfrc
+
+  touch $HOME/.tool-versions
+  echo "# ASDF_DEFAULT_TOOL_VERSIONS_FILENAME " >> $HOME/.tool-versions
+
+  print_success "asdf installed and configured"
 }
 
 install_asdf

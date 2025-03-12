@@ -9,8 +9,6 @@ ZShell() {
   else
     print_info "Shell is already set to zsh"
   fi
-
-  source $HOME/.zshrc
 }
 
 ZShell

@@ -1,6 +1,8 @@
 source './osx/utils.sh'
 
 brew_install() {
+  print_info "Installing Homebrew"
+  
   if command -v brew &> /dev/null; then
     print_success 'Brew already installed!'
   else

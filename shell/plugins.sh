@@ -43,7 +43,6 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-
 #######################
 ### BAT as MANPAGER ###
 #######################
@@ -62,6 +61,11 @@ batman() {
 ###############
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+############
+### ASDF ###
+############
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 ##############
 ### ZOXIDE ###

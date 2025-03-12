@@ -8,7 +8,9 @@ configure_bat() {
     execute "mkdir -p $(bat --config-dir)/themes"
   fi
   
-  execute "wget -P $(bat --config-dir)/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme"
+  if [ ! -f "$(bat --config-dir)/themes/Catppuccin Mocha.tmTheme" ]; then
+    execute "wget -P $(bat --config-dir)/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme"
+  fi
   execute "bat cache --build"
 
   print_success "bat configured"
