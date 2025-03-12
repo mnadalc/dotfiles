@@ -59,6 +59,28 @@
 			<key>url</key>
 			<string>https://www.reddit.com</string>
 		</dict>
+		<key>CBFA3137-43AC-494A-BCA0-B2392033F787</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>subreddit</string>
+			<key>text</key>
+			<string>subreddit</string>
+			<key>url</key>
+			<string>https://www.reddit.com/r/{query}</string>
+		</dict>
+		<key>F3047869-82B8-4DD6-A194-368F0E799864</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>youtube</string>
+			<key>text</key>
+			<string>Open YouTube</string>
+			<key>url</key>
+			<string>https://www.youtube.com</string>
+		</dict>
 		<key>F89E9B7D-34B1-404B-ABBE-85564BD9BA74</key>
 		<dict>
 			<key>enabled</key>

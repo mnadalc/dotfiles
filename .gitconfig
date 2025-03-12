@@ -1,8 +1,24 @@
+# See more at
+# https://jvns.ca/blog/2024/02/16/popular-git-config-options/#merge-conflictstyle-zdiff3
+# https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
 [user]
 	name = Miguel Nadal
 	email = 11161738+mnadalc@users.noreply.github.com
 
-  [color]
+[column]
+  # Automatically determine the width of columns.
+  ui = auto
+
+[branch]
+  # Sort branches by committer date.
+  sort = -committerdate
+
+[tag]
+  # Sort tags by version number.
+  sort = version:refname
+
+[color]
 	# Colour terminal command output when possible.
 	ui = auto
 
@@ -12,28 +28,63 @@
 	commitGraph = true
 	# Output unicode characters (e.g. emoji).
 	quotepath = on
+  # Use delta as the default pager.
+  pager = delta
+
+[interactive]
+  # Use delta as the default diff filter.
+  diffFilter = delta --color-only
+
+[include]
+  path = ~/.config/delta/themes/catppuccin.gitconfig
+
+[delta]
+  # Use n and N to move between diff sections.
+  navigate = true
+  # Use a dark theme.
+  dark = true
+  # Use side-by-side diffs.
+  side-by-side = true
+  # Use syntax highlighting.
+  features = catppuccin-mocha
 
 # Difftastic By Default
 # https://difftastic.wilfred.me.uk/git.html
 [difftool]
-    # Run the difftool immediately, don't ask 'are you sure' each time.
-    prompt = false
+  # Run the difftool immediately, don't ask 'are you sure' each time.
+  prompt = false
 
 [pager]
-    # Use a pager if the difftool output is larger than one screenful,
-    # consistent with the behaviour of `git diff`.
-    difftool = true
+  # Use a pager if the difftool output is larger than one screenful,
+  # consistent with the behaviour of `git diff`.
+  difftool = true
 
 [diff]
-    # Set difftastic as the default difftool, so we don't need to specify
-    # `-t difftastic` every time.
-    external = difft
+  # Set difftastic as the default difftool, so we don't need to specify
+  # `-t difftastic` every time.
+  external = difft
+  # Use a histogram algorithm for the diff.
+  algorithm = histogram
+  # Color moved lines.
+  colorMoved = plain
+  # Use a mnemonic prefix for renames.
+  mnemonicPrefix = true
+  # Detect renames.
+  renames = true
 
 [rerere]
 	# Store and re-use manual conflict resolution changes.
 	enabled = true
 	# Automatically re-apply resolutions if seen again
 	autoupdate = true
+
+[push]
+  # Push tags by default.
+  default = simple
+  # Automatically setup remotes.
+  autoSetupRemote = true
+  # Push tags by default.
+  followTags = true
 
 [fetch]
 	# Always prune when fetching (and pulling).
@@ -50,6 +101,18 @@
 [help]
   # Autocorrect mistyped commands.
 	autocorrect = 1
+
+[rebase]
+  # Automatically squash commits when rebasing.
+  autoSquash = true
+  # Automatically stash changes when rebasing.
+  autoStash = true
+  # Update refs when rebasing.
+  updateRefs = true
+
+[merge]
+  # Use zdiff3 for merge conflicts.
+  conflictstyle = zdiff3
 
 # Add another gitconfig for a different project
 # https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects

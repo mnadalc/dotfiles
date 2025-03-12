@@ -14,6 +14,8 @@ brew "bat"
 brew "curl"
 # Structural diff tool that understands syntax.
 brew "difftastic"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
