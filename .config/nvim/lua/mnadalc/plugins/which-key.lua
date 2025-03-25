@@ -58,7 +58,6 @@ return {
         F12 = '<F12>',
       },
     },
-
     -- Document existing key chains
     spec = {
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
@@ -70,4 +69,4 @@ return {
       { '<leader>h', group = '[H]arpoon' },
     },
   },
-},
+}

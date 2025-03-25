@@ -2,7 +2,5 @@
 -- https://github.com/tpope/vim-sleuth
 
 return {
-  "tpope/vim-sleuth",
-  event = "VeryLazy",
-  opts = {},
+  "tpope/vim-sleuth"
 }
