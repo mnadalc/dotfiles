@@ -1,4 +1,4 @@
-command = $HOME/.config/ghostty/ghostty-tmux.sh
+# command = $HOME/.config/ghostty/ghostty-tmux.sh
 confirm-close-surface = false
 font-family = MesloLGS Nerd Font Mono
 shell-integration = zsh

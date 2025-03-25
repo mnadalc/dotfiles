@@ -9,3 +9,6 @@
 
 # VSCode
 .vscode
+
+# tmux config
+.config/tmux/plugins/

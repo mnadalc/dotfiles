@@ -1,10 +1,8 @@
-return {
-  "folke/todo-comments.nvim",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    local todo_comments = require("todo-comments")
+-- Highlight todo, notes, etc in comments
 
-    todo_comments.setup()
-  end,
+return {
+  'folke/todo-comments.nvim',
+  event = 'VimEnter',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  opts = { signs = false },
 }

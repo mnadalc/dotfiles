@@ -22,10 +22,14 @@ brew "eza"
 brew "fd"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU Compiler Collection
+brew "gcc"
 # GNU Privacy Guard - a complete and free implementation of the OpenPGP standard
 brew "gnupg"
 # Distributed revision control system
 brew "git"
+# Utility for directing compilation
+brew "make"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Theme for zsh
@@ -36,6 +40,8 @@ brew "ripgrep"
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extraction utility for .zip compressed archives
+brew "unzip"
 # Internet file retriever
 brew "wget"
 # Shell extension to navigate your filesystem faster

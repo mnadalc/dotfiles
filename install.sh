@@ -23,6 +23,7 @@ chmod u+x ./scripts/*.sh
 ./packages/aerospace.sh
 ./packages/fzf_tab.sh
 ./packages/bat.sh
+# ./packages/nvim.sh # Installs kickstart.nvim (not needed)
 
 zsh ./scripts/configure_zsh.sh
 ./scripts/configure_ghostty.sh

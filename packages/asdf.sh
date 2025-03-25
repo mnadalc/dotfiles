@@ -29,6 +29,9 @@ install_asdf () {
 
   touch $HOME/.tool-versions
   echo "# ASDF_DEFAULT_TOOL_VERSIONS_FILENAME " >> $HOME/.tool-versions
+  asdf set -u nodejs latest
+  asdf set -u yarn latest
+  asdf set -u ruby latest
 
   print_success "asdf installed and configured"
 }
