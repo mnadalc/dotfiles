@@ -105,23 +105,23 @@ osxprefs() {
 	defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 	print_success "Right click mapped to the bottom right corner at the trackpad."
 
-  # Increase sound quality for Bluetooth headphones/headsets
-  defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+	# Increase sound quality for Bluetooth headphones/headsets
+	defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 	# Enable full keyboard access for all controls
 	# (e.g. enable Tab in modal dialogs)
-	defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+	defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
 	print_success "Full keyboard access for all controls enabled."
 
-  # Keyboard
-  # Enable key repeat globally
-  defaults write -g ApplePressAndHoldEnabled -bool false 
-  print_success "Key repeat enabled globally."
+	# Keyboard
+	# Enable key repeat globally
+	defaults write -g ApplePressAndHoldEnabled -bool false 
+	print_success "Key repeat enabled globally."
 
-  # Set a blazingly fast keyboard repeat rate
-  defaults write NSGlobalDomain KeyRepeat -int 1
-  defaults write NSGlobalDomain InitialKeyRepeat -int 10
-  print_success "Blazing fast keyboard repeat rate enabled."
+	# Set a blazingly fast keyboard repeat rate
+	defaults write NSGlobalDomain KeyRepeat -int 1
+	defaults write NSGlobalDomain InitialKeyRepeat -int 10
+	print_success "Blazing fast keyboard repeat rate enabled."
 
 	# Set the timezone; see `sudo systemsetup -listtimezones` for other values
 	sudo systemsetup -settimezone "Europe/Madrid" > /dev/null
@@ -131,6 +131,9 @@ osxprefs() {
 	defaults write com.apple.screensaver askForPassword -int 1
 	defaults write com.apple.screensaver askForPasswordDelay -int 0
 	print_success "Password required immediately after sleep or screen saver begins."
+
+	# Show language indicator while switching input sources
+	defaults write kCFPreferencesAnyApplication TSMLanguageIndicatorEnabled -bool "true"
 
   # Enable Group windows by app in Mission Control. Needed for proper Aerospace behaviour
   defaults write com.apple.dock "expose-group-apps" -bool true
@@ -255,6 +258,12 @@ osxprefs() {
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
   print_success "Time Machine will not prompt to use new hard drives as backup volume."
 
+  ###############################################################################
+  # TextEdit                                                                    #
+  ###############################################################################
+  # When adding quotes will remain in the form they are typed
+  defaults write com.apple.TextEdit "SmartQuotes" -bool "false" 
+  print_success "Quotes will remain in the form they are typed."
 }
 
 osxprefs
