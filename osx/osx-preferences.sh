@@ -264,6 +264,14 @@ osxprefs() {
   # When adding quotes will remain in the form they are typed
   defaults write com.apple.TextEdit "SmartQuotes" -bool "false" 
   print_success "Quotes will remain in the form they are typed."
+
+  # Disable just smart dashes
+  defaults write -g NSAutomaticDashSubstitutionEnabled 0
+  print_success "Disable automatic smart dashes"
+
+  # Disable just smart quotes
+  defaults write -g NSAutomaticQuoteSubstitutionEnabled 0
+  print_success "Disable automatic smart quotes"
 }
 
 osxprefs
