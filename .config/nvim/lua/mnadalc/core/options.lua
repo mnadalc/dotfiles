@@ -16,10 +16,11 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- tabs & indentation
-vim.opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-vim.opt.shiftwidth = 2 -- 2 spaces for indent width
-vim.opt.expandtab = true -- expand tab to spaces
 vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.expandtab = false -- expand tab to spaces
+vim.opt.shiftwidth = 2    -- 2 spaces for indent width
+vim.opt.softtabstop = 2   -- How many spaces to insert when you press <Tab>
+vim.opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.

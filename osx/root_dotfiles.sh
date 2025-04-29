@@ -8,7 +8,7 @@ root_dotfiles() {
   # .gitconfig, .gitignore, .finicky.js -> $HOME
   ## TODO: When finicky is updated to v4, move it into .config
   ## https://github.com/johnste/finicky/issues/315
-  print_info "Symlinking .gitconfig, .gitignore, .finicky.js to $HOME directory."
+  print_info "Symlinking .gitconfig, .gitignore, .finicky.js, .editorconfig to $HOME directory."
   
   for file in "$ROOT_DIR"/.{finicky.js,gitconfig,gitignore}; do
     # Skip if file doesn't exist (important for brace expansion)

@@ -5,6 +5,7 @@ GEMRC="$HOME/.gemrc"
 install_gems() {
   gem install rails
   gem install neovim
+  gem install bundler prettier_print syntax_tree syntax_tree-haml syntax_tree-rbs # Prettier for Ruby
   print_success "Rails installed"
 }
 

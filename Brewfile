@@ -16,6 +16,10 @@ brew "curl"
 brew "difftastic"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# AST-based pattern checker for JavaScript
+brew "eslint"
+# Speed up eslint to accelerate your development workflow
+brew "eslint_d"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -34,6 +38,8 @@ brew "make"
 brew "neovim"
 # Theme for zsh
 brew "powerlevel10k"
+# Faster Prettier for JavaScript, TypeScript, CSS, etc. than vanilla prettier
+brew "prettierd"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Terminal multiplexer
@@ -59,8 +65,6 @@ brew "zsh-syntax-highlighting"
 cask "aerospace"
 # Application launcher and productivity software
 cask "alfred"
-# URL handler
-cask "choosy"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Redirect browser requests to different apps
