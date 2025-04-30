@@ -18,6 +18,7 @@ return {
 	lazy = false,
 	opts = {
 		filesystem = {
+      hijack_netrw_behavior = "disabled", -- Or "open_default" to open the file in the default program
 			filtered_items = {
 				visible = true,
 				show_hidden_count = true,

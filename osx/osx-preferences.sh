@@ -76,10 +76,6 @@ osxprefs() {
 	defaults write -g com.apple.swipescrolldirection -bool false
 	print_success "Scroll direction natural (Lion style) set to false."
 
-	# Automatically hide and show the Dock
-	defaults write com.apple.dock autohide -bool true
-	print_success "Automatically hide and show the Dock."
-
 	# Display full path in Finder title window
 	defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 	print_success "Finder shows full path in title."
@@ -162,6 +158,14 @@ osxprefs() {
   # Automatically hide and show the Dock
   defaults write com.apple.dock autohide -bool true
   print_success "Dock automatically hides."
+
+  # Change animation while minimizing applications
+  defaults write com.apple.dock "mineffect" -string "scale"
+  print_success "Dock animation changed to scale."
+
+  # Change date format in the menu bar
+  defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
+  print_success "Date format in the menu bar changed to \"EEE d MMM HH:mm:ss\"."
 
   defaults write com.apple.dock loc -string "en_GB:ES"
 

@@ -57,11 +57,28 @@ return {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
+      defaults = {
+        vimgrep_arguments = {
+          'rg',                -- The ripgrep binary
+          -- '--color=never',     -- Don’t use color in output (avoids ANSI codes in results)
+          -- '--no-heading',      -- Don’t show file name heading before matches
+          '--with-filename',   -- Always show the filename in each match line
+          '--line-number',     -- Show the line number of each match
+          '--column',          -- Show the column number of each match
+          -- '--smart-case',      -- Case-insensitive unless the pattern contains uppercase letters
+          '--glob=!node_modules/**', -- Exclude matches from node_modules folder
+          '--glob=!public/**',       -- Exclude matches from public folder
+          '--glob=!static/**',       -- Exclude matches from static folder
+          '--glob=!build/**',        -- Exclude matches from build folder
+          '--glob=!vendor/**',       -- Exclude matches from vendor folder
+          '--glob=!dist/**',         -- Exclude matches from dist folder
+          '--glob=!coverage/**'     -- Exclude matches from coverage folder
+        },
+        -- Optional: keep any mappings or other settings you need
+        -- mappings = {
+        --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+        -- },
+      },
       -- pickers = {}
       extensions = {
         ['ui-select'] = {
