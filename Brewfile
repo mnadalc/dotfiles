@@ -58,6 +58,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Vi-mode for zsh
+# brew "zsh-vi-mode"
 
 # Standalone applications
 
