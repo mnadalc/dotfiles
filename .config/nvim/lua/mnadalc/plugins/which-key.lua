@@ -61,12 +61,14 @@ return {
     -- Document existing key chains
     spec = {
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+      { '<leader>C', group = '[C]ontrol key cheatsheet <C>' },
       { '<leader>d', group = '[D]ocument' },
-      { '<leader>r', group = '[R]ename' },
-      { '<leader>s', group = '[S]earch' },
-      { '<leader>w', group = '[W]orkspace' },
-      { '<leader>t', group = '[T]oggle' },
+      { '<leader>e', group = '[E]xplorer' },
       { '<leader>h', group = '[H]arpoon' },
+      { '<leader>r', group = '[R]ename' },
+      { '<leader>s', group = '[S]earch / [S]plit' },
+      { '<leader>t', group = '[T]oggle' },
+      { '<leader>w', group = '[W]orkspace' },
     },
   },
 }
