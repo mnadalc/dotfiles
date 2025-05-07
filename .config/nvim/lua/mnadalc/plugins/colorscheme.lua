@@ -11,11 +11,11 @@ return {
   opts = {
     integrations = {
       mason = true,
+      semantic_tokens = true,
+      symbols_outline = true,
       telescope = true,
       ts_rainbow = false,
       which_key = true,
-      semantic_tokens = true,
-      symbols_outline = true,
     },
   },
   config = function()

@@ -76,3 +76,30 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
     vim.cmd("set nohlsearch")
   end,
 })
+
+--[[
+-- Relative and absolute numbers on the left.
+-- ]]
+-- Helper to decide if relativenumber should be toggled
+local function should_toggle_relativenumber()
+  local ignore_filetypes = { "neo-tree", "TelescopePrompt", "alpha", "help", "dashboard" }
+  return not vim.tbl_contains(ignore_filetypes, vim.bo.filetype)
+end
+
+-- Disable relative numbers in insert mode, unless excluded
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function()
+    if should_toggle_relativenumber() then
+      vim.opt.relativenumber = false
+    end
+  end,
+})
+
+-- Enable relative numbers when leaving insert mode, unless excluded
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = function()
+    if should_toggle_relativenumber() then
+      vim.opt.relativenumber = true
+    end
+  end,
+})
