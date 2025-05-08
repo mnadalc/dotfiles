@@ -74,3 +74,9 @@ vim.keymap.set("n", "<leader>C", function()
     -- { "<C-backspace> : 	Shrink syntax selection (Treesitter)\n" },
   }, false, {})
 end, { desc = "Show Control key cheat sheet" })
+
+-- Codecompanion actions
+vim.keymap.set({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true, desc = "Toggle CodeCompanion Chat" })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true, desc = "Add selection to CodeCompanion Chat" })
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])

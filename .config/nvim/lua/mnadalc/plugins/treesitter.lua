@@ -10,18 +10,26 @@ return {
     'nvim-treesitter/playground', -- 🔥 required for TSPlaygroundToggle
   },
   opts = {
+    -- https://github.com/nvim-treesitter/nvim-treesitter/?tab=readme-ov-file#supported-languages
     ensure_installed = {
+      'astro',
       'bash',
-      'c',
+      'comment',
       'css',
       'diff',
+      'gitcommit',
+      'gitignore',
       'html',
       'javascript',
+      'json',
+      'latex',
       'lua',
       'luadoc',
       'markdown_inline',
       'markdown',
+      'php',
       'query',
+      'regex',
       'tsx',
       'typescript',
       'vim',

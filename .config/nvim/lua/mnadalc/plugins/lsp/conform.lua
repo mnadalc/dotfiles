@@ -73,7 +73,16 @@ return {
     },
   },
   opts = function()
-    local util = require("conform.util")
+    local util = require "conform.util"
+
+    local shared_cwd = util.root_file(project_roots)
+    local formatter_names = { "prettierd", "eslint_d", "prettier", "eslint" }
+
+    local formatters = {}
+    for _, name in ipairs(formatter_names) do
+      formatters[name] = { cwd = shared_cwd }
+    end
+
     return {
       notify_on_error = false,
       format_on_save = function(bufnr)
@@ -141,33 +150,20 @@ return {
         vue = { "prettierd", "prettier", stop_after_first = true },
         yaml = { "prettierd", "prettier", stop_after_first = true },
       },
-      formatters = {
-        -- 🧠 Set the working directory (`cwd`) for prettierd to ensure it runs
-        -- from the correct place in multi-project setups like monorepos.
-        -- This is necessary because prettierd needs to find:
-        -- - Prettier config files (like `prettier.config.js`)
-        -- - Plugins (`node_modules`)
-        -- - Tailwind config, etc.
-        --
-        -- If cwd is not set properly, you'll get errors like:
-        -- "Cannot find module '@tailwindcss/typography'"
-        --
-        -- This tells Conform to start searching up the directory tree from the
-        -- current file and stop at the first folder that has one of these files.
-        -- That folder becomes the "project root" for Prettier to work correctly.
-        prettierd = {
-          cwd = util.root_file(project_roots),
-        },
-        eslint_d = {
-          cwd = util.root_file(project_roots),
-        },
-        prettier = {
-          cwd = util.root_file(project_roots),
-        },
-        eslint = {
-          cwd = util.root_file(project_roots),
-        },
-      },
+      -- 🧠 Set the working directory (`cwd`) for prettierd to ensure it runs
+      -- from the correct place in multi-project setups like monorepos.
+      -- This is necessary because prettierd needs to find:
+      -- - Prettier config files (like `prettier.config.js`)
+      -- - Plugins (`node_modules`)
+      -- - Tailwind config, etc.
+      --
+      -- If cwd is not set properly, you'll get errors like:
+      -- "Cannot find module '@tailwindcss/typography'"
+      --
+      -- This tells Conform to start searching up the directory tree from the
+      -- current file and stop at the first folder that has one of these files.
+      -- That folder becomes the "project root" for Prettier to work correctly.
+      formatters = formatters,
     }
   end,
 }

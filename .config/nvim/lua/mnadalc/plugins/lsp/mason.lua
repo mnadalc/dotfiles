@@ -31,12 +31,10 @@ return {
 
     mason_conform.setup({
       ensure_installed = {
-        -- "beautysh",
         "eslint",
         "eslint_d",
         "prettierd",
-        -- "rustywind",
-        -- "shfmt",
+        "prettier",
         "stylua",
       },
       -- Optional: install only when needed
@@ -58,7 +56,7 @@ return {
         "ltex",
         "mdx_analyzer",
         "vtsls",
-        "yaml_language_server",
+        "yaml-language-server",
         "cssls",
         "rustywind", -- rustywind for tailwindcss
         "tailwindcss",
