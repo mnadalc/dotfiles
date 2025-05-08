@@ -18,9 +18,7 @@ return {
     { 'antosha417/nvim-lsp-file-operations', config = true },
 
     -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
-    
-    { "folke/neodev.nvim", opts = {} },
+    { 'j-hui/fidget.nvim', opts = {} }
   },
   config = function()
     -- import lspconfig plugin
