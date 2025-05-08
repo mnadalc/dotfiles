@@ -1,7 +1,4 @@
--- ~/.config/nvim/lua/lsp/servers/vtsls.lua  (or wherever your LSP configs go)
-
 return {
-  -- This assumes you're using mason-lspconfig or similar to auto-setup servers
   settings = {
     typescript = {
       inlayHints = {
@@ -29,17 +26,5 @@ return {
         includeInlayTupleElementTypeHints = true, -- Try to show type hints in tuple destructuring like useState
       },
     },
-  },
-  on_attach = function(client, bufnr)
-    -- Enable inlay hints if supported
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-
-      -- Create a toggle keymap for inlay hints
-      vim.keymap.set("n", "<leader>th", function()
-        local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
-        vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
-      end, { desc = "Toggle Inlay Hints", buffer = bufnr })
-    end
-  end,
+  }
 }
