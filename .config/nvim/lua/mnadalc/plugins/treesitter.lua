@@ -8,6 +8,7 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground', -- 🔥 required for TSPlaygroundToggle
+    'yioneko/nvim-yati', -- tree-sitter indent plugin
   },
   opts = {
     -- https://github.com/nvim-treesitter/nvim-treesitter/?tab=readme-ov-file#supported-languages
@@ -44,13 +45,18 @@ return {
       --  the list of additional_vim_regex_highlighting and disabled languages for indent.
       additional_vim_regex_highlighting = { 'ruby' },
     },
-    indent = { enable = true, disable = { 'ruby' } },
+    indent = { enable = false }, -- disable builtin indent module in favour of yati
     autotag = { enable = true },
-
     playground = {
       enable = true,
     },
-
+    -- yati
+    yati = {
+      enable = true,
+      disable = { 'python' },
+      default_lazy = true,
+      default_fallback = "auto",
+    },
     -- ⬇️ Block for textobjects
     textobjects = {
       select = {

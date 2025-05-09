@@ -54,6 +54,7 @@ return {
         "bashls",
         "html",
         "ltex",
+        "lua_ls",
         "mdx_analyzer",
         "vtsls",
         "yaml-language-server",

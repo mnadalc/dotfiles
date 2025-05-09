@@ -8,3 +8,5 @@ require("mnadalc.lazy")
 require("mnadalc.core.colors")
 -- Custom autocmds
 require("mnadalc.core.autocmds")
+
+

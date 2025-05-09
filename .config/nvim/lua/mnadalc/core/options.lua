@@ -19,6 +19,7 @@ vim.opt.showmode = false
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.opt.expandtab = false -- expand tab to spaces
 vim.opt.shiftwidth = 2    -- 2 spaces for indent width
+vim.opt.smartindent = true -- smart indent
 vim.opt.softtabstop = 2   -- How many spaces to insert when you press <Tab>
 vim.opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
 
