@@ -171,9 +171,6 @@ return {
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
 				end
-
-        -- DEBUG: REMOVE THIS
-        print("[ATTACH]", client.name, client.config.settings)
 			end,
 		})
 
