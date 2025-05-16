@@ -183,7 +183,6 @@ print_success() {
 }
 
 restart() {
-
 	print_success "Done!. Some changes may not apply until you restart"
 	ask_for_confirmation "Would you like to Restart now ?"
 
@@ -192,5 +191,4 @@ restart() {
 	else
 	  print_error "You will need to restart manually later."
 	fi
-
 }

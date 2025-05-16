@@ -9,9 +9,9 @@ chmod u+x ./packages/*.sh
 chmod u+x ./shell/*.sh
 chmod u+x ./scripts/*.sh
 
-# ./osx/xcode-install.sh
-# ./osx/osx-preferences.sh
-# ./osx/root_dotfiles.sh
+./osx/xcode-install.sh
+./osx/osx-preferences.sh
+./osx/root_dotfiles.sh
 ./osx/zsh.sh
 ./scripts/config_folder.sh
 
@@ -25,7 +25,9 @@ chmod u+x ./scripts/*.sh
 ./packages/bat.sh
 # ./packages/nvim.sh # Installs kickstart.nvim (not needed)
 
-zsh ./scripts/configure_zsh.sh
+./scripts/configure_zsh.sh
 ./scripts/configure_ghostty.sh
+./scripts/configure_cursor.sh
 
-# restart
+restart
+
