@@ -16,3 +16,6 @@ setopt CORRECT                   # autocorrect command spelling
 # Language
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# Set XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="$HOME/.config"

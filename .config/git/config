@@ -30,6 +30,8 @@
 	quotepath = on
   # Use delta as the default pager.
   pager = delta
+  # Use git ignore for XDG_CONFIG_HOME
+  excludesfile = ~/.config/git/ignore
 
 [interactive]
   # Use delta as the default diff filter.
