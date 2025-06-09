@@ -65,7 +65,7 @@ osxprefs() {
   print_success "Finder grouped by date modified."
 
   # Set default view style to list
-  defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+  defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
   print_success "Set default view style to list."
 
   # Finder: show all filename extensions

@@ -12,3 +12,6 @@
 
 # tmux config
 .config/tmux/plugins/
+
+# asdf configuration
+.tool_versions

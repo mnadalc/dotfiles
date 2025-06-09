@@ -11,7 +11,7 @@ chmod u+x ./scripts/*.sh
 
 ./osx/xcode-install.sh
 ./osx/osx-preferences.sh
-./osx/root_dotfiles.sh
+# ./osx/root_dotfiles.sh # We don't have any root dotfiles to symlink (.editorconfig is not added by the script, check if we want to add it)
 ./osx/zsh.sh
 ./scripts/config_folder.sh
 

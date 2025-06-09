@@ -36,6 +36,8 @@ brew "git"
 brew "make"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Bun is a fast, modern JavaScript runtime
+brew "oven-sh/bun/bun"
 # Theme for zsh
 brew "powerlevel10k"
 # Faster Prettier for JavaScript, TypeScript, CSS, etc. than vanilla prettier

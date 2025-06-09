@@ -33,3 +33,11 @@ Example:
 ```bash
 cd .dotfiles && bash ./scripts/config_folder.sh
 ```
+
+## Updating the root .config folder with only one folder
+
+Run the following command at your root folder (`~`)
+
+```bash
+ln -s $(realpath ~/.dotfiles/.config/NEW_FOLDER_NAME) $HOME/.config/NEW_FOLDER_NAME
+```
