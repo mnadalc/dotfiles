@@ -5,14 +5,44 @@ export default {
 	// default profile and browser if the URL doesn't match any rules
 	defaultBrowser: {
 		name: "Google Chrome",
-		profile: "Profile 5", // TODO: Change to the correct profile. https://github.com/johnste/finicky/wiki/Configuration#2-you-can-define-more-options-with-a-browser-object
+		profile: "commercetools",
 	},
 	// App settings
 	options: {
 		checkForUpdates: true,
 	},
 	// Handlers are matchers
+	// Order is important, the first match is used
 	handlers: [
+		{
+			match: (url: URL) =>
+				url.host === "github.com" &&
+				(url.pathname.toLowerCase().includes("frontasticgmbh") || url.pathname.toLowerCase().includes("commercetools")),
+			browser: {
+				name: "Google Chrome",
+				profile: "commercetools",
+			},
+		},
+		/* Open any links from Telegram in Zen Browser */
+		{
+			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "ru.keepcoder.Telegram",
+			browser: "app.zen-browser.zen",
+		},
+		/* Open any links from WhatsApp in Zen Browser */
+		{
+			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "net.whatsapp.WhatsApp",
+			browser: "app.zen-browser.zen",
+		},
+		/* Open any links from Alfred 5 in Zen Browser */
+		{
+			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "com.runningwithcrayons.Alfred",
+			browser: "app.zen-browser.zen",
+		},
+		/* Open any links from Obsidian in Zen Browser */
+		{
+			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "md.obsidian",
+			browser: "app.zen-browser.zen",
+		},
 		{
 			match: [
 				/192\.168\.1\.1/,
@@ -36,6 +66,7 @@ export default {
 				/spotify.com/,
 				/frontendmasters.com/,
 				/obsidian.md/,
+				/github.com/,
 			],
 			browser: "app.zen-browser.zen",
 		},
@@ -58,39 +89,11 @@ export default {
 			],
 			browser: {
 				name: "Google Chrome",
-				profile: "Profile 5", // TODO: Change to the correct profile. https://github.com/johnste/finicky/wiki/Configuration#2-you-can-define-more-options-with-a-browser-object
+				profile: "commercetools",
 			},
 		},
-		/* Open any links from Telegram in Zen Browser */
 		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "ru.keepcoder.Telegram",
-			browser: "app.zen-browser.zen",
-		},
-		/* Open any links from WhatsApp in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "net.whatsapp.WhatsApp",
-			browser: "app.zen-browser.zen",
-		},
-		/* Open any links from Alfred 5 in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "com.runningwithcrayons.Alfred",
-			browser: "app.zen-browser.zen",
-		},
-		/* Open any links from Obsidian in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "md.obsidian",
-			browser: "app.zen-browser.zen",
-		},
-		// {
-		//   match: ({ opener }) => opener.bundleId === "com.tinyspeck.slackmacgap",
-		//   browser: "app.zen-browser.zen",
-		// },
-		/* Github */
-		{
-			match: (url: URL) =>
-				url.host === "github.com" &&
-				(!url.pathname.toLowerCase().includes("frontasticgmbh") ||
-					!url.pathname.toLowerCase().includes("commercetools")),
+			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "com.tinyspeck.slackmacgap",
 			browser: "app.zen-browser.zen",
 		},
 	],
