@@ -12,6 +12,8 @@ brew "asdf"
 brew "bat"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# CSV editor
+brew "csvkit"
 # Structural diff tool that understands syntax.
 brew "difftastic"
 # Syntax-highlighting pager for git and diff output
