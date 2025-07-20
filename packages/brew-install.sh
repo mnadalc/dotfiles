@@ -10,7 +10,7 @@ brew_install() {
     if answer_is_yes; then
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       if cmd_exists "brew"; then
-        print_success 'Brew has been succesfully installed!'
+        print_success 'Brew has been successfully installed!'
 
         # Configure shell for Homebrew if not already configured
         if ! grep -q "eval \"\$(\/opt\/homebrew\/bin\/brew shellenv)\"" ~/.zprofile; then

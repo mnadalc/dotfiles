@@ -67,9 +67,9 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 ############
-### ASDF ###
+### MISE ###
 ############
-. $(brew --prefix)/opt/asdf/libexec/asdf.sh
+eval "$(mise activate zsh)"
 
 ##############
 ### ZOXIDE ###

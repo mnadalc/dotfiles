@@ -6,8 +6,6 @@ tap "nikitabobko/tap" # AeroSpace
 
 # Tools to use in the shell
 
-# Extendable version manager with support for Ruby, Node.js, Erlang & more
-brew "asdf"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -36,10 +34,12 @@ brew "gnupg"
 brew "git"
 # Utility for directing compilation
 brew "make"
+# Mise is a polyglot tool version manager. It replaces tools like asdf, nvm, pyenv, rbenv, etc.
+brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Bun is a fast, modern JavaScript runtime
-brew "oven-sh/bun/bun"
+# brew "oven-sh/bun/bun"
 # Theme for zsh
 brew "powerlevel10k"
 # Faster Prettier for JavaScript, TypeScript, CSS, etc. than vanilla prettier

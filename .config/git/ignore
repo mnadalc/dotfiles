@@ -15,3 +15,4 @@
 
 # asdf configuration
 .tool_versions
+**/.claude/settings.local.json

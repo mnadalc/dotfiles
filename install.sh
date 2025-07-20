@@ -17,7 +17,7 @@ chmod u+x ./scripts/*.sh
 
 ./packages/brew-install.sh
 ./packages/brew-packages.sh
-./packages/asdf.sh
+./packages/mise.sh
 ./packages/gems.sh
 ./packages/tmux.sh
 ./packages/aerospace.sh
