@@ -31,6 +31,7 @@ return {
       'php',
       'query',
       'regex',
+      'ruby',
       'tsx',
       'typescript',
       'vim',

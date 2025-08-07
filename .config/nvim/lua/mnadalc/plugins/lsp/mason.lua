@@ -49,19 +49,22 @@ return {
     -- https://mason-registry.dev/registry/list
     mason_tool_installer.setup({
       ensure_installed = {
-        "ast_grep",
+        "ast-grep",
         "astro-language-server",
         "bashls",
+        "cssls",
+        "erb-lint",
         "html",
         "ltex",
         "lua_ls",
         "mdx_analyzer",
-        "vtsls",
-        "yaml-language-server",
-        "cssls",
+        "ruby_lsp", -- ruby lsp
+        "rubocop",  -- ruby formatter
         "rustywind", -- rustywind for tailwindcss
         "tailwindcss",
         "typos-lsp", -- code spell
+        "vtsls",
+        "yaml-language-server",
       },
     })
   end,
