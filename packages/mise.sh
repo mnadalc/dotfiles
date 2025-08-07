@@ -6,7 +6,7 @@ install_mise () {
   print_info "Trusting and installing mise"
   mise trust $MISE_CONFIG
   cd $MISE_CONFIG
-  mise install --global
+  mise install
   mise ls
   print_success "mise installed"
 }

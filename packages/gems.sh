@@ -19,6 +19,7 @@ gems() {
 
     # To ensure the gem bin directory is in $PATH.
     gem environment
+    print_in_purple rails -v
     print_success "Gems installed"
   else
     print_info "Gem already configured to skip documentation"
