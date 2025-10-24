@@ -55,6 +55,9 @@ osxprefs() {
   defaults write com.apple.finder AppleShowAllFiles -bool true
   print_success "Show hidden files in Finder."
 
+  # Show path in Finder
+  defaults write com.apple.finder ShowPathbar -bool true
+
   # Show the /Volumes folder
   chflags nohidden /Volumes
   print_success "Volumes shown."
@@ -83,6 +86,10 @@ osxprefs() {
   # Avoid creating .DS_Store files on network or USB volumes
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
   defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+  # Save screenshots in ~/Screenshots
+  mkdir -p ~/Screenshots
+  defaults write com.apple.screencapture location ~/Screenshots
 
   ###############################################################################
   # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
