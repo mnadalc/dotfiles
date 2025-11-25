@@ -28,6 +28,8 @@ brew "fd"
 brew "fzf"
 # GNU Compiler Collection
 brew "gcc"
+# GitHub CLI
+brew "gh"
 # GNU Privacy Guard - a complete and free implementation of the OpenPGP standard
 brew "gnupg"
 # Distributed revision control system
