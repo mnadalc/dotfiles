@@ -27,6 +27,7 @@ chmod u+x ./scripts/*.sh
 
 ./scripts/configure_zsh.sh
 ./scripts/configure_ghostty.sh
+./scripts/config_claude.sh
 ./scripts/configure_cursor.sh
 
 restart
