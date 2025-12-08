@@ -30,4 +30,24 @@ claude_folder() {
   print_success "Symlinked .claude folder to $HOME/.claude directory."
 }
 
+configure_mcp() {
+  print_info "Configuring MCP servers for Claude Code..."
+  
+  # Check if claude CLI is available
+  if ! command -v claude &> /dev/null; then
+    print_error "Claude CLI not found. Skipping MCP configuration."
+    return 1
+  fi
+  
+  # Add Playwright MCP server
+  print_info "Adding Playwright MCP server..."
+  execute "claude mcp add playwright npx @playwright/mcp@latest"
+
+  print_info "Adding Context7 MCP server..."
+  execute "claude mcp add context7 -- npx -y @upstash/context7-mcp@latest"
+  
+  print_success "MCP servers configured for Claude Code."
+}
+
+configure_mcp
 claude_folder
