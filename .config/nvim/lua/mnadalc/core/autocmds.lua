@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
+--  Try it with `yapseparator_style = "slant",` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -82,7 +82,8 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 -- ]]
 -- Helper to decide if relativenumber should be toggled
 local function should_toggle_relativenumber()
-  local ignore_filetypes = { "neo-tree", "TelescopePrompt", "alpha", "help", "dashboard" }
+  -- local ignore_filetypes = { "neo-tree", "TelescopePrompt", "alpha", "help", "dashboard" }
+  local ignore_filetypes = { "help", "dashboard" }
   return not vim.tbl_contains(ignore_filetypes, vim.bo.filetype)
 end
 
