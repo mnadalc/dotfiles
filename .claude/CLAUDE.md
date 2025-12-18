@@ -25,8 +25,6 @@ The description of the change should be user-facing, describing which features w
 ## GitHub
 
 - Your primary method for interacting with GitHub should be the GitHub CLI.
-- If the project that you are working on is not part of ~/commercetools, `gh auth` should be `mnadalc`.
-  If it's part of ~/commercetools, `gh auth` should be `nadalct`. If it's not matching, ask me to switch between `gh auth`.
 
 ## Git
 
