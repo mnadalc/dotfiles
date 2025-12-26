@@ -1,6 +1,27 @@
 # Alrra utils.sh (https://github.com/alrra/dotfiles/blob/master/os/utils.sh) from his dotfiles repo
 # as well as carloscuesta utils.sh (https://github.com/carloscuesta/dotfiles/blob/master/osx/utils.sh)
 
+# Get the directory where the script that sources this file is located
+# When utils.sh is sourced, BASH_SOURCE[0] is utils.sh itself, so we need to check
+# the caller's context. We look for the first BASH_SOURCE entry that isn't utils.sh
+if [ -z "${SCRIPT_DIR:-}" ]; then
+  # Find the calling script (skip utils.sh itself)
+  _i=0
+  while [ $_i -lt ${#BASH_SOURCE[@]} ]; do
+    _source_file="${BASH_SOURCE[$_i]}"
+    if [ -n "$_source_file" ] && [[ "$_source_file" != *"utils.sh" ]]; then
+      SCRIPT_DIR="$(cd "$(dirname "$_source_file")" && pwd)"
+      break
+    fi
+    ((_i++))
+  done
+  unset _i _source_file
+  # Fallback to current directory if we couldn't find it
+  if [ -z "${SCRIPT_DIR:-}" ]; then
+    SCRIPT_DIR="$(pwd)"
+  fi
+fi
+
 answer_is_yes() {
     [[ "$REPLY" =~ ^[Yy]$ ]] \
         && return 0 \
