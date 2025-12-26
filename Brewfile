@@ -1,6 +1,6 @@
 # Repositories where Homebrew keeps is own software
-tap "homebrew/bundle"
-tap "homebrew/services"
+# tap "homebrew/bundle" # Deprecated
+# tap "homebrew/services" # Deprecated
 tap "microsoft/git"   # Git
 tap "nikitabobko/tap" # AeroSpace
 
@@ -8,10 +8,6 @@ tap "nikitabobko/tap" # AeroSpace
 
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
-# CSV editor
-brew "csvkit"
 # Structural diff tool that understands syntax.
 brew "difftastic"
 # Syntax-highlighting pager for git and diff output
@@ -66,6 +62,10 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # Vi-mode for zsh
 # brew "zsh-vi-mode"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# CSV editor
+brew "csvkit"
 
 # Standalone applications
 
@@ -86,9 +86,11 @@ cask "ghostty"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Notion
-cask "notion"
+# cask "notion"
 # Obsidian
 cask "obsidian"
+# Slack
+cask "slack"
 # Spotify
 cask "spotify"
 # Telegram
