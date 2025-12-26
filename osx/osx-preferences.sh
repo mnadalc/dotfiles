@@ -74,10 +74,6 @@ osxprefs() {
   # Finder: show all filename extensions
 	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 	print_success "Finder showing filename extensions"
-  
-	# Scroll direction natural : False
-	defaults write -g com.apple.swipescrolldirection -bool false
-	print_success "Scroll direction natural (Lion style) set to false."
 
 	# Display full path in Finder title window
 	defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
@@ -108,6 +104,10 @@ osxprefs() {
 	defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 	print_success "Right click mapped to the bottom right corner at the trackpad."
 
+  # Scroll direction natural : False
+	defaults write -g com.apple.swipescrolldirection -bool false
+	print_success "Scroll direction natural (Lion style) set to false."
+
 	# Increase sound quality for Bluetooth headphones/headsets
 	defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
@@ -120,6 +120,10 @@ osxprefs() {
 	# Enable key repeat globally
 	defaults write -g ApplePressAndHoldEnabled -bool false 
 	print_success "Key repeat enabled globally."
+
+  # Use fn key as standard function key
+  defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+  print_success "Fn key as standard function key enabled."
 
 	# Set a blazingly fast keyboard repeat rate
 	defaults write NSGlobalDomain KeyRepeat -int 1
