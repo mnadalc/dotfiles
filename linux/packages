@@ -1,0 +1,93 @@
+# Omarchy / Arch Linux "Brewfile" equivalent
+#
+# Omarchy is Arch-based, so:
+# - Official repos: `pacman`
+# - Community packages: AUR via an AUR helper (usually `yay` or `paru`)
+#
+# This file is intentionally a *declarative list* (not executable).
+# You can install from it with something like:
+#
+#   # pacman packages
+#   awk '/^## pacman$/{f=1;next} /^## /{f=0} f && $0 !~ /^($|#)/{print}' linux/Brewfile \
+#     | xargs -r sudo pacman -S --needed --noconfirm
+#
+#   # AUR packages (requires yay or paru)
+#   awk '/^## aur$/{f=1;next} /^## /{f=0} f && $0 !~ /^($|#)/{print}' linux/Brewfile \
+#     | xargs -r yay -S --needed --noconfirm
+#
+# Notes:
+# - Package names can differ slightly across Arch repos/AUR; treat this as a starting point.
+# - Some macOS-only casks have no direct Linux equivalent; see the notes section.
+
+## pacman
+# base tooling / build (AUR helpers often need these)
+base-devel
+git
+
+# CLI tools (mapped from your macOS Brewfile)
+bat
+curl
+csvkit
+difftastic
+git-delta
+eza
+fd
+fzf
+gcc
+github-cli
+gnupg
+make
+neovim
+ripgrep
+tmux
+tree
+unzip
+wget
+zoxide
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+
+# Languages / formatters / linters (names can vary; keep what exists in repos)
+eslint
+
+# Apps that usually exist in Arch repos
+obsidian
+spotify-launcher
+telegram-desktop
+
+## aur
+# JS tooling typically via AUR
+eslint_d
+prettierd
+
+# Dev tools / apps (AUR)
+cursor-bin
+google-chrome
+ghostty-bin
+
+# Fonts (closest to your Homebrew cask font)
+ttf-meslo-nerd-font-powerlevel10k
+
+# Zsh theme (if you prefer package-managed theme over git clone)
+zsh-theme-powerlevel10k
+
+# Zen Browser (Firefox fork) – package name may vary; adjust if needed
+zen-browser-bin
+
+# WhatsApp desktop (choose one; names vary in AUR)
+whatsapp-for-linux
+
+## notes
+# macOS-only (no-op on Linux / replaced by Omarchy/Hyprland defaults)
+# - aerospace (macOS tiling WM) -> Hyprland already covers this
+# - alfred -> consider `rofi-wayland` or `wofi` (not listed here to keep parity-focused)
+# - finicky -> consider `xdg-utils` + per-app URL handlers (or `handlr`), plus browser profiles
+# - hiddenbar -> use your bar (Waybar) config instead
+#
+# Optional Omarchy/Wayland quality-of-life (not in your macOS Brewfile but often useful)
+# - grim, slurp, wl-clipboard (screenshots + clipboard)
+# - waybar (status bar)
+# - rofi-wayland / wofi (launcher)
+
+

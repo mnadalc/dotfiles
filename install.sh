@@ -22,7 +22,9 @@ chmod u+x ./scripts/*.sh
 ./packages/aerospace.sh
 ./packages/fzf_tab.sh
 ./packages/bat.sh
+
 # ./packages/nvim.sh # Installs kickstart.nvim (not needed)
+./osx/osx-preferences.sh
 
 ./osx/osx-preferences.sh
 
