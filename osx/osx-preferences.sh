@@ -34,6 +34,11 @@ osxprefs() {
 
   # Set dark mode
   defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+  print_success "Dark mode enabled."
+
+  # Show battery percentage in the menu bar
+  defaults write com.apple.controlcenter.plist BatteryShowPercentage -bool true
+  print_success "Battery percentage in the menu bar enabled."
 
   ###############################################################################
   # Finder                                                                      #
@@ -155,6 +160,26 @@ osxprefs() {
   defaults write NSGlobalDomain AppleMetricUnits -bool true
   defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
 
+
+  # Disable automatic capitalization as it’s annoying when typing code
+  defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+  print_success "Automatic capitalization disabled."
+  
+  # Disable smart dashes as they’re annoying when typing code
+  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+  print_success "Smart dashes disabled."
+
+  # Disable automatic period substitution as it’s annoying when typing code
+  defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+  print_success "Automatic period substitution disabled."
+
+  # Disable smart quotes as they’re annoying when typing code
+  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+  print_success "Smart quotes disabled."
+
+  # Disable auto-correct
+  defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+  print_success "Auto-correct disabled."
   ###############################################################################
   # Dock, Dashboard, and hot corners                                            #
   ###############################################################################

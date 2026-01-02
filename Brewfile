@@ -1,7 +1,7 @@
 # Repositories where Homebrew keeps is own software
 # tap "homebrew/bundle" # Deprecated
 # tap "homebrew/services" # Deprecated
-tap "microsoft/git"   # Git
+# tap "microsoft/git"   # Git
 tap "nikitabobko/tap" # AeroSpace
 
 # Tools to use in the shell
@@ -10,6 +10,8 @@ tap "nikitabobko/tap" # AeroSpace
 brew "bat"
 # Structural diff tool that understands syntax.
 brew "difftastic"
+# GitHub CLI
+brew "gh"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # AST-based pattern checker for JavaScript
@@ -73,6 +75,8 @@ brew "csvkit"
 cask "aerospace"
 # Application launcher and productivity software
 cask "alfred"
+# Git Credential Manager for macOS and Linux
+cask "git-credential-manager"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Redirect browser requests to different apps

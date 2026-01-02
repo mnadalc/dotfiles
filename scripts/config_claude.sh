@@ -49,5 +49,5 @@ configure_mcp() {
   print_success "MCP servers configured for Claude Code."
 }
 
-configure_mcp
+# configure_mcp
 claude_folder
