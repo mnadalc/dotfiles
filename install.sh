@@ -26,12 +26,9 @@ chmod u+x ./scripts/*.sh
 # ./packages/nvim.sh # Installs kickstart.nvim (not needed)
 ./osx/osx-preferences.sh
 
-./osx/osx-preferences.sh
-
 ./scripts/configure_zsh.sh
 ./scripts/configure_ghostty.sh
 ./scripts/config_claude.sh
 ./scripts/configure_cursor.sh
 
 restart
-
