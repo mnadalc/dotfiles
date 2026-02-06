@@ -17,23 +17,51 @@ brew --version
 
 ## 2) GitHub and Git (recommended first)
 
-- Authenticate GitHub CLI:
+- Authenticate GitHub CLI (`gh` commands only):
 
 ```bash
 gh auth login
 ```
 
-- Confirm auth:
+- Confirm `gh` auth:
 
 ```bash
 gh auth status
 ```
 
-- Set Git identity (if not already set globally):
+- Git identity is managed by dotfiles at
+  `/Users/miguel.nadal/.dotfiles/.config/git/config`.
+  Keep `user.name` and `user.email` (GitHub `noreply`) there as your source of truth.
+
+- Configure Git push authentication (`git push`):
+  - SSH (recommended):
 
 ```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
+ssh -T git@github.com
+```
+
+  - If the SSH test fails, add an SSH key to GitHub and test again.
+  - Verify your remote uses SSH:
+
+```bash
+git -C ~/.dotfiles remote -v
+```
+
+  - HTTPS option:
+    - Keep remote as `https://...` and authenticate on first push using your credential manager/token.
+
+- Verify commit identity before first push:
+
+```bash
+git config user.name
+git config user.email
+```
+
+- If a push is rejected with `GH007` (private email protection), fix the latest commit and push again:
+
+```bash
+git commit --amend --reset-author --no-edit
+git push origin master
 ```
 
 ## 3) Verify what was installed by this repo
