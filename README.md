@@ -2,28 +2,41 @@
 
 ## Setup
 
-1. Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
-   This is not needed if you already have the repo downloaded, since it's part of the installation process.
+1. Install Apple's Command Line Tools (required for Git/Homebrew during install):
 
 ```bash
 xcode-select --install
 ```
 
-2. Clone repo into new hidden directory
+2. Download the dotfiles into `~/.dotfiles`.
+
+If the machine is brand new (no Git / no browser needed), use the GitHub tarball:
+
+```bash
+mkdir -p ~/.dotfiles
+curl -L https://github.com/mnadalc/dotfiles/tarball/main \
+  | tar -xz --strip-components=1 -C ~/.dotfiles
+```
+
+Or if Git is already available, clone as usual:
 
 ```
 # Use SSH (if set up)
-git clone git@github.com:mnadalc/dotfiles.git .dotfiles
+git clone git@github.com:mnadalc/dotfiles.git ~/.dotfiles
 
 # Or use HTTPS
-git clone https://github.com/mnadalc/dotfiles.git .dotfiles
+git clone https://github.com/mnadalc/dotfiles.git ~/.dotfiles
 ```
 
 3. Execute install script
 
 ```bash
-cd .dotfiles && bash ./install.sh
+cd ~/.dotfiles && bash ./install.sh
 ```
+
+4. Complete post-install logins and sync
+
+Use the checklist in [`NEXT_STEPS.md`](NEXT_STEPS.md).
 
 ## Individual scripts
 

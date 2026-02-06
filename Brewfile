@@ -3,6 +3,7 @@
 # tap "homebrew/services" # Deprecated
 # tap "microsoft/git"   # Git
 tap "nikitabobko/tap" # AeroSpace
+tap "zackriya-solutions/meetily" # Meetily
 
 # Tools to use in the shell
 
@@ -79,6 +80,12 @@ cask "alfred"
 cask "git-credential-manager"
 # Write, edit, and chat about your code with AI
 cask "cursor"
+# OpenAI's coding agent for the terminal (Codex CLI)
+cask "codex"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
+# AI meeting assistant with local transcription support
+cask "meetily"
 # Redirect browser requests to different apps
 cask "finicky"
 # Fonts

@@ -62,6 +62,8 @@ osxprefs() {
 
   # Show path in Finder
   defaults write com.apple.finder ShowPathbar -bool true
+  defaults write com.apple.finder ShowStatusBar -bool true
+  print_success "Finder status bar enabled."
 
   # Show the /Volumes folder
   chflags nohidden /Volumes
@@ -195,6 +197,14 @@ osxprefs() {
   defaults write com.apple.dock autohide -bool true
   print_success "Dock automatically hides."
 
+  # Don’t show suggested and recent apps in Dock
+  defaults write com.apple.dock show-recents -bool false
+  print_success "Dock recent apps disabled."
+
+  # Don’t automatically rearrange Spaces based on recent use
+  defaults write com.apple.dock mru-spaces -bool false
+  print_success "Automatic Space rearrangement disabled."
+
   # Change animation while minimizing applications
   defaults write com.apple.dock "mineffect" -string "scale"
   print_success "Dock animation changed to scale."
@@ -218,8 +228,15 @@ osxprefs() {
   # 11: Launchpad
   # 12: Notification Center
   # 13: Lock Screen
-  defaults write com.apple.dock wvous-br-corner -int 1
+  defaults write com.apple.dock wvous-tl-corner -int 0
+  defaults write com.apple.dock wvous-tl-modifier -int 0
+  defaults write com.apple.dock wvous-tr-corner -int 0
+  defaults write com.apple.dock wvous-tr-modifier -int 0
+  defaults write com.apple.dock wvous-bl-corner -int 0
+  defaults write com.apple.dock wvous-bl-modifier -int 0
+  defaults write com.apple.dock wvous-br-corner -int 0
   defaults write com.apple.dock wvous-br-modifier -int 0
+  print_success "All hot corners disabled."
 
   ###############################################################################
   # Safari & WebKit                                                             #
