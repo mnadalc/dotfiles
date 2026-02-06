@@ -127,8 +127,28 @@ Notes:
 - Cursor:
   - Open Cursor.
   - Sign in (account/provider).
-  - Enable Settings Sync if you use it.
   - Confirm your `settings.json` symlink is active (this repo links it automatically).
+  - Use deterministic extension migration:
+    - On your current machine (before moving), export and commit extension versions:
+
+```bash
+bash ~/.dotfiles/scripts/export_cursor_extensions.sh
+cd ~/.dotfiles && git add apps/cursor/extensions.txt && git commit -m "chore(cursor): update extensions list" && git push
+```
+
+    - On the new machine (after pulling latest dotfiles), install extensions from that list:
+
+```bash
+# This is already executed by ~/.dotfiles/install.sh.
+# You can rerun manually if needed.
+bash ~/.dotfiles/scripts/install_cursor_extensions.sh
+```
+
+    - Verify installed extensions:
+
+```bash
+cursor --list-extensions --show-versions
+```
 
 - VS Code (if you use it):
   - Open VS Code.

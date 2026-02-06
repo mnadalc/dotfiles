@@ -30,5 +30,6 @@ chmod u+x ./scripts/*.sh
 ./scripts/configure_ghostty.sh
 ./scripts/config_claude.sh
 ./scripts/configure_cursor.sh
+./scripts/install_cursor_extensions.sh
 
 restart

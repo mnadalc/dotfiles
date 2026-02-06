@@ -20,9 +20,11 @@
 	"extensions.ignoreRecommendations": true,
 	"explorer.confirmDelete": false,
 	"window.zoomLevel": 1,
+
 	// Editor's terminal config
 	"terminal.integrated.defaultProfile.osx": "zsh",
 	"terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+
 	// Language configuration
 	"html.autoClosingTags": true,
 	"javascript.autoClosingTags": true,
@@ -30,9 +32,24 @@
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"typescript.autoClosingTags": true,
 	"typescript.preferences.includePackageJsonAutoImports": "on",
+	"typescript.preferences.autoImportFileExcludePatterns": [
+		"@material-ui/*",
+		"@material-ui/core/*",
+		"@material-ui/icons/*",
+		"**/dist/**/material-ui/**",
+		"**/material-ui/**",
+		"**/node_modules/@material-ui/**",
+		"**/node_modules/**/material-ui/**",
+		"**/node_modules/saas/**",
+		"date-fns",
+		"redux",
+		"react-day-picker",
+		"lucide-react"
+	],
 	"typescript.suggest.autoImports": true,
 	"typescript.suggest.completeJSDocs": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
+
 	// Theme configuration
 	"workbench.activityBar.orientation": "vertical",
 	"workbench.colorTheme": "Darcula",
@@ -40,6 +57,7 @@
 		"editorIndentGuide.activeBackground1": "#ffffff"
 	},
 	"workbench.iconTheme": "material-icon-theme",
+
 	// Linters
 	"emmet.showExpandedAbbreviation": "never",
 	"eslint.codeAction.showDocumentation": {
@@ -60,6 +78,7 @@
 	"eslint.codeActionsOnSave.mode": "problems",
 	"eslint.codeActionsOnSave.rules": ["!no-debugger", "!no-extra-semi", "!@typescript-eslint/no-unsafe-assignment", "*"],
 	"prettier.documentSelectors": ["**/*.astro"],
+
 	// LLMs
 	"github.copilot.enable": {
 		"*": false,
@@ -76,11 +95,14 @@
 	},
 	"files.restoreUndoStack": false,
 	"security.workspace.trust.untrustedFiles": "open",
+
 	// Git
 	"git.autofetch": true,
 	"git.openRepositoryInParentFolders": "always",
+
 	// JS/TS config
 	"js/ts.implicitProjectConfig.checkJs": true,
+
 	////////////////
 	// EXTENSIONS //
 	////////////////
@@ -95,44 +117,25 @@
 		"watch": false,
 		"onSave": "test-file"
 	},
+
 	// GitLens extension
 	"gitlens.defaultDateFormat": null,
+
 	// Github Pull Request extension
 	"githubPullRequests.pullBranch": "never",
+
 	// TotalTypeScript extension
 	"totalTypeScript.hideAllTips": false,
 	"totalTypeScript.hideBasicTips": true,
 	"totalTypeScript.hiddenTips": ["passing-generics-to-types", "omit-utility-type", "tuple-type", "typeof"],
+
 	// cSpell extension
 	"cSpell.userWords": ["tanstack", "testid"],
+
 	// Tailwind CSS IntelliSense extension
 	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "defaultClass", "variant"],
-	// Rest-client extension (commercetools config)
-	"rest-client.environmentVariables": {
-		"$shared": {
-			"accept": "application/json",
-			"contentType": "application/json"
-		},
-		"local": {
-			"accept": "{{$shared accept}}",
-			"contentType": "${{$shared contentType}}",
-			"host": "http://localhost:2999",
-			"parameters": "environment=production&project=english&locale=en_GB%40EUR",
-			"email": "dev@frontastic.io"
-		},
-		"demo": {
-			"accept": "{{$shared accept}}",
-			"contentType": "${{$shared contentType}}",
-			"host": "https://demo.frontastic.io",
-			"parameters": "environment=production&project=english&locale=en_GB%40EUR",
-			"email": "<< YOUR EMAIL >>"
-		},
-		"frontastictest": {
-			"accept": "{{$shared accept}}",
-			"contentType": "${{$shared contentType}}",
-			"host": "https://frontastictest.frontastic.io",
-			"parameters": "environment=production&project=home&locale=en_GB",
-			"email": "<< YOUR EMAIL >>"
-		}
-	}
+
+	// Claude Code
+	"claudeCode.selectedModel": "sonnet",
+	"claudeCode.preferredLocation": "panel"
 }
