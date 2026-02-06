@@ -70,7 +70,7 @@ git push origin master
   - `git`, `gh`, `mise`, `tmux`, `nvim`, `ripgrep`, `fd`, `fzf`, `zsh`.
 - Core desktop apps expected:
   - `aerospace`, `alfred`, `cursor`, `codex`, `codex-app`, `meetily`,
-    `google-chrome`, `zen-browser`, `ghostty`, `obsidian`, `slack`,
+    `ukelele`, `google-chrome`, `zen-browser`, `ghostty`, `obsidian`, `slack`,
     `spotify`, `telegram`, `whatsapp`, `hiddenbar`, `finicky`.
 - Check Homebrew state:
 
@@ -166,7 +166,21 @@ open -a Meetily
 - Open Wispr Flow and log in.
 - Grant macOS permissions when prompted (Microphone, Accessibility, etc.).
 
-## 10) Final checks
+## 10) Keyboard layout (GB + Spanish chars)
+
+- Open Ukelele and create a layout from `British`.
+- Override only these keys:
+  - `⌥a` `⌥e` `⌥i` `⌥o` `⌥u` `⌥n` -> `á` `é` `í` `ó` `ú` `ñ`
+  - `⌥⇧a` `⌥⇧e` `⌥⇧i` `⌥⇧o` `⌥⇧u` `⌥⇧n` -> `Á` `É` `Í` `Ó` `Ú` `Ñ`
+  - `Right ⌥u` -> `ü`
+  - `Right ⌥⇧u` -> `Ü`
+  - `Right ⌥e` -> `€`
+  - `⇧3` -> `#`
+  - `Right ⌥3` -> `£`
+- Save layout to `~/Library/Keyboard Layouts/`.
+- Log out/in, then enable it in macOS Settings -> Keyboard -> Input Sources.
+
+## 11) Final checks
 
 - Optional: run once more in case you updated `Brewfile`:
 

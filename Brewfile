@@ -4,6 +4,7 @@
 # tap "microsoft/git"   # Git
 tap "nikitabobko/tap" # AeroSpace
 tap "zackriya-solutions/meetily" # Meetily
+tap "tw93/tap" # Mole
 
 # Tools to use in the shell
 
@@ -33,6 +34,8 @@ brew "gnupg"
 brew "git"
 # Utility for directing compilation
 brew "make"
+# Deep clean and optimize your Mac
+brew "tw93/tap/mole"
 # Mise is a polyglot tool version manager. It replaces tools like asdf, nvm, pyenv, rbenv, etc.
 brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -84,6 +87,8 @@ cask "codex"
 cask "codex-app"
 # AI meeting assistant with local transcription support
 cask "meetily"
+# Keyboard layout editor for custom macOS input sources
+cask "ukelele"
 # Redirect browser requests to different apps
 cask "finicky"
 # Fonts
