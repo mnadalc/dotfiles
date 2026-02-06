@@ -3,7 +3,7 @@ source './osx/utils.sh'
 config_aerospace() {
   print_info "Configuring Aerospace"
 
-  if [ -d "$HOME/.aerospace.toml" ]; then
+  if [ -e "$HOME/.aerospace.toml" ]; then
     rm "$HOME/.aerospace.toml"
   fi
   if [ -d "$HOME/.config/aerospace" ]; then
