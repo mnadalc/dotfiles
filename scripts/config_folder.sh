@@ -1,8 +1,8 @@
 source './osx/utils.sh'
 
 config_folder() {
-  # Get the directory where the script is located (SCRIPT_DIR is set by utils.sh)
-  ROOT_DIR="$(git -C "${SCRIPT_DIR}" rev-parse --show-toplevel)"
+  # Resolve repo root without requiring a .git directory (tarball installs)
+  ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
   print_info "Symlinking configuration files to $HOME/.config directory."
 
   # Create the .config directory if it doesn't exist

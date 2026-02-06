@@ -1,8 +1,8 @@
 source './osx/utils.sh'
 
 brew_packages() {
-  # Get the directory where the script is located
-  ROOT_DIR="$(git -C "${SCRIPT_DIR}" rev-parse --show-toplevel)"
+  # Resolve repo root without requiring a .git directory (tarball installs)
+  ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
   if cmd_exists "brew"; then
 		print_in_blue "Updating brew packages ..."

@@ -2,8 +2,8 @@ source './osx/utils.sh'
 SH="${HOME}/.zshrc"
 
 configure_zsh() {
-  # Get the directory where the script is located
-  ROOT_DIR="$(git -C "${SCRIPT_DIR}" rev-parse --show-toplevel)"
+  # Resolve repo root without requiring a .git directory (tarball installs)
+  ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
   print_info "Configuring zsh"
 
   # Create the .zshrc file if it doesn't exist
