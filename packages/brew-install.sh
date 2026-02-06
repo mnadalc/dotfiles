@@ -9,6 +9,8 @@ brew_install() {
 	  ask_for_confirmation "Would you like to install Homebrew (Brew) ?"
     if answer_is_yes; then
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      # Load Homebrew in the current shell so subsequent commands work immediately.
+      eval "$(/opt/homebrew/bin/brew shellenv)"
       if cmd_exists "brew"; then
         print_success 'Brew has been successfully installed!'
 
