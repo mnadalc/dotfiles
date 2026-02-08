@@ -19,3 +19,7 @@ export LANG=en_US.UTF-8
 
 # Set XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# PNPM global binaries
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
