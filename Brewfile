@@ -5,6 +5,7 @@
 tap "nikitabobko/tap" # AeroSpace
 tap "zackriya-solutions/meetily" # Meetily
 tap "tw93/tap" # Mole
+tap "anomalyco/tap" # OpenCode
 
 # Tools to use in the shell
 
@@ -40,6 +41,8 @@ brew "tw93/tap/mole"
 brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# AI coding agent for the terminal
+brew "anomalyco/tap/opencode"
 # Bun is a fast, modern JavaScript runtime
 # brew "oven-sh/bun/bun"
 # Theme for zsh
