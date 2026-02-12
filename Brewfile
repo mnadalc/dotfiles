@@ -1,12 +1,4 @@
 # Repositories where Homebrew keeps is own software
-# tap "homebrew/bundle" # Deprecated
-# tap "homebrew/services" # Deprecated
-# tap "microsoft/git"   # Git
-tap "nikitabobko/tap" # AeroSpace
-tap "zackriya-solutions/meetily" # Meetily
-tap "tw93/tap" # Mole
-tap "anomalyco/tap" # OpenCode
-
 # Tools to use in the shell
 
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -39,12 +31,12 @@ brew "make"
 brew "tw93/tap/mole"
 # Mise is a polyglot tool version manager. It replaces tools like asdf, nvm, pyenv, rbenv, etc.
 brew "mise"
+# Mole is a tool for managing your Mac's system resources.
+brew "mole"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # AI coding agent for the terminal
-brew "anomalyco/tap/opencode"
-# Bun is a fast, modern JavaScript runtime
-# brew "oven-sh/bun/bun"
+brew "opencode"
 # Theme for zsh
 brew "powerlevel10k"
 # Faster Prettier for JavaScript, TypeScript, CSS, etc. than vanilla prettier
@@ -73,11 +65,15 @@ brew "zsh-syntax-highlighting"
 brew "curl"
 # CSV editor
 brew "csvkit"
+# Libraries for Ruby and Rails
+brew "libyaml"
+brew "openssl@3"
+brew "gmp"
 
 # Standalone applications
 
 # AeroSpace is an i3-like tiling window manager for macOS
-cask "aerospace"
+cask "nikitabobko/tap/aerospace"
 # Application launcher and productivity software
 cask "alfred"
 # Git Credential Manager for macOS and Linux
@@ -89,7 +85,7 @@ cask "codex"
 # OpenAI's Codex desktop app for managing coding agents
 cask "codex-app"
 # AI meeting assistant with local transcription support
-cask "meetily"
+#cask "meetily"
 # Keyboard layout editor for custom macOS input sources
 cask "ukelele"
 # Redirect browser requests to different apps
@@ -116,3 +112,5 @@ cask "telegram"
 cask "whatsapp"
 # Zen Browser - Firefox fork
 cask "zen-browser"
+# Karabiner Elements - Keyboard remapping
+cask "karabiner-elements"

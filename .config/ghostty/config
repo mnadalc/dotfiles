@@ -3,3 +3,4 @@ confirm-close-surface = false
 font-family = MesloLGS Nerd Font Mono
 shell-integration = zsh
 window-decoration = auto
+term = xterm-256color

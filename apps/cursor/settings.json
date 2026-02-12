@@ -137,5 +137,10 @@
 
 	// Claude Code
 	"claudeCode.selectedModel": "sonnet",
-	"claudeCode.preferredLocation": "panel"
+	"claudeCode.preferredLocation": "panel",
+	"window.commandCenter": true,
+	"cursor.cpp.disabledLanguages": ["scminput"],
+
+	// TypeScript (Native Preview) > Use Tsgo
+	"typescript.experimental.useTsgo": true
 }

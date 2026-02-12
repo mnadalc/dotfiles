@@ -232,14 +232,14 @@ shift-down = ['volume set 0', 'mode main']
 # 9 = 'DELL U2515H'                # Secondary monitor
 # A = 'LEN T27p-10'                # Main monitor
 B = ['DELL U2515H', 'T27p-30']     # Secondary monitor - Browser
-C = ['LEN T27p-10', 'built-in']    # Main monitor - Code
+C = ['LEN T27p-10', 'DELL U2515H', 'built-in']    # Main monitor - Code
 # D = 'LEN T27p-10'                # Main monitor
 # F = 'LEN T27p-10'                # Main monitor
 M = 'built-in'                     # Laptop - Music 
-O = ['LEN T27p-10', 'built-in']    # Main monitor - Other
+O = ['LEN T27p-10', 'DELL U2515H', 'built-in']    # Main monitor - Other
 # R = 'built-in'                   # Laptop
 S = 'built-in'                     # Laptop - Social
-T = ['LEN T27p-10', 'built-in']    # Main monitor - Terminal
+T = ['LEN T27p-10', 'DELL U2515H', 'built-in']    # Main monitor - Terminal
 # V = 'DELL U2515H'                # Secondary monitor
 W = 'built-in'                     # Laptop - Work (Slack, Remeet...)
 # X = 'DELL U2515H'                # Secondary monitor
@@ -323,6 +323,9 @@ if.app-id = 'notion.id'
 run = 'move-node-to-workspace O'
 [[on-window-detected]]
 if.app-id = 'com.apple.TextEdit'
+run = 'move-node-to-workspace O'
+[[on-window-detected]]
+if.app-id = 'com.openai.codex'
 run = 'move-node-to-workspace O'
 
 ### Sets the layout to a specific workspace
