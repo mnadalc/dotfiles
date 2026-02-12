@@ -210,6 +210,17 @@ osxprefs() {
   defaults write com.apple.dock "mineffect" -string "scale"
   print_success "Dock animation changed to scale."
 
+  # Keep Dock minimal: only Finder and Mail
+  if command -v dockutil >/dev/null 2>&1; then
+    dockutil --remove all --no-restart
+    dockutil --add "/System/Library/CoreServices/Finder.app" --position 1 --no-restart
+    dockutil --add "/System/Applications/Mail.app" --position 2 --no-restart
+    killall Dock >/dev/null 2>&1 || true
+    print_success "Dock reset to Finder and Mail only."
+  else
+    print_error "dockutil not found. Install dependencies first to enforce Dock apps."
+  fi
+
   # Change date format in the menu bar
   defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
   print_success "Date format in the menu bar changed to \"EEE d MMM HH:mm:ss\"."

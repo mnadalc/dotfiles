@@ -27,6 +27,8 @@ brew "gnupg"
 brew "git"
 # Utility for directing compilation
 brew "make"
+# Manage Dock items from shell scripts
+brew "dockutil"
 # Deep clean and optimize your Mac
 brew "tw93/tap/mole"
 # Mise is a polyglot tool version manager. It replaces tools like asdf, nvm, pyenv, rbenv, etc.
