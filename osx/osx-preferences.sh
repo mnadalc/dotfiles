@@ -98,7 +98,8 @@ osxprefs() {
   # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
   ###############################################################################
 
-	# Trackpad: enable tap to click for this user and for the login screen
+	# Trackpad: enable tap to click (one finger) for built-in and Bluetooth trackpads
+	defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 	defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 	defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 	defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
@@ -111,9 +112,9 @@ osxprefs() {
 	defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 	print_success "Right click mapped to the bottom right corner at the trackpad."
 
-  # Scroll direction natural : False
-	defaults write -g com.apple.swipescrolldirection -bool false
-	print_success "Scroll direction natural (Lion style) set to false."
+  # Scroll direction natural : True
+	defaults write -g com.apple.swipescrolldirection -bool true
+	print_success "Scroll direction natural (Lion style) set to true."
 
 	# Increase sound quality for Bluetooth headphones/headsets
 	defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
