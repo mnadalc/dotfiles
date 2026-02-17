@@ -34,3 +34,8 @@ Right Option (symbols/umlaut):
 - `right_option + shift + u` -> `Ü`
 - `right_option + e` -> `€`
 - `right_option + 3` -> `£`
+
+Section key (`§/±`) punctuation:
+
+- `§` -> `¿`
+- `shift + §` (`±`) -> `¡`

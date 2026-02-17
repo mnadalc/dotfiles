@@ -415,6 +415,50 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Section key to inverted punctuation",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "non_us_backslash",
+                  "modifiers": {
+                    "mandatory": [],
+                    "optional": []
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "option",
+                      "shift"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "non_us_backslash",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": []
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "option"
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
