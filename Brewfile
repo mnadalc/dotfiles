@@ -94,12 +94,16 @@ cask "ukelele"
 cask "finicky"
 # Fonts
 cask "font-meslo-lg-nerd-font"
+cask "font-hack-nerd-font"
+cask "Symbols Nerd Font Mono"
 # Google Chrome
 cask "google-chrome"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Utility to hide menu bar items
 cask "hiddenbar"
+# Display control and monitor tuning utility
+cask "betterdisplay"
 # Notion
 # cask "notion"
 # Obsidian
