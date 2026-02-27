@@ -40,15 +40,15 @@ gh auth status
 ssh -T git@github.com
 ```
 
-  - If the SSH test fails, add an SSH key to GitHub and test again.
-  - Verify your remote uses SSH:
+- If the SSH test fails, add an SSH key to GitHub and test again.
+- Verify your remote uses SSH:
 
 ```bash
 git -C ~/.dotfiles remote -v
 ```
 
-  - HTTPS option:
-    - Keep remote as `https://...` and authenticate on first push using your credential manager/token.
+- HTTPS option:
+  - Keep remote as `https://...` and authenticate on first push using your credential manager/token.
 
 - Verify commit identity before first push:
 
@@ -71,7 +71,7 @@ git push origin master
 - Core desktop apps expected:
   - `aerospace`, `alfred`, `cursor`, `codex`, `codex-app`, `meetily`,
     `ukelele`, `google-chrome`, `zen-browser`, `ghostty`, `obsidian`, `slack`,
-    `spotify`, `telegram`, `whatsapp`, `hiddenbar`, `finicky`.
+    `spotify`, `telegram`, `whatsapp`, `hiddenbar`, `finicky`, `betterdisplay`.
 - Check Homebrew state:
 
 ```bash
@@ -119,6 +119,7 @@ claude login
 ```
 
 Notes:
+
 - Dotfiles already symlink `~/.claude` configuration.
 - If `claude` is not installed yet, install it first, then run `claude login`.
 
@@ -186,21 +187,341 @@ open -a Meetily
 - Open Wispr Flow and log in.
 - Grant macOS permissions when prompted (Microphone, Accessibility, etc.).
 
-## 10) Keyboard layout (GB + Spanish chars)
+## 10) BetterDisplay / 4K 120Hz tutorial
 
-- Open Ukelele and create a layout from `British`.
-- Override only these keys:
-  - `⌥a` `⌥e` `⌥i` `⌥o` `⌥u` `⌥n` -> `á` `é` `í` `ó` `ú` `ñ`
-  - `⌥⇧a` `⌥⇧e` `⌥⇧i` `⌥⇧o` `⌥⇧u` `⌥⇧n` -> `Á` `É` `Í` `Ó` `Ú` `Ñ`
-  - `Right ⌥u` -> `ü`
-  - `Right ⌥⇧u` -> `Ü`
-  - `Right ⌥e` -> `€`
-  - `⇧3` -> `#`
-  - `Right ⌥3` -> `£`
-- Save layout to `~/Library/Keyboard Layouts/`.
-- Log out/in, then enable it in macOS Settings -> Keyboard -> Input Sources.
+- Follow this setup tutorial:
+  - https://forums.macrumors.com/threads/mac-mini-4k-120hz.2267035/page-31?post=31952813#post-31952813
 
-## 11) Final checks
+## 11) Keyboard layout (GB + Spanish chars)
+
+Karabiner should load automatically from the .config file
+
+If not:
+
+- Open Karaniber Settings --> Complex modifications.
+
+Add the following:
+
+```json
+{
+	"description": "Uppercase Spanish accents via dead keys",
+	"manipulators": [
+		{
+			"from": {
+				"key_code": "a",
+				"modifiers": {
+					"mandatory": ["left_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "a",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "e",
+				"modifiers": {
+					"mandatory": ["left_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "e",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "i",
+				"modifiers": {
+					"mandatory": ["left_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "i",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "o",
+				"modifiers": {
+					"mandatory": ["left_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "o",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "u",
+				"modifiers": {
+					"mandatory": ["left_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "u",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "n",
+				"modifiers": {
+					"mandatory": ["left_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "n",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "n",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "u",
+				"modifiers": {
+					"mandatory": ["right_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "u",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "u",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		}
+	]
+}
+```
+
+```json
+{
+	"description": "Right option symbols and umlaut",
+	"manipulators": [
+		{
+			"from": {
+				"key_code": "u",
+				"modifiers": {
+					"mandatory": ["right_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "u",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "u" }
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "u",
+				"modifiers": {
+					"mandatory": ["right_option", "shift"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "u",
+					"modifiers": ["option"]
+				},
+				{
+					"key_code": "u",
+					"modifiers": ["shift"]
+				}
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "e",
+				"modifiers": {
+					"mandatory": ["right_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "2",
+					"modifiers": ["option", "shift"]
+				}
+			],
+			"type": "basic"
+		}
+	]
+}
+```
+
+```json
+{
+	"description": "Left option accents via dead keys",
+	"manipulators": [
+		{
+			"from": {
+				"key_code": "a",
+				"modifiers": {
+					"mandatory": ["left_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "a" }
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "e",
+				"modifiers": {
+					"mandatory": ["left_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "e" }
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "i",
+				"modifiers": {
+					"mandatory": ["left_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "i" }
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "o",
+				"modifiers": {
+					"mandatory": ["left_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "o" }
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "u",
+				"modifiers": {
+					"mandatory": ["left_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "e",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "u" }
+			],
+			"type": "basic"
+		},
+		{
+			"from": {
+				"key_code": "n",
+				"modifiers": {
+					"mandatory": ["left_option"],
+					"optional": []
+				}
+			},
+			"to": [
+				{
+					"key_code": "n",
+					"modifiers": ["option"]
+				},
+				{ "key_code": "n" }
+			],
+			"type": "basic"
+		}
+	]
+}
+```
+
+## 12) Final checks
 
 - Optional: run once more in case you updated `Brewfile`:
 
