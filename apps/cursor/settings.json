@@ -1,146 +1,164 @@
 {
-	// Editor config
-	"editor.accessibilitySupport": "off",
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
-		"source.fixAll.html": "explicit",
-		"source.fixAll.css": "explicit"
-	},
-	"editor.cursorBlinking": "smooth",
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.detectIndentation": false,
-	"editor.formatOnPaste": false,
-	"editor.formatOnSave": true,
-	"editor.indentSize": "tabSize",
-	"editor.inlineSuggest.enabled": true,
-	"editor.linkedEditing": true,
-	"editor.stickyScroll.enabled": true,
-	"editor.suggestSelection": "first",
-	"editor.tabSize": 2,
-	"extensions.ignoreRecommendations": true,
-	"explorer.confirmDelete": false,
-	"window.zoomLevel": 1,
+  // Editor config
+  "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.html": "explicit",
+    "source.fixAll.css": "explicit",
+  },
+  "editor.cursorBlinking": "smooth",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.indentSize": "tabSize",
+  "editor.inlineSuggest.enabled": true,
+  "editor.linkedEditing": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "extensions.ignoreRecommendations": true,
+  "explorer.confirmDelete": false,
+  "window.zoomLevel": 1,
 
-	// Editor's terminal config
-	"terminal.integrated.defaultProfile.osx": "zsh",
-	"terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+  // Editor's terminal config
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "MesloLGS NF, Hack Nerd Font Mono, Symbols Nerd Font Mono",
 
-	// Language configuration
-	"html.autoClosingTags": true,
-	"javascript.autoClosingTags": true,
-	"javascript.suggest.autoImports": true,
-	"javascript.updateImportsOnFileMove.enabled": "always",
-	"typescript.autoClosingTags": true,
-	"typescript.preferences.includePackageJsonAutoImports": "on",
-	"typescript.preferences.autoImportFileExcludePatterns": [
-		"@material-ui/*",
-		"@material-ui/core/*",
-		"@material-ui/icons/*",
-		"**/dist/**/material-ui/**",
-		"**/material-ui/**",
-		"**/node_modules/@material-ui/**",
-		"**/node_modules/**/material-ui/**",
-		"**/node_modules/saas/**",
-		"date-fns",
-		"redux",
-		"react-day-picker",
-		"lucide-react"
-	],
-	"typescript.suggest.autoImports": true,
-	"typescript.suggest.completeJSDocs": true,
-	"typescript.updateImportsOnFileMove.enabled": "always",
+  // Language configuration
+  "html.autoClosingTags": true,
+  "javascript.autoClosingTags": true,
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.autoClosingTags": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@material-ui/*",
+    "@material-ui/core/*",
+    "@material-ui/icons/*",
+    "**/dist/**/material-ui/**",
+    "**/material-ui/**",
+    "**/node_modules/@material-ui/**",
+    "**/node_modules/**/material-ui/**",
+    "**/node_modules/saas/**",
+    "date-fns",
+    "redux",
+    "react-day-picker",
+    "lucide-react",
+  ],
+  "typescript.suggest.autoImports": true,
+  "typescript.suggest.completeJSDocs": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
 
-	// Theme configuration
-	"workbench.activityBar.orientation": "vertical",
-	"workbench.colorTheme": "Darcula",
-	"workbench.colorCustomizations": {
-		"editorIndentGuide.activeBackground1": "#ffffff"
-	},
-	"workbench.iconTheme": "material-icon-theme",
+  // Theme configuration
+  "workbench.activityBar.orientation": "vertical",
+  "workbench.colorTheme": "Darcula",
+  "workbench.colorCustomizations": {
+    "editorIndentGuide.activeBackground1": "#ffffff",
+  },
+  "workbench.iconTheme": "material-icon-theme",
 
-	// Linters
-	"emmet.showExpandedAbbreviation": "never",
-	"eslint.codeAction.showDocumentation": {
-		"enable": true
-	},
-	"eslint.validate": [
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"jsx-tags",
-		"html",
-		"css",
-		"dart",
-		"solidity",
-		"scss",
-		"less"
-	],
-	"eslint.codeActionsOnSave.mode": "problems",
-	"eslint.codeActionsOnSave.rules": ["!no-debugger", "!no-extra-semi", "!@typescript-eslint/no-unsafe-assignment", "*"],
-	"prettier.documentSelectors": ["**/*.astro"],
+  // Linters
+  "emmet.showExpandedAbbreviation": "never",
+  "eslint.codeAction.showDocumentation": {
+    "enable": true,
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "jsx-tags",
+    "html",
+    "css",
+    "dart",
+    "solidity",
+    "scss",
+    "less",
+  ],
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.codeActionsOnSave.rules": [
+    "!no-debugger",
+    "!no-extra-semi",
+    "!@typescript-eslint/no-unsafe-assignment",
+    "*",
+  ],
+  "prettier.documentSelectors": ["**/*.astro"],
 
-	// LLMs
-	"github.copilot.enable": {
-		"*": false,
-		"plaintext": true,
-		"markdown": true,
-		"scminput": false,
-		"yaml": true,
-		"scss": true,
-		"json": true,
-		"javascript": true,
-		"typescript": true,
-		"typescriptreact": true,
-		"javascriptreact": true
-	},
-	"files.restoreUndoStack": false,
-	"security.workspace.trust.untrustedFiles": "open",
+  // LLMs
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false,
+    "yaml": true,
+    "scss": true,
+    "json": true,
+    "javascript": true,
+    "typescript": true,
+    "typescriptreact": true,
+    "javascriptreact": true,
+  },
+  "files.restoreUndoStack": false,
+  "security.workspace.trust.untrustedFiles": "open",
 
-	// Git
-	"git.autofetch": true,
-	"git.openRepositoryInParentFolders": "always",
+  // Git
+  "git.autofetch": true,
+  "git.openRepositoryInParentFolders": "always",
 
-	// JS/TS config
-	"js/ts.implicitProjectConfig.checkJs": true,
+  // JS/TS config
+  "js/ts.implicitProjectConfig.checkJs": true,
 
-	////////////////
-	// EXTENSIONS //
-	////////////////
-	// Jest extension
-	"jest.testExplorer": {
-		"enabled": true,
-		"showClassicStatus": true,
-		"showInlineError": false
-	},
-	"jest.jestCommandLine": "yarn test",
-	"jest.autoRun": {
-		"watch": false,
-		"onSave": "test-file"
-	},
+  ////////////////
+  // EXTENSIONS //
+  ////////////////
+  // Jest extension
+  "jest.testExplorer": {
+    "enabled": true,
+    "showClassicStatus": true,
+    "showInlineError": false,
+  },
+  "jest.jestCommandLine": "yarn test",
+  "jest.autoRun": {
+    "watch": false,
+    "onSave": "test-file",
+  },
 
-	// GitLens extension
-	"gitlens.defaultDateFormat": null,
+  // GitLens extension
+  "gitlens.defaultDateFormat": null,
 
-	// Github Pull Request extension
-	"githubPullRequests.pullBranch": "never",
+  // Github Pull Request extension
+  "githubPullRequests.pullBranch": "never",
 
-	// TotalTypeScript extension
-	"totalTypeScript.hideAllTips": false,
-	"totalTypeScript.hideBasicTips": true,
-	"totalTypeScript.hiddenTips": ["passing-generics-to-types", "omit-utility-type", "tuple-type", "typeof"],
+  // TotalTypeScript extension
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": true,
+  "totalTypeScript.hiddenTips": [
+    "passing-generics-to-types",
+    "omit-utility-type",
+    "tuple-type",
+    "typeof",
+    "returntype-utility-type",
+  ],
 
-	// cSpell extension
-	"cSpell.userWords": ["tanstack", "testid"],
+  // cSpell extension
+  "cSpell.userWords": ["tanstack", "testid"],
 
-	// Tailwind CSS IntelliSense extension
-	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "defaultClass", "variant"],
+  // Tailwind CSS IntelliSense extension
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "defaultClass",
+    "variant",
+  ],
 
-	// Claude Code
-	"claudeCode.selectedModel": "sonnet",
-	"claudeCode.preferredLocation": "panel",
-	"window.commandCenter": true,
-	"cursor.cpp.disabledLanguages": ["scminput"],
+  // Claude Code
+  "claudeCode.selectedModel": "sonnet",
+  "claudeCode.preferredLocation": "panel",
+  "window.commandCenter": true,
+  "cursor.cpp.disabledLanguages": ["scminput"],
 
-	// TypeScript (Native Preview) > Use Tsgo
-	"typescript.experimental.useTsgo": true
+  // TypeScript (Native Preview) > Use Tsgo
+  "typescript.experimental.useTsgo": true,
+  "claudeCode.useTerminal": true,
 }
