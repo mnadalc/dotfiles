@@ -94,19 +94,17 @@ MAX_FMT=$(format_tokens "$CONTEXT_SIZE")
 TOKEN_DISPLAY=$(printf '%b%s%b/%s' "$TK_COLOR" "$USED_FMT" "$RESET" "$MAX_FMT")
 BAR_OUTPUT=$(build_progress_bar "$USED_INT")
 
-# Line 1: branch | +lines/-lines | context bar | model
-LINE1=""
-if [ "$IN_GIT_REPO" -eq 1 ] && [ -n "$BRANCH" ]; then
-    LINE1=$(printf '\xee\xa0\xa2 %b%s%b' "$CTX_GREEN" "$BRANCH" "$RESET")
-else
-    LINE1=$(printf '⚠️  %bno repo%b' "$RED" "$RESET")
-fi
-
-LINE1="${LINE1} · "
-LINE1="${LINE1}$(printf '%b+%s%b %b-%s%b' "$GH_GREEN" "$LINES_ADDED" "$RESET" "$GH_RED" "$LINES_REMOVED" "$RESET")"
+# Line 1: model | context + tokens | branch | lines changed
+LINE1=$(printf '🤖 %b%s%b' "$ORANGE" "$MODEL" "$RESET")
 LINE1="${LINE1} · ${TOKEN_DISPLAY} ${BAR_OUTPUT}"
 LINE1="${LINE1} · "
-LINE1="${LINE1}$(printf '🤖 %b%s%b' "$ORANGE" "$MODEL" "$RESET")"
+if [ "$IN_GIT_REPO" -eq 1 ] && [ -n "$BRANCH" ]; then
+    LINE1="${LINE1}$(printf '\xee\xa0\xa2 %b%s%b' "$CTX_GREEN" "$BRANCH" "$RESET")"
+else
+    LINE1="${LINE1}$(printf '⚠️  %bno repo%b' "$RED" "$RESET")"
+fi
+LINE1="${LINE1} · "
+LINE1="${LINE1}$(printf '%b+%s%b %b-%s%b' "$GH_GREEN" "$LINES_ADDED" "$RESET" "$GH_RED" "$LINES_REMOVED" "$RESET")"
 
 printf '%s\n' "$LINE1"
 
