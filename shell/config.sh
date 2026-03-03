@@ -22,10 +22,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # PNPM global binaries
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$HOME/.local/bin:$PNPM_HOME:$PATH"
 
 # Ghostty -> auto attach/create tmux session
-if [[ -o interactive ]] && [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]]; then
-  command -v tmux >/dev/null 2>&1 || return
-  tmux new-session -A -s main || echo "tmux autostart failed (TERM=$TERM)" >&2
-fi
+# Disable to test cmux
+# if [[ -o interactive ]] && [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+#   command -v tmux >/dev/null 2>&1 || return
+#   tmux new-session -A -s main || echo "tmux autostart failed (TERM=$TERM)" >&2
+# fi

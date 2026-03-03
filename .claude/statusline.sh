@@ -4,6 +4,7 @@ input=$(cat)
 MODEL=$(echo "$input" | jq -r '.model.display_name')
 CURRENT_DIR=$(echo "$input" | jq -r '.workspace.current_dir')
 USED_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+CONTEXT_SIZE=$(echo "$input" | jq -r '.context_window.context_window_size // 0')
 LINES_ADDED=$(echo "$input" | jq -r '.cost.total_lines_added // 0')
 LINES_REMOVED=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
 
@@ -16,6 +17,30 @@ RESET='\033[0m'
 GH_GREEN='\033[38;2;63;185;80m'
 GH_RED='\033[38;2;248;81;73m'
 CTX_GREEN='\033[0;32m'
+
+# Format token count as human-readable (e.g. 45K, 1.2M)
+format_tokens() {
+    local tokens="${1:-0}"
+    if [ "$tokens" -ge 1000000 ]; then
+        printf "%.1fM" "$(echo "$tokens / 1000000" | bc -l)"
+    elif [ "$tokens" -ge 1000 ]; then
+        printf "%.0fK" "$(echo "$tokens / 1000" | bc -l)"
+    else
+        printf "%s" "$tokens"
+    fi
+}
+
+# Pick color based on context usage percentage
+token_color() {
+    local pct="${1:-0}"
+    if [ "$pct" -ge 85 ]; then
+        printf "%s" "$RED"
+    elif [ "$pct" -ge 60 ]; then
+        printf "%s" "$YELLOW"
+    else
+        printf "%s" "$CTX_GREEN"
+    fi
+}
 
 # Build compact context progress bar (10 chars wide)
 build_progress_bar() {
@@ -60,13 +85,14 @@ if git -C "$CURRENT_DIR" rev-parse --git-dir > /dev/null 2>&1; then
     NEW=$(git -C "$CURRENT_DIR" ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
 fi
 
-# Context bar
-if [ -n "$USED_PCT" ]; then
-    USED_INT=$(printf "%.0f" "$USED_PCT")
-    BAR_OUTPUT=$(build_progress_bar "$USED_INT")
-else
-    BAR_OUTPUT=$(build_progress_bar 0)
-fi
+# Token usage display
+USED_INT=$(printf "%.0f" "${USED_PCT:-0}")
+USED_TOKENS=$(echo "$USED_INT * $CONTEXT_SIZE / 100" | bc 2>/dev/null || echo 0)
+TK_COLOR=$(token_color "$USED_INT")
+USED_FMT=$(format_tokens "$USED_TOKENS")
+MAX_FMT=$(format_tokens "$CONTEXT_SIZE")
+TOKEN_DISPLAY=$(printf '%b%s%b/%s' "$TK_COLOR" "$USED_FMT" "$RESET" "$MAX_FMT")
+BAR_OUTPUT=$(build_progress_bar "$USED_INT")
 
 # Line 1: branch | +lines/-lines | context bar | model
 LINE1=""
@@ -78,7 +104,7 @@ fi
 
 LINE1="${LINE1} · "
 LINE1="${LINE1}$(printf '%b+%s%b %b-%s%b' "$GH_GREEN" "$LINES_ADDED" "$RESET" "$GH_RED" "$LINES_REMOVED" "$RESET")"
-LINE1="${LINE1} · 📊 ${BAR_OUTPUT}"
+LINE1="${LINE1} · ${TOKEN_DISPLAY} ${BAR_OUTPUT}"
 LINE1="${LINE1} · "
 LINE1="${LINE1}$(printf '🤖 %b%s%b' "$ORANGE" "$MODEL" "$RESET")"
 

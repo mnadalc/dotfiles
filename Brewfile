@@ -71,6 +71,8 @@ brew "csvkit"
 brew "libyaml"
 brew "openssl@3"
 brew "gmp"
+# Cloudflare Tunnel
+brew "cloudflared"
 
 # Standalone applications
 
