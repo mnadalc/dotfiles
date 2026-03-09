@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "organization": "BajoStudios",
+  "date": "March 2026",
+  "abstract": "Strict TypeScript best practices extracted from Matt Pocock's Total TypeScript blog (https://www.totaltypescript.com/articles). Covers type design, React typing patterns, performance, runtime validation, configuration, and security. Adapted for a strict-TS project with TanStack Start + Supabase.",
+  "references": [
+    "https://www.totaltypescript.com/articles",
+    "https://www.typescriptlang.org/docs/",
+    "https://github.com/microsoft/TypeScript/wiki/Performance"
+  ]
+}

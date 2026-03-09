@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "organization": "BajoStudios",
+  "date": "March 2026",
+  "abstract": "TanStack Query best practices extracted from TkDodo's blog (https://tkdodo.eu/blog), adapted for projects using TanStack Start + Supabase. Covers query architecture, mutations, caching strategies, TypeScript patterns, optimistic updates, real-time sync, testing, and performance optimization.",
+  "references": [
+    "https://tkdodo.eu/blog/all",
+    "https://tanstack.com/query/latest/docs",
+    "https://tanstack.com/start/latest/docs",
+    "https://supabase.com/docs"
+  ]
+}

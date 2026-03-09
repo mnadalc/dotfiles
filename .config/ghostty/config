@@ -4,3 +4,15 @@ font-family = MesloLGS Nerd Font Mono
 shell-integration = zsh
 window-decoration = auto
 term = xterm-256color
+
+# Opacity for unfocused splits (0.0 to 1.0)
+unfocused-split-opacity = 0.7
+
+# Fill color for unfocused splits
+unfocused-split-fill = #1e1e2e
+
+# Divider color between splits
+split-divider-color = #45475a
+
+# Number of lines to keep in scrollback buffer
+scrollback-limit = 50000
