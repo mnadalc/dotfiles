@@ -1,5 +1,46 @@
 # Compound Components — Reference
 
+## Basic `Object.assign` Pattern
+
+**React <19:**
+
+```tsx
+const HeaderComponent = forwardRef<HTMLDivElement, Props>(
+  ({ children, className }, ref) => {
+    return (
+      <div ref={ref} className={cn("base-styles", className)}>
+        {children}
+      </div>
+    );
+  },
+);
+HeaderComponent.displayName = "PageHeader";
+
+const Body = ({ children, className = "" }: CommonProps) => (
+  <div className={cn("body-styles", className)}>{children}</div>
+);
+
+const PageHeader = Object.assign(HeaderComponent, { Body });
+export default PageHeader;
+```
+
+**React 19+:**
+
+```tsx
+const HeaderComponent = ({ children, className, ref }: Props & { ref?: Ref<HTMLDivElement> }) => (
+  <div ref={ref} className={cn("base-styles", className)}>
+    {children}
+  </div>
+);
+
+const Body = ({ children, className = "" }: CommonProps) => (
+  <div className={cn("body-styles", className)}>{children}</div>
+);
+
+const PageHeader = Object.assign(HeaderComponent, { Body });
+export default PageHeader;
+```
+
 ## Compound Component with Internal Context (Card)
 
 If really needed, use `Children.forEach` to extract sub-components and render them in a grid layout, plus a context to share `disabled` state:

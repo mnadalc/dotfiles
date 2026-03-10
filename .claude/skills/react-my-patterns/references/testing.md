@@ -40,17 +40,17 @@ describe("Feature", () => {
   it("renders item cards after loading", async () => {
     renderComponent();
 
-    const itemTitle = await screen.findByText("My Item");
+    const itemTitle = await screen.findByText(/my item/i);
     expect(itemTitle).toBeInTheDocument();
   });
 
   it("opens drawer when clicking a card", async () => {
     const { user } = renderComponent();
 
-    const itemCard = await screen.findByText("My Item");
+    const itemCard = await screen.findByText(/my item/i);
     await user.click(itemCard);
 
-    const drawerTitle = screen.getByText("Edit feature item");
+    const drawerTitle = screen.getByRole('heading', { name: /edit feature item/i });
     expect(drawerTitle).toBeInTheDocument();
   });
 
@@ -68,6 +68,35 @@ describe("Feature", () => {
   });
 });
 ```
+
+## Scoping queries with `within`
+
+When multiple similar elements exist, use `within` to narrow the search to a specific container:
+
+```tsx
+import { within } from "@testing-library/react";
+
+// Find a specific row, then query inside it
+const row = screen.getByRole("row", { name: /apples/i });
+expect(within(row).getByText(/\$2\.50/i)).toBeInTheDocument();
+```
+
+## Custom matcher functions
+
+When text is split across elements (e.g. `<p>Hello <strong>world</strong></p>`), use a matcher function:
+
+```tsx
+screen.getByText((content, node) => {
+  const hasText = (n: Element) => n.textContent === "Hello world";
+  const nodeHasText = hasText(node);
+  const childrenDontHaveText = Array.from(node.children).every(
+    (child) => !hasText(child),
+  );
+  return nodeHasText && childrenDontHaveText;
+});
+```
+
+The `childrenDontHaveText` check ensures you match the outermost element that contains the full text, not a parent `<div>` wrapping it.
 
 ## Mock data file (`__tests__/mocks/index.ts`)
 

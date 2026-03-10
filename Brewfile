@@ -73,6 +73,10 @@ brew "openssl@3"
 brew "gmp"
 # Cloudflare Tunnel
 brew "cloudflared"
+# Supabase CLI
+brew "supabase"
+# Stripe CLI
+brew "stripe-cli"
 
 # Standalone applications
 

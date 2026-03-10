@@ -13,53 +13,13 @@ Follow these conventions when writing React code.
 
 Build composable UI with the `Object.assign` pattern:
 
-**React <19:**
-
-```tsx
-const HeaderComponent = forwardRef<HTMLDivElement, Props>(
-  ({ children, className }, ref) => {
-    return (
-      <div ref={ref} className={cn("base-styles", className)}>
-        {children}
-      </div>
-    );
-  },
-);
-HeaderComponent.displayName = "PageHeader";
-
-const Body = ({ children, className = "" }: CommonProps) => (
-  <div className={cn("body-styles", className)}>{children}</div>
-);
-
-const PageHeader = Object.assign(HeaderComponent, { Body });
-export default PageHeader;
-```
-
-**React 19+:**
-
-```tsx
-const HeaderComponent = ({ children, className, ref }: Props & { ref?: Ref<HTMLDivElement> }) => (
-  <div ref={ref} className={cn("base-styles", className)}>
-    {children}
-  </div>
-);
-
-const Body = ({ children, className = "" }: CommonProps) => (
-  <div className={cn("body-styles", className)}>{children}</div>
-);
-
-const PageHeader = Object.assign(HeaderComponent, { Body });
-export default PageHeader;
-```
-
-Rules:
-
 - Use `Object.assign(MainComponent, { Sub1, Sub2 })` to attach sub-components
 - React <19: use `forwardRef` and set `displayName`
 - React 19+: accept `ref` as a regular prop, no `forwardRef` or `displayName` needed
 - Sub-components are plain functions
-- Share state between parent and subs via a local Context when needed (see [references/compound-components.md](references/compound-components.md) Card example)
+- Share state between parent and subs via a local Context when needed
 - Parent can use `Children.forEach` to extract and reposition sub-components in a layout
+- See [references/compound-components.md](references/compound-components.md) for code examples
 
 ## Props Philosophy
 
@@ -84,65 +44,11 @@ Rules:
 
 **Server/async data** lives outside this ladder — use **React Query** (`useQuery`, `useSuspenseQuery`) with `queryOptions` helpers.
 
-Pattern for query hooks:
-
-```tsx
-const useExperimentsQuery = () => {
-  const useGetExperimentsQuery = () =>
-    useQuery({ queryKey: ["experiments"], queryFn: fetchExperiments });
-  return { useGetExperimentsQuery };
-};
-```
-
 ## Page Structure
 
-Entry point wraps with Provider, page component handles layout:
-
-```tsx
-// index.tsx — entry point
-const FeatureComponent = () => (
-  <FeatureProvider>
-    <FeaturePage />
-  </FeatureProvider>
-);
-export default FeatureComponent;
-
-// components/FeaturePage.tsx — layout
-const FeaturePage = () => (
-  <>
-    <FeatureHeader />
-    <FeatureDrawer />
-    <PageBody>
-      <Suspense fallback={<CenteredSpinner />}>
-        <FeatureBody />
-      </Suspense>
-    </PageBody>
-  </>
-);
-
-// components/FeatureBody.tsx — data fetching with useSuspenseQuery
-const FeatureBody = () => {
-  const { state, dispatch } = useContext(FeatureContext);
-  const { data } = useSuspenseQuery(getFeatureQuery());
-
-  const items = data || [];
-
-  return (
-    <div className="flex flex-wrap gap-4">
-      {items.map((item) => (
-        <Card
-          key={item.id}
-          onClick={() => dispatch({ type: "SELECT", payload: item })}
-        >
-          <Card.Icon icon={item.icon} />
-          <Card.Header>{item.name}</Card.Header>
-          <Card.Content>{item.description}</Card.Content>
-        </Card>
-      ))}
-    </div>
-  );
-};
-```
+- Entry point (`index.tsx`) wraps with Provider, page component handles layout
+- Data fetching components use `useSuspenseQuery` wrapped in `<Suspense>`
+- See [references/page-structure.md](references/page-structure.md) for full example
 
 ## File Organization
 
@@ -195,6 +101,10 @@ ComponentName/
 - Variant classes defined as const maps: `VARIANT_CLASS: Record<Variant, string>`
 - Always accept and merge `className` prop: `cn('defaults', className)`
 - Conditional classes: `cn('base', { 'border-error': error, 'pl-8': leadingIcon })`
+- **Avoid `!important`** (CSS) and `!` prefix (Tailwind) — fix specificity issues at the source
+- **Avoid `z-index`** — restructure DOM order or use stacking contexts instead
+- **Stack elements with CSS Grid, not `position: absolute`** — use grid area stacking for overlays, spinners on content, image captions, etc.
+- See [references/styling.md](references/styling.md) for grid stacking patterns
 
 ## Web Platform First
 
@@ -233,17 +143,7 @@ Before building a custom abstraction, check if the browser already provides it. 
 
 - Prefer `type` over `interface` for object shapes and props
 - Use `import type { X }` for type-only imports
-- Use discriminated unions with type guard functions:
-
-```tsx
-type IconVariant = { variant: "icon"; icon: string };
-type TextVariant = { variant: "primary" | "secondary"; label: string };
-type ButtonProps = IconVariant | TextVariant;
-
-function isIconVariant(props: ButtonProps): props is IconVariant {
-  return props.variant === "icon";
-}
-```
+- Use discriminated unions with type guard functions
 
 ## Naming Conventions
 
@@ -271,11 +171,33 @@ Organize imports top-to-bottom:
 
 ## Testing Patterns
 
+**Philosophy: quality over coverage.** Don't chase 100% coverage — test behavior that matters and avoid redundant assertions. Every test should justify its existence.
+
 - Use `@testing-library/react` with `userEvent.setup()` (not `fireEvent`)
 - Structure: `describe` blocks per component/feature, `it` blocks per behavior
 - Create a `renderComponent()` helper for DRY test setup (wraps providers, default props)
 - API mocking with MSW (`setupServer`, `http.get`, etc.)
+- **Never test styles** — don't assert on classNames, inline styles, or computed styles
+
+**Querying:**
+
+- **Use `screen` for all queries** — no destructuring from `render()`
+- **Query priority**: `*ByRole` > `*ByLabelText` > `*ByText` > `*ByTestId` (last resort)
+- **Use case-insensitive regex for text matching** — always prefer `/text/i` over `'Text'`: `getByRole('heading', { name: /my heading/i })`, `findByText(/error/i)`
+- **Use `within` to scope queries** — when multiple similar elements exist, narrow the search: `within(screen.getByRole('row', { name: /apples/i })).getByText(/price/i)`
+- **Use custom matcher functions** — when text is split across elements: `screen.getByText((content, node) => node.textContent === 'Hello world')`
+- **Never use `container.querySelector()`** — use semantic queries instead
+
+**Async:**
+
+- **Use `find*` queries for async elements** — not `waitFor` + `get*`
+- **Single assertion per `waitFor`** — and never perform side effects inside `waitFor`
+
+**Other rules:**
+
 - Extract screen queries into named variables before using them in assertions or interactions
+- Don't wrap `render()` or `userEvent` in `act()` — they handle it internally
+- Don't add redundant ARIA roles to semantic HTML (`<button>` already has `role="button"`)
 - Mock data lives in `__tests__/mocks/` directory
 - See [references/testing.md](references/testing.md) for a full test file
 
@@ -290,17 +212,6 @@ Organize imports top-to-bottom:
 - For **API responses and form data**: define a Zod schema first, then infer the TypeScript type with `z.infer<typeof Schema>`
 - Never duplicate types manually when a Zod schema exists — always derive from the schema
 - **React component props** use regular `type` definitions — no Zod schemas needed for props
-
-```tsx
-// types/types.ts
-const FeatureItemSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  status: z.enum(["draft", "published"]),
-});
-
-type FeatureItem = z.infer<typeof FeatureItemSchema>;
-```
 
 ## Custom Hook Extraction
 
