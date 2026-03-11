@@ -70,7 +70,7 @@ git push origin master
   - `git`, `gh`, `mise`, `tmux`, `nvim`, `ripgrep`, `fd`, `fzf`, `zsh`.
 - Core desktop apps expected:
   - `aerospace`, `alfred`, `cursor`, `codex`, `codex-app`, `meetily`,
-    `ukelele`, `google-chrome`, `zen-browser`, `ghostty`, `obsidian`, `slack`,
+    `cmux`, `ukelele`, `google-chrome`, `zen-browser`, `ghostty`, `obsidian`, `slack`,
     `spotify`, `telegram`, `whatsapp`, `hiddenbar`, `finicky`, `betterdisplay`.
 - Check Homebrew state:
 
@@ -82,6 +82,13 @@ brew bundle check --file ~/.dotfiles/Brewfile
 
 ```bash
 brew bundle --file ~/.dotfiles/Brewfile
+```
+
+- Verify cmux CLI setup:
+
+```bash
+command -v cmux
+cmux --help
 ```
 
 ## 4) Codex CLI

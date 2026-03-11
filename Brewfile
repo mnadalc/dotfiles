@@ -1,4 +1,5 @@
 # Repositories where Homebrew keeps is own software
+tap "manaflow-ai/cmux"
 # Tools to use in the shell
 
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -88,6 +89,8 @@ cask "alfred"
 cask "git-credential-manager"
 # Write, edit, and chat about your code with AI
 cask "cursor"
+# Terminal multiplexer and workspace manager for AI coding agents
+cask "cmux"
 # OpenAI's coding agent for the terminal (Codex CLI)
 cask "codex"
 # OpenAI's Codex desktop app for managing coding agents

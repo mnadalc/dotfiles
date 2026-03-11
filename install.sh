@@ -28,7 +28,10 @@ chmod u+x ./scripts/*.sh
 
 ./scripts/configure_zsh.sh
 ./scripts/configure_ghostty.sh
+./scripts/configure_cmux.sh
+./scripts/configure_ai_skills.sh
 ./scripts/config_claude.sh
+./scripts/config_codex.sh
 ./scripts/configure_cursor.sh
 ./scripts/install_cursor_extensions.sh
 
