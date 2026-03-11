@@ -91,6 +91,10 @@ cask "git-credential-manager"
 cask "cursor"
 # Terminal multiplexer and workspace manager for AI coding agents
 cask "cmux"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # OpenAI's coding agent for the terminal (Codex CLI)
 cask "codex"
 # OpenAI's Codex desktop app for managing coding agents
