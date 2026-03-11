@@ -4,13 +4,7 @@
 
 ### `skills/` — Shared global skills
 
-Claude reads shared global skills through this path, but the canonical source of truth now lives in `.ai/skills`.
-
-Repo adapter path:
-
-```sh
-.claude/skills -> ../.ai/skills
-```
+Claude reads shared global skills through `~/.claude/skills`, but the canonical source of truth lives in `.ai/skills`.
 
 Laptop bootstrap path:
 
