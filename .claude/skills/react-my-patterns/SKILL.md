@@ -1,6 +1,6 @@
 ---
 name: react-my-patterns
-description: Enforce React conventions — compound components, web-platform-first patterns, state management priority ladder, Zod schema-first typing, Tailwind styling with cn(), accessibility. Use when creating or modifying React components, pages, or hooks.
+description: Enforce React conventions — compound components, web-platform-first patterns, state management priority ladder, Zod schema-first typing, Tailwind styling with cn(), accessibility. Use when creating, modifying or refactoring React components, pages, or hooks.
 ---
 
 # React Patterns
@@ -113,6 +113,7 @@ Before building a custom abstraction, check if the browser already provides it. 
 **Principle**: if an HTML element or Web API does what you need, use it. Only build custom when the native solution genuinely falls short.
 
 **Use freely in React:**
+
 - HTML elements with built-in behavior: `<form>`, `<dialog>`, `<details>`, `<datalist>`, `<select>`, `popover` attribute
 - `FormData` for collecting form values, `URLSearchParams` for query strings
 - `Intl` for date/number/currency formatting (no libraries needed)
@@ -122,12 +123,14 @@ Before building a custom abstraction, check if the browser already provides it. 
 - CSS capabilities: `::backdrop`, `:has()`, `@container`, scroll-snap
 
 **Avoid in React** (code smells):
+
 - `document.querySelector` / `getElementById` — use `useRef` instead
 - `document.createElement` — React should manage DOM creation
 - `element.style.x = ...` — use `className` or `style` props
 - `addEventListener` on `document`/`window` directly — use `useEffect` with cleanup
 
 **Key patterns:**
+
 - **Forms**: `<form onSubmit>` + `<button type="submit">`, never submit via `onClick`. Use the `form` attribute to connect submit buttons outside the `<form>` tag
 - **Controlled vs uncontrolled**: prefer uncontrolled inputs (`defaultValue` + `FormData`) when no live processing is needed. Use controlled (`value` + `onChange`) only for real-time validation, derived state, or conditional UI
 - **Modals**: use native `<dialog>` with `.showModal()` / `.close()` — gets backdrop, focus trap, and escape-to-close for free
@@ -205,7 +208,22 @@ Organize imports top-to-bottom:
 
 - All render errors should be caught by an **Error Boundary** component. The error UI (error page, toast, fallback) is project-specific
 - Wrap feature-level routes or page components with an Error Boundary so a single component crash doesn't take down the whole app
-- API errors: handle via React Query's `onError` callbacks or query error states — not try/catch in components
+- API errors in React Query: handle via `onError` callbacks or query error states — not try/catch in components
+- **Wrap `await` calls in `try/catch/finally`** — `catch` for error handling, `finally` for cleanup (resetting loading states), success logic at end of `try`:
+
+```tsx
+setError(null);
+setIsLoading(true);
+
+try {
+	const result = await someAsyncOperation();
+	onSuccess(result);
+} catch (error) {
+	setError(error instanceof Error ? error.message : "Something went wrong.");
+} finally {
+	setIsLoading(false);
+}
+```
 
 ## Zod Schema-First Typing
 

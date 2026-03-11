@@ -137,6 +137,23 @@ type Status = (typeof STATUS)[keyof typeof STATUS];
 
 Enums have 71+ open bugs, inconsistent numeric/string behavior, and break structural typing.
 
+### type-avoid-non-null-assertion
+
+Avoid the `!` (non-null assertion) operator. It silences the compiler without any runtime safety. Instead, narrow with a type guard, early return, or assertion function:
+
+```typescript
+// WRONG: trusting blindly
+const user = users.find((u) => u.id === id)!;
+
+// CORRECT: narrow with an early return
+const user = users.find((u) => u.id === id);
+if (!user) return;
+
+// CORRECT: narrow with an assertion function
+const user = users.find((u) => u.id === id);
+assertDefined(user, `User ${id} not found`);
+```
+
 ### type-colocate-types
 
 - **Single-use types**: keep in the same file where they're consumed.
@@ -621,6 +638,7 @@ Use `const` by default. Only use `let` when reassignment is genuinely needed.
 - [ ] `strict: true` + `noUncheckedIndexedAccess` + `verbatimModuleSyntax` in tsconfig
 - [ ] Default to `type`, use `interface` only for `extends`
 - [ ] No `any` — use `unknown` and narrow (ESLint `no-explicit-any`)
+- [ ] No `!` (non-null assertion) — narrow with guards, early returns, or assertion functions
 - [ ] No enums — use `as const` objects or union literals
 - [ ] Discriminated unions for state modeling (not optional property bags)
 - [ ] `interface extends` for React component props (not `type &`)
