@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# Global commit-msg hook: block commits co-authored by AI tools,
+# then forward to the local repo's commit-msg hook if it exists.
+
+BLOCKED_AUTHORS=(
+  "Claude"
+  "Cursor"
+  "Codex"
+  "OpenAI"
+)
+
+commit_msg_file="$1"
+
+for author in "${BLOCKED_AUTHORS[@]}"; do
+  if grep -qi "Co-Authored-By:.*${author}" "$commit_msg_file"; then
+    echo "❌ Commit blocked: found '$author' in Co-Authored-By trailer."
+    echo "Remove the Co-Authored-By line and try again."
+    exit 1
+  fi
+done
+
+# Run the local repo's commit-msg hook if it exists
+local_hook="$(git rev-parse --git-dir)/hooks/commit-msg"
+if [ -x "$local_hook" ]; then
+  "$local_hook" "$@"
+fi

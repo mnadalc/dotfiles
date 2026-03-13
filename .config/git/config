@@ -32,6 +32,8 @@
   pager = delta
   # Use git ignore for XDG_CONFIG_HOME
   excludesfile = ~/.config/git/ignore
+  # Use global git hooks
+  hooksPath = ~/.config/git/hooks
 
 [interactive]
   # Use delta as the default diff filter.
