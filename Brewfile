@@ -129,6 +129,8 @@ cask "spotify"
 cask "telegram"
 # WhatsApp client
 cask "whatsapp"
+# Multiplayer code editor
+cask "zed"
 # Zen Browser - Firefox fork
 cask "zen-browser"
 # Karabiner Elements - Keyboard remapping
