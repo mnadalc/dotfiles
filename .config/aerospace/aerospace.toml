@@ -212,7 +212,7 @@ down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
 
-# 1-4-7 Laptop. 
+# 1-4-7 Laptop.
 # 2-5-8 Main monitor.
 # 3-6-9 Secondary monitor.
 
@@ -235,7 +235,7 @@ B = ['DELL U2515H', 'T27p-30']     # Secondary monitor - Browser
 C = ['LEN T27p-10', 'DELL U2515H', 'built-in']    # Main monitor - Code
 # D = 'LEN T27p-10'                # Main monitor
 # F = 'LEN T27p-10'                # Main monitor
-M = 'built-in'                     # Laptop - Music 
+M = 'built-in'                     # Laptop - Music
 O = ['LEN T27p-10', 'DELL U2515H', 'built-in']    # Main monitor - Other
 # R = 'built-in'                   # Laptop
 S = 'built-in'                     # Laptop - Social
@@ -272,6 +272,9 @@ run = 'move-node-to-workspace T'
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace T'
 [[on-window-detected]]
+if.app-id = 'com.cmuxterm.app'
+run = 'move-node-to-workspace T'
+[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 # https://ghostty.org/docs/help/macos-tiling-wms#aerospace
 run = ['layout tiling', 'move-node-to-workspace T']
@@ -298,6 +301,9 @@ if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace C'
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
+run = 'move-node-to-workspace C'
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
 run = 'move-node-to-workspace C'
 
 # Work
@@ -326,6 +332,12 @@ if.app-id = 'com.apple.TextEdit'
 run = 'move-node-to-workspace O'
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
+run = 'move-node-to-workspace O'
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace O'
+[[on-window-detected]]
+if.app-id = 'com.electron.wispr-flow'
 run = 'move-node-to-workspace O'
 
 ### Sets the layout to a specific workspace
