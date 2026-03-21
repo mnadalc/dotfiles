@@ -196,7 +196,9 @@ open -a Meetily
 
 ## 10) BetterDisplay / 4K 120Hz tutorial
 
-- Follow this setup tutorial:
+- Import in BetterDisplay the file `BetterDisplay.plist`
+	- Settings -> Application -> Advanced Settings & privacy -> Import App Settings
+- If not follow this setup tutorial to set up properly a screen if it does not automatically have 4k 120hz option:
   - https://forums.macrumors.com/threads/mac-mini-4k-120hz.2267035/page-31?post=31952813#post-31952813
 
 ## 11) Keyboard layout (GB + Spanish chars)

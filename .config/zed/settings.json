@@ -1,0 +1,75 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+	"agent": {
+		"default_model": {
+			"provider": "zed.dev",
+			"model": "claude-sonnet-4-6",
+			"enable_thinking": true,
+			"effort": "high",
+		},
+		"favorite_models": [],
+		"model_parameters": [],
+	},
+	"context_servers": {
+		"mcp-server-supabase": {
+			"enabled": true,
+			"remote": false,
+			"settings": {
+				"supabase_access_token": "",
+				"read_only": false,
+			},
+		},
+		"mcp-server-context7": {
+			"enabled": true,
+			"remote": false,
+			"settings": {
+				"context7_api_key": "",
+			},
+		},
+		"mcp-server-github": {
+			"enabled": true,
+			"remote": false,
+			"settings": {
+				"github_personal_access_token": "",
+			},
+		},
+	},
+	"prettier": {
+		"allowed": true,
+	},
+	"ui_font_family": "Hack Nerd Font",
+	"icon_theme": "Material Icon Theme",
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false,
+	},
+	"session": {
+		"trust_all_worktrees": true,
+	},
+	"terminal": {
+		"font_family": "Hack Nerd Font Mono",
+		"font_fallbacks": ["MesloLGS NF", "Symbols Nerd Font Mono"],
+	},
+	"base_keymap": "VSCode",
+	"sticky_scroll": {
+		"enabled": true,
+	},
+	"cursor_blink": true,
+	"auto_indent_on_paste": false,
+	"linked_edits": true,
+	"show_edit_predictions": true,
+	"tab_size": 2,
+	"ui_font_size": 16,
+	"buffer_font_size": 15,
+	"theme": "New Darcula",
+	"minimap": {
+		"show": "auto",
+	},
+}

@@ -1,5 +1,6 @@
 # Repositories where Homebrew keeps is own software
 tap "manaflow-ai/cmux"
+tap "oven-sh/bun"
 # Tools to use in the shell
 
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -30,8 +31,6 @@ brew "git"
 brew "make"
 # Manage Dock items from shell scripts
 brew "dockutil"
-# Deep clean and optimize your Mac
-brew "tw93/tap/mole"
 # Mise is a polyglot tool version manager. It replaces tools like asdf, nvm, pyenv, rbenv, etc.
 brew "mise"
 # Mole is a tool for managing your Mac's system resources.
@@ -78,6 +77,10 @@ brew "cloudflared"
 brew "supabase"
 # Stripe CLI
 brew "stripe-cli"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Bun
+brew "bun"
 
 # Standalone applications
 
