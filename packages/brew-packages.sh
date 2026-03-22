@@ -17,7 +17,7 @@ brew_packages() {
 		brew cleanup
 
     # Install packages individually for per-package progress
-    while IFS= read -r line; do
+    while IFS= read -r line <&3; do
       [[ "$line" =~ ^[[:space:]]*# ]] && continue
       [[ -z "${line// }" ]] && continue
 
@@ -32,7 +32,7 @@ brew_packages() {
         print_in_blue "Installing cask ${cask}..."
         brew install --cask "${cask}" || print_error "Failed to install ${cask}"
       fi
-    done < "${ROOT_DIR}/Brewfile"
+    done 3< "${ROOT_DIR}/Brewfile"
   else
     print_error 'brew not installed, the packages cannot be installed without brew.'
     ./packages/brew-install.sh
