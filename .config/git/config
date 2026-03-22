@@ -121,11 +121,10 @@
 # Add another gitconfig for a different project
 # https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects
 # [includeIf "gitdir:~/projects/"]
-#   path = .gitconfig-projects  
+#   path = .gitconfig-projects
 # [includeIf "gitdir:~/personal/"]
-#   path = .gitconfig-personal  
+#   path = .gitconfig-personal
 [credential]
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true

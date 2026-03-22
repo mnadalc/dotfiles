@@ -1,35 +1,46 @@
 {
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-coauthored-by.sh"
-          },
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-rm.sh"
-          }
-        ]
-      }
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "ralph-loop@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "telegram@claude-plugins-official": true
-  },
-  "skipDangerousModePermissionPrompt": true
+	"$schema": "https://json.schemastore.org/claude-code-settings.json",
+	"env": {
+		"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+		"DISABLE_AUTOUPDATER": "1",
+		"ENABLE_TOOL_SEARCH": "true"
+	},
+	"hooks": {
+		"PreToolUse": [
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "~/.claude/hooks/block-rm.sh"
+					}
+				]
+			}
+		]
+	},
+	"statusLine": {
+		"type": "command",
+		"command": "~/.claude/statusline.sh"
+	},
+	"enabledPlugins": {
+		"ralph-loop@claude-plugins-official": true,
+		"context7@claude-plugins-official": true,
+		"typescript-lsp@claude-plugins-official": true,
+		"security-guidance@claude-plugins-official": true,
+		"frontend-design@claude-plugins-official": true,
+		"telegram@claude-plugins-official": true
+	},
+	"effortLevel": "high",
+	"skipDangerousModePermissionPrompt": true,
+	"attribution": {
+		"commit": "",
+		"pr": ""
+	},
+	"sandbox": {
+		"enabled": true,
+		"filesystem": {
+			"denyRead": ["~/"],
+			"allowRead": ["."]
+		}
+	}
 }
