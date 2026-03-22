@@ -16,8 +16,23 @@ brew_packages() {
 		brew upgrade
 		brew cleanup
 
-    # Install packages
-    brew bundle --file "${ROOT_DIR}/Brewfile"
+    # Install packages individually for per-package progress
+    while IFS= read -r line; do
+      [[ "$line" =~ ^[[:space:]]*# ]] && continue
+      [[ -z "${line// }" ]] && continue
+
+      if [[ "$line" =~ ^tap[[:space:]]\"([^\"]+)\" ]]; then
+        brew tap "${BASH_REMATCH[1]}" 2>/dev/null || true
+      elif [[ "$line" =~ ^brew[[:space:]]\"([^\"]+)\" ]]; then
+        pkg="${BASH_REMATCH[1]}"
+        print_in_blue "Installing ${pkg}..."
+        brew install "${pkg}" || print_error "Failed to install ${pkg}"
+      elif [[ "$line" =~ ^cask[[:space:]]\"([^\"]+)\" ]]; then
+        cask="${BASH_REMATCH[1]}"
+        print_in_blue "Installing cask ${cask}..."
+        brew install --cask "${cask}" || print_error "Failed to install ${cask}"
+      fi
+    done < "${ROOT_DIR}/Brewfile"
   else
     print_error 'brew not installed, the packages cannot be installed without brew.'
     ./packages/brew-install.sh
