@@ -17,7 +17,7 @@ brew_packages() {
 		brew cleanup
 
     # Install packages
-    brew bundle --file "${ROOT_DIR}/Brewfile" --verbose
+    brew bundle --file "${ROOT_DIR}/Brewfile"
   else
     print_error 'brew not installed, the packages cannot be installed without brew.'
     ./packages/brew-install.sh
