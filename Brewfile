@@ -80,7 +80,7 @@ brew "stripe-cli"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Bun
-brew "bun"
+brew "oven-sh/bun/bun"
 
 # Standalone applications
 
@@ -111,7 +111,7 @@ cask "finicky"
 # Fonts
 cask "font-meslo-lg-nerd-font"
 cask "font-hack-nerd-font"
-cask "Symbols Nerd Font Mono"
+cask "font-symbols-only-nerd-font"
 # Google Chrome
 cask "google-chrome"
 # Terminal emulator that uses platform-native UI and GPU acceleration
