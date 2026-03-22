@@ -1,5 +1,11 @@
 source './osx/utils.sh'
 
+# Use Homebrew Ruby instead of macOS system Ruby (which is read-only)
+if [ -d "$(brew --prefix)/opt/ruby/bin" ]; then
+  export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
+  export PATH="$(brew --prefix ruby)/lib/ruby/gems/$(ls $(brew --prefix ruby)/lib/ruby/gems/ | tail -1)/bin:$PATH"
+fi
+
 GEMRC="$HOME/.gemrc"
 
 install_gems() {
