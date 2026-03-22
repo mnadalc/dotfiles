@@ -30,7 +30,7 @@ brew_packages() {
       elif [[ "$line" =~ ^cask[[:space:]]\"([^\"]+)\" ]]; then
         cask="${BASH_REMATCH[1]}"
         print_in_blue "Installing cask ${cask}..."
-        brew install --cask "${cask}" || print_error "Failed to install ${cask}"
+        brew install --cask --no-quarantine "${cask}" || print_error "Failed to install ${cask}"
       fi
     done 3< "${ROOT_DIR}/Brewfile"
   else
