@@ -14,8 +14,14 @@ chmod u+x ./scripts/*.sh
 ./osx/zsh.sh
 ./scripts/config_folder.sh
 
-./packages/brew-install.sh
-./packages/brew-packages.sh
+./packages/brew-install.sh || {
+  print_error "Brew installation failed. Cannot proceed with system configuration."
+  exit 1
+}
+./packages/brew-packages.sh || {
+  print_error "Some Brew packages failed to install. Cannot proceed with system configuration."
+  exit 1
+}
 ./packages/mise.sh
 ./packages/gems.sh
 ./packages/tmux.sh

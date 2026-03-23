@@ -4,6 +4,11 @@ source './osx/utils.sh'
 
 xcode_install() {
 
+	if xcode-select -p &> /dev/null; then
+		print_success 'Xcode Command Line Tools already installed. Skipping.'
+		return
+	fi
+
 	ask_for_confirmation "Would you like to install Xcode Command Line Tools (required) ?"
 
 	if answer_is_yes; then

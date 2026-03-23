@@ -14,7 +14,7 @@ If the machine is brand new (no Git / no browser needed), use the GitHub tarball
 
 ```bash
 mkdir -p ~/.dotfiles
-curl -L https://github.com/mnadalc/dotfiles/tarball/main \
+curl -L https://github.com/mnadalc/dotfiles/archive/refs/heads/main.tar.gz \
   | tar -xz --strip-components=1 -C ~/.dotfiles
 ```
 
