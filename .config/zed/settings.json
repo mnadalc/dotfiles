@@ -55,7 +55,7 @@
 	},
 	"terminal": {
 		"font_family": "Hack Nerd Font Mono",
-		"font_fallbacks": ["MesloLGS NF", "Symbols Nerd Font Mono"],
+		"font_fallbacks": ["MesloLGS Nerd Font", "Symbols Nerd Font Mono"],
 	},
 	"base_keymap": "VSCode",
 	"sticky_scroll": {

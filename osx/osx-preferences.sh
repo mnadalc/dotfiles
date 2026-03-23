@@ -250,6 +250,10 @@ osxprefs() {
   defaults write com.apple.dock wvous-br-modifier -int 0
   print_success "All hot corners disabled."
 
+  # Disable "Click wallpaper to reveal desktop" (macOS Sonoma+)
+  defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+  print_success "Click wallpaper to reveal desktop disabled."
+
   ###############################################################################
   # Safari & WebKit                                                             #
   ###############################################################################

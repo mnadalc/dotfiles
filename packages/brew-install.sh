@@ -2,32 +2,38 @@ source './osx/utils.sh'
 
 brew_install() {
   print_info "Installing Homebrew"
-  
+
   if command -v brew &> /dev/null; then
     print_success 'Brew already installed!'
-  else
-	  ask_for_confirmation "Would you like to install Homebrew (Brew) ?"
-    if answer_is_yes; then
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      # Load Homebrew in the current shell so subsequent commands work immediately.
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-      if cmd_exists "brew"; then
-        print_success 'Brew has been successfully installed!'
+    return 0
+  fi
 
-        # Configure shell for Homebrew if not already configured
-        if ! grep -q "eval \"\$(\/opt\/homebrew\/bin\/brew shellenv)\"" ~/.zprofile; then
-          print_info "Configuring shell for Homebrew"
-          echo '# Configure shell for Homebrew' >> ~/.zprofile
-          echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-          print_success 'Brew has been configured for your shell.'
-        fi
-      else
-        print_error 'Something went wrong while installing brew.'
-      fi
-    else
-      print_error 'Brew not installed.'
+  ask_for_confirmation "Would you like to install Homebrew (Brew) ?"
+  if ! answer_is_yes; then
+    print_error 'Brew not installed. Skipping.'
+    return 1
+  fi
+
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # Load Homebrew in the current shell so subsequent commands work immediately.
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  if cmd_exists "brew"; then
+    print_success 'Brew has been successfully installed!'
+
+    # Configure shell for Homebrew if not already configured
+    if ! grep -q "eval \"\$(\/opt\/homebrew\/bin\/brew shellenv)\"" ~/.zprofile; then
+      print_info "Configuring shell for Homebrew"
+      echo '# Configure shell for Homebrew' >> ~/.zprofile
+      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+      print_success 'Brew has been configured for your shell.'
     fi
+    return 0
+  else
+    print_error 'Something went wrong while installing Brew.'
+    return 1
   fi
 }
 
 brew_install
+exit $?
