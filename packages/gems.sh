@@ -4,9 +4,9 @@ GEMRC="$HOME/.gemrc"
 
 install_gems() {
   for gem_name in rails neovim bundler prettier_print syntax_tree syntax_tree-haml syntax_tree-rbs; do
-    if ! gem list -i "$gem_name" > /dev/null 2>&1; then
+    if ! mise exec -- gem list -i "$gem_name" > /dev/null 2>&1; then
       print_in_blue "Installing gem ${gem_name}..."
-      gem install "$gem_name" --verbose
+      mise exec -- gem install "$gem_name" --verbose
     else
       print_info "Already installed: ${gem_name}"
     fi
