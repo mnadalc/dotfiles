@@ -40,5 +40,6 @@ chmod u+x ./scripts/*.sh
 ./scripts/config_codex.sh
 ./scripts/configure_cursor.sh
 ./scripts/install_cursor_extensions.sh
+./scripts/setup-dockutil.sh
 
 restart
