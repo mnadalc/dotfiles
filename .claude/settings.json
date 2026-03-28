@@ -12,7 +12,17 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "~/.claude/hooks/block-rm.sh"
+						"command": "bash ~/.claude/hooks/block-rm.sh"
+					}
+				]
+			}
+		],
+		"UserPromptSubmit": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/check-ralph-loop.sh"
 					}
 				]
 			}
@@ -31,16 +41,69 @@
 		"telegram@claude-plugins-official": true
 	},
 	"effortLevel": "high",
+	"alwaysThinkingEnabled": true,
 	"skipDangerousModePermissionPrompt": true,
+	"skipAutoPermissionPrompt": true,
 	"attribution": {
 		"commit": "",
 		"pr": ""
 	},
+	"permissions": {
+		"defaultMode": "auto",
+		"allow": [
+			"Bash(git:*)",
+			"Bash(npm:*)",
+			"Bash(node:*)",
+			"Bash(npx:*)",
+			"Bash(pnpm:*)",
+			"Bash(yarn:*)",
+			"Bash(make:*)",
+			"Bash(docker:*)",
+			"Bash(gh:*)",
+			"Bash(cat:*)",
+			"Bash(ls:*)",
+			"Bash(find:*)",
+			"Bash(grep:*)",
+			"Bash(cmux:*)"
+		],
+		"deny": ["Bash(rm -rf:*)", "Bash(curl:* | bash)*"]
+	},
+	"plansDirectory": ".plans",
+	"worktree": {
+		"symlinkDirectories": ["node_modules", ".next", ".cache", "dist", ".turbo"]
+	},
 	"sandbox": {
 		"enabled": true,
+		"network": {
+			"allowedDomains": [
+				"registry.npmjs.org",
+				"registry.yarnpkg.com",
+				"registry.npmmirror.com",
+				"dl.yarnpkg.com",
+				"registry.bun.sh",
+				"bun.sh",
+				"github.com",
+				"api.github.com",
+				"raw.githubusercontent.com",
+				"objects.githubusercontent.com",
+				"codeload.github.com",
+				"formulae.brew.sh",
+				"ghcr.io",
+				"pypi.org",
+				"files.pythonhosted.org",
+				"cdn.jsdelivr.net",
+				"unpkg.com",
+				"esm.sh",
+				"deno.land",
+				"nodejs.org",
+				"npmjs.com"
+			],
+			"allowLocalBinding": true
+		},
 		"filesystem": {
-			"denyRead": ["~/"],
-			"allowRead": ["."]
+			"allowWrite": ["~/.claude", "~/.dotfiles"],
+			"denyWrite": ["~/.ssh", "~/.gnupg", "~/.aws/credentials"],
+			"denyRead": ["~/.ssh/id_*", "~/.aws/credentials", "~/.gnupg"]
 		}
 	}
 }
