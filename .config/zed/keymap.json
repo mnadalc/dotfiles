@@ -1,0 +1,24 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+	// Setting a binding to `null` in Zed explicitly **removes** any default rule for that key combination across all contexts, so nothing else can claim it. Then the second block reassigns them cleanly.
+	{
+		"context": "Editor",
+		"bindings": {
+			"cmd-shift-b": null,
+			"cmd-shift-e": null,
+			"cmd-shift-g": null
+		}
+	},
+	{
+		"bindings": {
+			"cmd-shift-b": "project_panel::ToggleFocus",
+			"cmd-shift-g": "git_panel::ToggleFocus"
+		}
+	}
+]

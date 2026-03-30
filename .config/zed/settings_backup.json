@@ -7,10 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-	"git_panel": {
-  "tree_view": true
- },
- "agent": {
+	"agent": {
 		"default_model": {
 			"provider": "zed.dev",
 			"model": "claude-sonnet-4-6",
@@ -22,7 +19,7 @@
 	},
 	"context_servers": {
 		"mcp-server-supabase": {
-   "enabled": true,
+			"enabled": true,
 			"remote": false,
 			"settings": {
 				"supabase_access_token": "",
@@ -30,14 +27,14 @@
 			},
 		},
 		"mcp-server-context7": {
-   "enabled": true,
+			"enabled": true,
 			"remote": false,
 			"settings": {
 				"context7_api_key": "",
 			},
 		},
 		"mcp-server-github": {
-   "enabled": true,
+			"enabled": true,
 			"remote": false,
 			"settings": {
 				"github_personal_access_token": "",

@@ -5,6 +5,15 @@
 		"DISABLE_AUTOUPDATER": "1",
 		"ENABLE_TOOL_SEARCH": "true"
 	},
+	"attribution": {
+		"commit": "",
+		"pr": ""
+	},
+	"deniedMcpServers": [
+		{
+			"serverUrl": "https://mcp.sentry.dev/*"
+		}
+	],
 	"hooks": {
 		"PreToolUse": [
 			{
@@ -13,6 +22,15 @@
 					{
 						"type": "command",
 						"command": "bash ~/.claude/hooks/block-rm.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/block-coauthored-by.sh"
 					}
 				]
 			}
@@ -33,21 +51,24 @@
 		"command": "~/.claude/statusline.sh"
 	},
 	"enabledPlugins": {
-		"ralph-loop@claude-plugins-official": true,
+		"ralph-loop@claude-plugins-official": false,
 		"context7@claude-plugins-official": true,
-		"typescript-lsp@claude-plugins-official": true,
-		"security-guidance@claude-plugins-official": true,
-		"frontend-design@claude-plugins-official": true,
-		"telegram@claude-plugins-official": true
+		"typescript-lsp@claude-plugins-official": false,
+		"security-guidance@claude-plugins-official": false,
+		"frontend-design@claude-plugins-official": false,
+		"telegram@claude-plugins-official": false,
+		"playwright@claude-plugins-official": true,
+		"code-simplifier@claude-plugins-official": false,
+		"chrome-devtools-mcp@claude-plugins-official": true,
+		"celebrate-agentic-tools@celebrate-engineering": true
 	},
-	"showThinkingSummaries": true,
-	"effortLevel": "high",
-	"alwaysThinkingEnabled": true,
-	"skipDangerousModePermissionPrompt": true,
-	"skipAutoPermissionPrompt": true,
-	"attribution": {
-		"commit": "",
-		"pr": ""
+	"extraKnownMarketplaces": {
+		"celebrate-engineering": {
+			"source": {
+				"source": "github",
+				"repo": "kartenmacherei/agent-builder-v2"
+			}
+		}
 	},
 	"permissions": {
 		"defaultMode": "auto",
@@ -106,5 +127,10 @@
 			"denyWrite": ["~/.ssh", "~/.gnupg", "~/.aws/credentials"],
 			"denyRead": ["~/.ssh/id_*", "~/.aws/credentials", "~/.gnupg"]
 		}
-	}
+	},
+	"effortLevel": "high",
+	"skipDangerousModePermissionPrompt": true,
+	"showThinkingSummaries": true,
+	"alwaysThinkingEnabled": true,
+	"skipAutoPermissionPrompt": true
 }

@@ -14,6 +14,8 @@ chmod u+x ./scripts/*.sh
 ./osx/zsh.sh
 ./scripts/config_folder.sh
 
+sudo softwareupdate --install-rosetta --agree-to-license
+
 ./packages/brew-install.sh || {
   print_error "Brew installation failed. Cannot proceed with system configuration."
   exit 1

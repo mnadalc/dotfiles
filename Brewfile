@@ -103,7 +103,7 @@ cask "codex"
 # OpenAI's Codex desktop app for managing coding agents
 cask "codex-app"
 # AI meeting assistant with local transcription support
-#cask "meetily"
+# cask "meetily"
 # Keyboard layout editor for custom macOS input sources
 cask "ukelele"
 # Redirect browser requests to different apps
@@ -138,3 +138,5 @@ cask "zed"
 cask "zen-browser"
 # Karabiner Elements - Keyboard remapping
 cask "karabiner-elements"
+# Background music
+cask "background-music"

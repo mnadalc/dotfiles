@@ -1,83 +1,94 @@
-# PRD to Issues
+---
+name: design-an-interface
+description: Generate multiple radically different interface designs for a module using parallel sub-agents. Use when user wants to design an API, explore interface options, compare module shapes, or mentions "design it twice".
+---
 
-Break a PRD into independently-grabbable GitHub issues using vertical slices (tracer bullets).
+# Design an Interface
 
-## Process
+Based on "Design It Twice" from "A Philosophy of Software Design": your first idea is unlikely to be the best. Generate multiple radically different designs, then compare.
 
-### 1. Locate the PRD
+## Workflow
 
-Ask the user for the PRD GitHub issue number (or URL).
+### 1. Gather Requirements
 
-If the PRD is not already in your context window, fetch it with `gh issue view <number>` (with comments).
+Before designing, understand:
 
-### 2. Explore the codebase (optional)
+- [ ] What problem does this module solve?
+- [ ] Who are the callers? (other modules, external users, tests)
+- [ ] What are the key operations?
+- [ ] Any constraints? (performance, compatibility, existing patterns)
+- [ ] What should be hidden inside vs exposed?
 
-If you have not already explored the codebase, do so to understand the current state of the code.
+Ask: "What does this module need to do? Who will use it?"
 
-### 3. Draft vertical slices
+### 2. Generate Designs (Parallel Sub-Agents)
 
-Break the PRD into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+Spawn 3+ sub-agents simultaneously using Task tool. Each must produce a **radically different** approach.
 
-Slices may be 'HITL' or 'AFK'. HITL slices require human interaction, such as an architectural decision or a design review. AFK slices can be implemented and merged without human interaction. Prefer AFK over HITL where possible.
+```
+Prompt template for each sub-agent:
 
-<vertical-slice-rules>
-- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
-- A completed slice is demoable or verifiable on its own
-- Prefer many thin slices over few thick ones
-</vertical-slice-rules>
+Design an interface for: [module description]
 
-### 4. Quiz the user
+Requirements: [gathered requirements]
 
-Present the proposed breakdown as a numbered list. For each slice, show:
+Constraints for this design: [assign a different constraint to each agent]
+- Agent 1: "Minimize method count - aim for 1-3 methods max"
+- Agent 2: "Maximize flexibility - support many use cases"
+- Agent 3: "Optimize for the most common case"
+- Agent 4: "Take inspiration from [specific paradigm/library]"
 
-- **Title**: short descriptive name
-- **Type**: HITL / AFK
-- **Blocked by**: which other slices (if any) must complete first
-- **User stories covered**: which user stories from the PRD this addresses
+Output format:
+1. Interface signature (types/methods)
+2. Usage example (how caller uses it)
+3. What this design hides internally
+4. Trade-offs of this approach
+```
 
-Ask the user:
+### 3. Present Designs
 
-- Does the granularity feel right? (too coarse / too fine)
-- Are the dependency relationships correct?
-- Should any slices be merged or split further?
-- Are the correct slices marked as HITL and AFK?
+Show each design with:
 
-Iterate until the user approves the breakdown.
+1. **Interface signature** - types, methods, params
+2. **Usage examples** - how callers actually use it in practice
+3. **What it hides** - complexity kept internal
 
-### 5. Create the GitHub issues
+Present designs sequentially so user can absorb each approach before comparison.
 
-For each approved slice, create a GitHub issue using `gh issue create`. Use the issue body template below.
+### 4. Compare Designs
 
-Create issues in dependency order (blockers first) so you can reference real issue numbers in the "Blocked by" field.
+After showing all designs, compare them on:
 
-<issue-template>
-## Parent PRD
+- **Interface simplicity**: fewer methods, simpler params
+- **General-purpose vs specialized**: flexibility vs focus
+- **Implementation efficiency**: does shape allow efficient internals?
+- **Depth**: small interface hiding significant complexity (good) vs large interface with thin implementation (bad)
+- **Ease of correct use** vs **ease of misuse**
 
-#<prd-issue-number>
+Discuss trade-offs in prose, not tables. Highlight where designs diverge most.
 
-## What to build
+### 5. Synthesize
 
-A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation. Reference specific sections of the parent PRD rather than duplicating content.
+Often the best design combines insights from multiple options. Ask:
 
-## Acceptance criteria
+- "Which design best fits your primary use case?"
+- "Any elements from other designs worth incorporating?"
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+## Evaluation Criteria
 
-## Blocked by
+From "A Philosophy of Software Design":
 
-- Blocked by #<issue-number> (if any)
+**Interface simplicity**: Fewer methods, simpler params = easier to learn and use correctly.
 
-Or "None - can start immediately" if no blockers.
+**General-purpose**: Can handle future use cases without changes. But beware over-generalization.
 
-## User stories addressed
+**Implementation efficiency**: Does interface shape allow efficient implementation? Or force awkward internals?
 
-Reference by number from the parent PRD:
+**Depth**: Small interface hiding significant complexity = deep module (good). Large interface with thin implementation = shallow module (avoid).
 
-- User story 3
-- User story 7
+## Anti-Patterns
 
-</issue-template>
-
-Do NOT close or modify the parent PRD issue.
+- Don't let sub-agents produce similar designs - enforce radical difference
+- Don't skip comparison - the value is in contrast
+- Don't implement - this is purely about interface shape
+- Don't evaluate based on implementation effort

@@ -315,6 +315,7 @@
                     },
                     {
                         "description": "Section key to inverted punctuation",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {

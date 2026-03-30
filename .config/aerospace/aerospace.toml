@@ -339,6 +339,9 @@ run = 'move-node-to-workspace O'
 [[on-window-detected]]
 if.app-id = 'com.electron.wispr-flow'
 run = 'move-node-to-workspace O'
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = 'move-node-to-workspace O'
 
 ### Sets the layout to a specific workspace
 # [[on-window-detected]]

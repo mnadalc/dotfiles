@@ -120,8 +120,8 @@
 
 # Add another gitconfig for a different project
 # https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects
-# [includeIf "gitdir:~/projects/"]
-#   path = .gitconfig-projects
+[includeIf "gitdir:/Users/mnadalc/celebrate/"]
+  path = ~/.gitconfig-celebrate
 # [includeIf "gitdir:~/personal/"]
 #   path = .gitconfig-personal
 [credential]

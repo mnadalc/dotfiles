@@ -3,9 +3,7 @@ import type { FinickyConfig, OpenUrlOptions } from "/Applications/Finicky.app/Co
 
 export default {
 	// default profile and browser if the URL doesn't match any rules
-	defaultBrowser: {
-		name: "Google Chrome",
-	},
+	defaultBrowser: "Google Chrome:Miguel Angel",
 	// App settings
 	options: {
 		checkForUpdates: true,
@@ -13,26 +11,6 @@ export default {
 	// Handlers are matchers
 	// Order is important, the first match is used
 	handlers: [
-		/* Open any links from Telegram in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "ru.keepcoder.Telegram",
-			browser: "app.zen-browser.zen",
-		},
-		/* Open any links from WhatsApp in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "net.whatsapp.WhatsApp",
-			browser: "app.zen-browser.zen",
-		},
-		/* Open any links from Alfred 5 in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "com.runningwithcrayons.Alfred",
-			browser: "app.zen-browser.zen",
-		},
-		/* Open any links from Obsidian in Zen Browser */
-		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "md.obsidian",
-			browser: "app.zen-browser.zen",
-		},
 		{
 			match: [
 				/192\.168\.1\.1/,
@@ -56,9 +34,9 @@ export default {
 				/spotify.com/,
 				/frontendmasters.com/,
 				/obsidian.md/,
-				/github.com/,
+				/aihero.dev/,
 			],
-			browser: "app.zen-browser.zen",
+			browser: "Google Chrome:Miguel Angel",
 		},
 		{
 			match: [
@@ -73,14 +51,29 @@ export default {
 				/drive.google.com/,
 				/calendar.google.com/,
 				/keep.google.com/,
+				/linear.app/,
+				/claude.ai/,
+				/github.com\/kartenmacherei/,
+				/shop-frontend-.*\.celebrate\.company/,
+				/.*\.celebrate\.company/,
+				/argocd\..*/,
+				/rosemood\./,
+				/kartenmacherei\./,
+				/notebooklm.google.com/,
 			],
-			browser: {
-				name: "Google Chrome",
-			},
+			browser: "Google Chrome:extern.celebrate.company",
 		},
 		{
-			match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "com.tinyspeck.slackmacgap",
-			browser: "app.zen-browser.zen",
+			match: [/realizon.app.personio.com/],
+			browser: "Google Chrome:realizon.eu",
 		},
+		{
+			match: [/github.com/],
+			browser: "Google Chrome:Miguel Angel",
+		},
+		// {
+		// 	match: (url: URL, options: OpenUrlOptions) => options.opener?.bundleId === "com.tinyspeck.slackmacgap",
+		// 	browser: "app.zen-browser.zen",
+		// },
 	],
 } satisfies FinickyConfig;

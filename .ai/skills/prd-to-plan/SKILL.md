@@ -1,107 +1,94 @@
 ---
-name: prd-to-plan
-description: Turn a PRD into a multi-phase implementation plan using tracer-bullet vertical slices, saved as a local Markdown file in ./plans/. Use when user wants to break down a PRD, create an implementation plan, plan phases from a PRD, or mentions "tracer bullets".
+name: design-an-interface
+description: Generate multiple radically different interface designs for a module using parallel sub-agents. Use when user wants to design an API, explore interface options, compare module shapes, or mentions "design it twice".
 ---
 
-# PRD to Plan
+# Design an Interface
 
-Break a PRD into a phased implementation plan using vertical slices (tracer bullets). Output is a Markdown file in `./plans/`.
+Based on "Design It Twice" from "A Philosophy of Software Design": your first idea is unlikely to be the best. Generate multiple radically different designs, then compare.
 
-## Process
+## Workflow
 
-### 1. Confirm the PRD is in context
+### 1. Gather Requirements
 
-The PRD should already be in the conversation. If it isn't, ask the user to paste it or point you to the file.
+Before designing, understand:
 
-### 2. Explore the codebase
+- [ ] What problem does this module solve?
+- [ ] Who are the callers? (other modules, external users, tests)
+- [ ] What are the key operations?
+- [ ] Any constraints? (performance, compatibility, existing patterns)
+- [ ] What should be hidden inside vs exposed?
 
-If you have not already explored the codebase, do so to understand the current architecture, existing patterns, and integration layers.
+Ask: "What does this module need to do? Who will use it?"
 
-### 3. Identify durable architectural decisions
+### 2. Generate Designs (Parallel Sub-Agents)
 
-Before slicing, identify high-level decisions that are unlikely to change throughout implementation:
+Spawn 3+ sub-agents simultaneously using Task tool. Each must produce a **radically different** approach.
 
-- Route structures / URL patterns
-- Database schema shape
-- Key data models
-- Authentication / authorization approach
-- Third-party service boundaries
+```
+Prompt template for each sub-agent:
 
-These go in the plan header so every phase can reference them.
+Design an interface for: [module description]
 
-### 4. Draft vertical slices
+Requirements: [gathered requirements]
 
-Break the PRD into **tracer bullet** phases. Each phase is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+Constraints for this design: [assign a different constraint to each agent]
+- Agent 1: "Minimize method count - aim for 1-3 methods max"
+- Agent 2: "Maximize flexibility - support many use cases"
+- Agent 3: "Optimize for the most common case"
+- Agent 4: "Take inspiration from [specific paradigm/library]"
 
-<vertical-slice-rules>
-- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
-- A completed slice is demoable or verifiable on its own
-- Prefer many thin slices over few thick ones
-- Do NOT include specific file names, function names, or implementation details that are likely to change as later phases are built
-- DO include durable decisions: route paths, schema shapes, data model names
-</vertical-slice-rules>
+Output format:
+1. Interface signature (types/methods)
+2. Usage example (how caller uses it)
+3. What this design hides internally
+4. Trade-offs of this approach
+```
 
-### 5. Quiz the user
+### 3. Present Designs
 
-Present the proposed breakdown as a numbered list. For each phase show:
+Show each design with:
 
-- **Title**: short descriptive name
-- **User stories covered**: which user stories from the PRD this addresses
+1. **Interface signature** - types, methods, params
+2. **Usage examples** - how callers actually use it in practice
+3. **What it hides** - complexity kept internal
 
-Ask the user:
+Present designs sequentially so user can absorb each approach before comparison.
 
-- Does the granularity feel right? (too coarse / too fine)
-- Should any phases be merged or split further?
+### 4. Compare Designs
 
-Iterate until the user approves the breakdown.
+After showing all designs, compare them on:
 
-### 6. Write the plan file
+- **Interface simplicity**: fewer methods, simpler params
+- **General-purpose vs specialized**: flexibility vs focus
+- **Implementation efficiency**: does shape allow efficient internals?
+- **Depth**: small interface hiding significant complexity (good) vs large interface with thin implementation (bad)
+- **Ease of correct use** vs **ease of misuse**
 
-Create `./plans/` if it doesn't exist. Write the plan as a Markdown file named after the feature (e.g. `./plans/user-onboarding.md`). Use the template below.
+Discuss trade-offs in prose, not tables. Highlight where designs diverge most.
 
-<plan-template>
-# Plan: <Feature Name>
+### 5. Synthesize
 
-> Source PRD: <brief identifier or link>
+Often the best design combines insights from multiple options. Ask:
 
-## Architectural decisions
+- "Which design best fits your primary use case?"
+- "Any elements from other designs worth incorporating?"
 
-Durable decisions that apply across all phases:
+## Evaluation Criteria
 
-- **Routes**: ...
-- **Schema**: ...
-- **Key models**: ...
-- (add/remove sections as appropriate)
+From "A Philosophy of Software Design":
 
----
+**Interface simplicity**: Fewer methods, simpler params = easier to learn and use correctly.
 
-## Phase 1: <Title>
+**General-purpose**: Can handle future use cases without changes. But beware over-generalization.
 
-**User stories**: <list from PRD>
+**Implementation efficiency**: Does interface shape allow efficient implementation? Or force awkward internals?
 
-### What to build
+**Depth**: Small interface hiding significant complexity = deep module (good). Large interface with thin implementation = shallow module (avoid).
 
-A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation.
+## Anti-Patterns
 
-### Acceptance criteria
-
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
----
-
-## Phase 2: <Title>
-
-**User stories**: <list from PRD>
-
-### What to build
-
-...
-
-### Acceptance criteria
-
-- [ ] ...
-
-<!-- Repeat for each phase -->
-</plan-template>
+- Don't let sub-agents produce similar designs - enforce radical difference
+- Don't skip comparison - the value is in contrast
+- Don't implement - this is purely about interface shape
+- Don't evaluate based on implementation effort
