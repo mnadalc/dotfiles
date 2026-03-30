@@ -33,6 +33,15 @@
 						"command": "bash ~/.claude/hooks/block-coauthored-by.sh"
 					}
 				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/block-dangerous-git.sh"
+					}
+				]
 			}
 		],
 		"UserPromptSubmit": [
