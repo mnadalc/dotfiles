@@ -1,145 +1,165 @@
 {
-	"$schema": "https://json.schemastore.org/claude-code-settings.json",
-	"env": {
-		"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-		"DISABLE_AUTOUPDATER": "1",
-		"ENABLE_TOOL_SEARCH": "true"
-	},
-	"attribution": {
-		"commit": "",
-		"pr": ""
-	},
-	"deniedMcpServers": [
-		{
-			"serverUrl": "https://mcp.sentry.dev/*"
-		}
-	],
-	"hooks": {
-		"PreToolUse": [
-			{
-				"matcher": "Bash",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash ~/.claude/hooks/block-rm.sh"
-					}
-				]
-			},
-			{
-				"matcher": "Bash",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash ~/.claude/hooks/block-coauthored-by.sh"
-					}
-				]
-			},
-			{
-				"matcher": "Bash",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash ~/.claude/hooks/block-dangerous-git.sh"
-					}
-				]
-			}
-		],
-		"UserPromptSubmit": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash ~/.claude/hooks/check-ralph-loop.sh"
-					}
-				]
-			}
-		]
-	},
-	"statusLine": {
-		"type": "command",
-		"command": "~/.claude/statusline.sh"
-	},
-	"enabledPlugins": {
-		"ralph-loop@claude-plugins-official": false,
-		"context7@claude-plugins-official": true,
-		"typescript-lsp@claude-plugins-official": false,
-		"security-guidance@claude-plugins-official": false,
-		"frontend-design@claude-plugins-official": false,
-		"telegram@claude-plugins-official": false,
-		"playwright@claude-plugins-official": true,
-		"code-simplifier@claude-plugins-official": false,
-		"chrome-devtools-mcp@claude-plugins-official": true,
-		"celebrate-agentic-tools@celebrate-engineering": true
-	},
-	"extraKnownMarketplaces": {
-		"celebrate-engineering": {
-			"source": {
-				"source": "github",
-				"repo": "kartenmacherei/agent-builder-v2"
-			}
-		}
-	},
-	"permissions": {
-		"defaultMode": "auto",
-		"allow": [
-			"Bash(git:*)",
-			"Bash(npm:*)",
-			"Bash(node:*)",
-			"Bash(npx:*)",
-			"Bash(pnpm:*)",
-			"Bash(yarn:*)",
-			"Bash(make:*)",
-			"Bash(docker:*)",
-			"Bash(gh:*)",
-			"Bash(cat:*)",
-			"Bash(ls:*)",
-			"Bash(find:*)",
-			"Bash(grep:*)",
-			"Bash(cmux:*)"
-		],
-		"deny": ["Bash(rm -rf:*)", "Bash(curl:* | bash)*"]
-	},
-	"plansDirectory": ".plans",
-	"worktree": {
-		"symlinkDirectories": ["node_modules", ".next", ".cache", "dist", ".turbo"]
-	},
-	"sandbox": {
-		"enabled": true,
-		"network": {
-			"allowedDomains": [
-				"registry.npmjs.org",
-				"registry.yarnpkg.com",
-				"registry.npmmirror.com",
-				"dl.yarnpkg.com",
-				"registry.bun.sh",
-				"bun.sh",
-				"github.com",
-				"api.github.com",
-				"raw.githubusercontent.com",
-				"objects.githubusercontent.com",
-				"codeload.github.com",
-				"formulae.brew.sh",
-				"ghcr.io",
-				"pypi.org",
-				"files.pythonhosted.org",
-				"cdn.jsdelivr.net",
-				"unpkg.com",
-				"esm.sh",
-				"deno.land",
-				"nodejs.org",
-				"npmjs.com"
-			],
-			"allowLocalBinding": true
-		},
-		"filesystem": {
-			"allowWrite": ["~/.claude", "~/.dotfiles"],
-			"denyWrite": ["~/.ssh", "~/.gnupg", "~/.aws/credentials"],
-			"denyRead": ["~/.ssh/id_*", "~/.aws/credentials", "~/.gnupg"]
-		}
-	},
-	"effortLevel": "high",
-	"skipDangerousModePermissionPrompt": true,
-	"showThinkingSummaries": true,
-	"alwaysThinkingEnabled": true,
-	"skipAutoPermissionPrompt": true
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "DISABLE_AUTOUPDATER": "1",
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(node:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
+      "Bash(yarn:*)",
+      "Bash(make:*)",
+      "Bash(docker:*)",
+      "Bash(gh:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(cmux:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(curl:* | bash)*"
+    ],
+    "defaultMode": "auto"
+  },
+  "deniedMcpServers": [
+    {
+      "serverUrl": "https://mcp.sentry.dev/*"
+    }
+  ],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-rm.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-coauthored-by.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-dangerous-git.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/check-ralph-loop.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "symlinkDirectories": [
+      "node_modules",
+      ".next",
+      ".cache",
+      "dist",
+      ".turbo"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "ralph-loop@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": false,
+    "security-guidance@claude-plugins-official": false,
+    "frontend-design@claude-plugins-official": false,
+    "telegram@claude-plugins-official": false,
+    "playwright@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": false,
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "celebrate-agentic-tools@celebrate-engineering": true
+  },
+  "extraKnownMarketplaces": {
+    "celebrate-engineering": {
+      "source": {
+        "source": "github",
+        "repo": "kartenmacherei/agent-builder-v2"
+      }
+    }
+  },
+  "sandbox": {
+    "enabled": true,
+    "network": {
+      "allowedDomains": [
+        "registry.npmjs.org",
+        "registry.yarnpkg.com",
+        "registry.npmmirror.com",
+        "dl.yarnpkg.com",
+        "registry.bun.sh",
+        "bun.sh",
+        "github.com",
+        "api.github.com",
+        "raw.githubusercontent.com",
+        "objects.githubusercontent.com",
+        "codeload.github.com",
+        "formulae.brew.sh",
+        "ghcr.io",
+        "pypi.org",
+        "files.pythonhosted.org",
+        "cdn.jsdelivr.net",
+        "unpkg.com",
+        "esm.sh",
+        "deno.land",
+        "nodejs.org",
+        "npmjs.com"
+      ],
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "~/.claude",
+        "~/.dotfiles"
+      ],
+      "denyWrite": [
+        "~/.ssh",
+        "~/.gnupg",
+        "~/.aws/credentials"
+      ],
+      "denyRead": [
+        "~/.ssh/id_*",
+        "~/.aws/credentials",
+        "~/.gnupg"
+      ]
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "plansDirectory": ".plans",
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }
