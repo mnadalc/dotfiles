@@ -7,7 +7,7 @@ source "${DOTFILES_DIR}/osx/utils.sh"
 
 # ── clearticket ───────────────────────────────────────────────────────────────
 #
-# Removes a git worktree and its branch.
+# Removes a git worktree and optionally deletes its branch.
 #
 # Usage:
 #   clearticket <branch-name>        — removes worktree directly
@@ -72,8 +72,8 @@ clearticket() {
     fi
   fi
 
-  # ── 6. Confirm before destructive action ──────────────────────────────────
-  ask_for_confirmation "This will remove the worktree and delete branch '${branch}'. Continue?"
+  # ── 6. Confirm worktree removal ──────────────────────────────────────────
+  ask_for_confirmation "Remove worktree for '${branch}'?"
   if ! answer_is_yes; then
     print_error "Aborted."
     return 1
@@ -91,26 +91,35 @@ clearticket() {
     print_success "Worktree directory already gone — git reference pruned"
   fi
 
-  # ── 8. Delete the branch ──────────────────────────────────────────────────
-  print_in_blue "Deleting branch '${branch}'..."
+  # ── 8. Optionally delete the branch ────────────────────────────────────────
   if git show-ref --verify --quiet "refs/heads/${branch}"; then
-    # Resolve base ref safely — fall back to main if origin/HEAD is not set
-    local base_ref
-    base_ref=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
-    base_ref="${base_ref:-main}"
+    ask_for_confirmation "Also delete branch '${branch}'?"
+    if answer_is_yes; then
+      # Resolve base ref safely — fall back to main if origin/HEAD is not set
+      local base_ref
+      base_ref=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
+      base_ref="${base_ref:-main}"
 
-    # Check if branch has unmerged commits
-    if ! git merge-base --is-ancestor "$branch" "origin/${base_ref}" 2>/dev/null; then
-      print_in_yellow "  [!] Branch '${branch}' has unmerged commits against 'origin/${base_ref}'."
-      ask_for_confirmation "Delete anyway? Unmerged commits will be lost."
-      if ! answer_is_yes; then
-        print_error "Branch deletion aborted — worktree was removed but branch kept."
-        return 1
+      local should_delete=true
+      # Check if branch has unmerged commits
+      if ! git merge-base --is-ancestor "$branch" "origin/${base_ref}" 2>/dev/null; then
+        print_in_yellow "  [!] Branch '${branch}' has unmerged commits against 'origin/${base_ref}'."
+        ask_for_confirmation "Delete anyway? Unmerged commits will be lost."
+        if ! answer_is_yes; then
+          should_delete=false
+        fi
       fi
+
+      if $should_delete; then
+        git branch -D "$branch" && \
+          print_success "Branch deleted" || \
+          print_error "Failed to delete branch — check manually"
+      else
+        print_in_blue "Branch '${branch}' kept."
+      fi
+    else
+      print_in_blue "Branch '${branch}' kept."
     fi
-    git branch -D "$branch" && \
-      print_success "Branch deleted" || \
-      print_error "Failed to delete branch — check manually"
   else
     print_in_blue "Branch '${branch}' already gone — skipping"
   fi

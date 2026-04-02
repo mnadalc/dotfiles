@@ -10,7 +10,6 @@ export DOTFILES_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 # ── Colors ────────────────────────────────────────────────────────────────────
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
 NC='\033[0m'
 
 PASS=0
@@ -111,9 +110,10 @@ source "$DOTFILES_DIR/osx/utils.sh"
 source "$DOTFILES_DIR/shell/newticket.sh"
 source "$DOTFILES_DIR/shell/clearticket.sh"
 
-# Override interactive helpers — always answer yes
+# Override interactive helpers — default: always answer yes
+# answer_is_yes checks REPLY so specific tests can control answers via ask_for_confirmation
 ask_for_confirmation() { REPLY="y"; }
-answer_is_yes() { return 0; }
+answer_is_yes() { [[ "$REPLY" =~ ^[Yy]$ ]]; }
 
 # ── Helper: create a test repo with a local bare origin ──────────────────────
 
@@ -249,7 +249,7 @@ echo ""
 echo "=== clearticket ==="
 # ══════════════════════════════════════════════════════════════════════════════
 
-# ── removes worktree and deletes branch ──────────────────────────────────────
+# ── removes worktree and deletes branch (both prompts answered yes) ──────────
 repo=$(create_test_repo "t-ct-remove")
 cd "$repo"
 output=$(newticket "test-remove" 2>&1) || true
@@ -257,10 +257,29 @@ cd "$repo"
 output=$(clearticket "test-remove" 2>&1) || true
 assert_dir_not_exists "removes worktree directory" "$repo/.claude/worktrees/test-remove"
 assert_contains "confirms worktree cleared" "cleared" "$output"
-# Verify branch is gone
 branch_exists=0
 git -C "$repo" show-ref --verify --quiet "refs/heads/test-remove" 2>/dev/null || branch_exists=1
-assert_eq "deletes the branch" "1" "$branch_exists"
+assert_eq "deletes the branch when user confirms" "1" "$branch_exists"
+
+# ── keeps branch when user declines deletion ─────────────────────────────────
+repo=$(create_test_repo "t-ct-keepbranch")
+cd "$repo"
+output=$(newticket "keep-branch" 2>&1) || true
+cd "$repo"
+# Override: yes to worktree removal, no to branch deletion
+_ct_prompt_idx=0
+ask_for_confirmation() {
+  ((_ct_prompt_idx++))
+  if [[ $_ct_prompt_idx -le 1 ]]; then REPLY="y"; else REPLY="n"; fi
+}
+output=$(clearticket "keep-branch" 2>&1) || true
+# Reset overrides
+ask_for_confirmation() { REPLY="y"; }
+assert_dir_not_exists "removes worktree even when branch kept" "$repo/.claude/worktrees/keep-branch"
+assert_contains "reports branch kept" "kept" "$output"
+branch_exists=0
+git -C "$repo" show-ref --verify --quiet "refs/heads/keep-branch" 2>/dev/null && branch_exists=1
+assert_eq "branch still exists after decline" "1" "$branch_exists"
 
 # ── guards against running from exact worktree directory ─────────────────────
 repo=$(create_test_repo "t-ct-inside")
