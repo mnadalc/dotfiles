@@ -22,7 +22,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # PNPM global binaries
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$HOME/.local/bin:$PNPM_HOME:$PATH"
+export PATH="$HOME/.claude/bin:$HOME/.local/bin:$PNPM_HOME:$PATH"
 
 # Dotfiles directory
 export DOTFILES_DIR="$HOME/.dotfiles"

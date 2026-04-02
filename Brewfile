@@ -96,7 +96,7 @@ cask "cursor"
 cask "cmux"
 # Anthropic's official Claude AI desktop app
 cask "claude"
-# Terminal-based AI coding assistant (now installed via mise as npm:@anthropic-ai/claude-code — faster releases than brew)
+# Terminal-based AI coding assistant (installed via native installer: curl -fsSL https://claude.ai/install.sh | bash)
 # cask "claude-code"
 # OpenAI's coding agent for the terminal (Codex CLI)
 cask "codex"

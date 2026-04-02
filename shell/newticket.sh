@@ -161,15 +161,11 @@ newticket() {
   else
     # ── 14. Install dependencies ───────────────────────────────────────────
     print_in_blue "Installing dependencies ($pkg_manager install)..."
-    local install_output
-    local install_exit
-    install_output=$( cd "$worktree_dir" && "$pkg_manager" install 2>&1 )
-    install_exit=$?
-    if [ $install_exit -eq 0 ]; then
+    ( cd "$worktree_dir" && "$pkg_manager" install )
+    if [ $? -eq 0 ]; then
       print_success "Dependencies installed"
     else
-      print_error "$pkg_manager install failed:"
-      echo "$install_output"
+      print_error "$pkg_manager install failed (see output above)"
     fi
 
     # ── 15. Setup git hooks (only if husky is configured) ─────────────────
@@ -182,15 +178,11 @@ newticket() {
 
     if $has_husky; then
       print_in_blue "Setting up git hooks ($pkg_manager run prepare)..."
-      local prepare_output
-      local prepare_exit
-      prepare_output=$( cd "$worktree_dir" && "$pkg_manager" run prepare 2>&1 )
-      prepare_exit=$?
-      if [ $prepare_exit -eq 0 ]; then
+      ( cd "$worktree_dir" && "$pkg_manager" run prepare )
+      if [ $? -eq 0 ]; then
         print_success "Git hooks ready"
       else
-        print_error "$pkg_manager run prepare failed:"
-        echo "$prepare_output"
+        print_error "$pkg_manager run prepare failed (see output above)"
       fi
     else
       print_in_blue "No husky found — skipping git hooks setup"

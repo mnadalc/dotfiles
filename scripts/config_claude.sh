@@ -2,8 +2,6 @@
 
 source './osx/utils.sh'
 
-CONTEXT7_OAUTH_URL="https://mcp.context7.com/mcp/oauth"
-
 link_if_safe() {
   local source_path="$1"
   local target_path="$2"
@@ -48,66 +46,23 @@ configure_claude_files() {
   print_success "Configured Claude Code files."
 }
 
-context7_configured_for_oauth() {
-  local config_path="$HOME/.claude.json"
-
-  [ -f "$config_path" ] || return 1
-
-  if cmd_exists jq; then
-    jq -e --arg url "$CONTEXT7_OAUTH_URL" '.mcpServers.context7.type == "http" and .mcpServers.context7.url == $url' "$config_path" > /dev/null 2>&1
-  else
-    grep -q '"context7"' "$config_path" && grep -q "\"url\": \"$CONTEXT7_OAUTH_URL\"" "$config_path"
-  fi
-}
-
-context7_config_exists() {
-  local config_path="$HOME/.claude.json"
-
-  [ -f "$config_path" ] || return 1
-
-  if cmd_exists jq; then
-    jq -e '.mcpServers.context7 != null' "$config_path" > /dev/null 2>&1
-  else
-    grep -q '"context7"' "$config_path"
-  fi
-}
-
-configure_mcp() {
-  local had_error=0
-  print_info "Configuring MCP servers for Claude Code..."
-
-  if ! cmd_exists claude; then
-    print_info "Claude CLI not found. Skipping MCP configuration."
+install_claude_code() {
+  if cmd_exists claude; then
+    print_info "Claude Code CLI already installed ($(claude --version 2>/dev/null || echo 'unknown version'))"
+    print_info "Native installer auto-updates in the background — skipping reinstall."
     return 0
   fi
 
-  if context7_configured_for_oauth; then
-    print_info "Context7 MCP server already configured for OAuth"
-  elif context7_config_exists; then
-    print_info "Replacing existing Context7 MCP server with OAuth configuration..."
-    if ! execute "claude mcp remove context7"; then
-      had_error=1
-    elif ! execute "claude mcp add --scope user --transport http context7 $CONTEXT7_OAUTH_URL"; then
-      had_error=1
-    else
-      print_info "Finish Context7 setup in Claude Code with /mcp -> context7 -> Authenticate"
-    fi
+  print_info "Installing Claude Code via native installer..."
+  if curl -fsSL https://claude.ai/install.sh | bash; then
+    # Ensure the binary is available in the current session
+    export PATH="$HOME/.claude/bin:$PATH"
+    print_success "Claude Code installed"
   else
-    print_info "Adding Context7 MCP server with OAuth..."
-    if ! execute "claude mcp add --scope user --transport http context7 $CONTEXT7_OAUTH_URL"; then
-      had_error=1
-    else
-      print_info "Finish Context7 setup in Claude Code with /mcp -> context7 -> Authenticate"
-    fi
-  fi
-
-  if [ "$had_error" -eq 0 ]; then
-    print_success "Claude MCP configuration checked."
-  else
-    print_error "Claude MCP configuration completed with errors."
+    print_error "Claude Code native installer failed."
     return 1
   fi
 }
 
+install_claude_code
 configure_claude_files
-configure_mcp
