@@ -15,4 +15,4 @@ unfocused-split-fill = #1e1e2e
 split-divider-color = #45475a
 
 # Number of lines to keep in scrollback buffer
-scrollback-limit = 50000
+scrollback-limit = 30000000

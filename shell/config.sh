@@ -24,6 +24,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$HOME/.local/bin:$PNPM_HOME:$PATH"
 
+# Dotfiles directory
+export DOTFILES_DIR="$HOME/.dotfiles"
+
 # Ghostty -> auto attach/create tmux session
 # Disable to test cmux
 # if [[ -o interactive ]] && [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]]; then

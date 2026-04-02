@@ -33,3 +33,24 @@ cp -r ~/.dotfiles/.ai/project-specific-skills/tanstack-query <project>/.claude/s
 | git-guardrails-claude-code | New project setup (one-time)                       |
 
 These stay separate because they're either tech-specific or one-time setup tools that add unnecessary context when loaded globally.
+
+## Worktree Configuration
+
+### `worktree.symlinkDirectories`
+
+Build artifacts and caches are symlinked into each worktree to avoid regenerating them from scratch on every new session: `.next`, `.cache`, `dist`, `.turbo`.
+
+`node_modules` is intentionally excluded. Symlinking it shares the dependency tree across all worktrees — any `npm install` in one worktree would affect every other branch simultaneously. Each worktree gets its own `node_modules` instead, keeping dependency changes isolated to the branch where they belong.
+
+For `.env` and other gitignored config files, use a `.worktreeinclude` file in the project root.
+
+#### Example of a `.worktreeinclude` file
+
+```
+# Environment files
+.env
+.env*.local
+
+# Package manager config
+.npmrc
+```
