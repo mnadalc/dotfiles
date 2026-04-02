@@ -3,6 +3,7 @@
 # you can set these with `mise use -g`
 go = "latest"
 node = "lts"
+"npm:@anthropic-ai/claude-code" = "latest"
 pnpm = "latest" # corepack will manage pnpm
 ruby = "latest"
 yarn = "1.22.22"
