@@ -27,6 +27,10 @@ export PATH="$HOME/.claude/bin:$HOME/.local/bin:$PNPM_HOME:$PATH"
 # Dotfiles directory
 export DOTFILES_DIR="$HOME/.dotfiles"
 
+# Disable flicker in Claude Code
+# https://code.claude.com/docs/en/fullscreen
+export CLAUDE_CODE_NO_FLICKER=1
+
 # Ghostty -> auto attach/create tmux session
 # Disable to test cmux
 # if [[ -o interactive ]] && [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" ]]; then
