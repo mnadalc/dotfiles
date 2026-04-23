@@ -19,6 +19,9 @@
 # Claude Code
 .claude/worktrees/
 
+# Vendored AI skill repos (each is its own git clone)
+.ai/vendor/
+
 # Node
 npm-debug.log*
 yarn-debug.log*
@@ -30,3 +33,5 @@ pnpm-debug.log*
 
 # Thumbnails
 Thumbs.db
+
+**/.claude/settings.local.json

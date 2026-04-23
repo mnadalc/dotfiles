@@ -113,16 +113,16 @@
   // EXTENSIONS //
   ////////////////
   // Jest extension
-  "jest.testExplorer": {
-    "enabled": true,
-    "showClassicStatus": true,
-    "showInlineError": false,
-  },
-  "jest.jestCommandLine": "yarn test",
-  "jest.autoRun": {
-    "watch": false,
-    "onSave": "test-file",
-  },
+  // "jest.testExplorer": {
+  //   "enabled": true,
+  //   "showClassicStatus": true,
+  //   "showInlineError": false,
+  // },
+  // "jest.jestCommandLine": "yarn test",
+  // "jest.autoRun": {
+  //   "watch": false,
+  //   "onSave": "test-file",
+  // },
 
   // GitLens extension
   "gitlens.defaultDateFormat": null,

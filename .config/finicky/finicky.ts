@@ -52,6 +52,7 @@ export default {
 				/calendar.google.com/,
 				/keep.google.com/,
 				/linear.app/,
+				/linear.app\/celebrate/,
 				/claude.ai/,
 				/github.com\/kartenmacherei/,
 				/shop-frontend-.*\.celebrate\.company/,

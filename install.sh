@@ -37,6 +37,7 @@ sudo softwareupdate --install-rosetta --agree-to-license
 ./scripts/configure_zsh.sh
 ./scripts/configure_ghostty.sh
 ./scripts/configure_cmux.sh
+./scripts/sync_vendor_skills.sh
 ./scripts/configure_ai_skills.sh
 ./scripts/config_claude.sh
 ./scripts/config_codex.sh

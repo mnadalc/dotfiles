@@ -141,7 +141,31 @@ newticket() {
 
   print_success "Worktree created → ${worktree_dir}"
 
-  # ── 13. Detect package manager ────────────────────────────────────────────
+  # ── 13. Copy .env files from main working tree ────────────────────────────
+  # .env files are gitignored so they only live in the main working tree.
+  # Copy them into the new worktree so the user doesn't have to re-paste them.
+  print_in_blue "Copying .env files from main working tree..."
+  local env_count=0
+  while IFS= read -r -d '' env_file; do
+    local rel_path="${env_file#${repo_root}/}"
+    local dest="${worktree_dir}/${rel_path}"
+    mkdir -p "$(dirname "$dest")"
+    cp "$env_file" "$dest"
+    env_count=$((env_count + 1))
+  done < <(find "$repo_root" -type f \( -name '.env' -o -name '.env.*' -o -name '.env-*' \) \
+    -not -path "${repo_root}/node_modules/*" \
+    -not -path "${repo_root}/.claude/worktrees/*" \
+    -not -path "${repo_root}/.git/*" \
+    -not -path '*/node_modules/*' \
+    -print0 2>/dev/null)
+
+  if [ "$env_count" -gt 0 ]; then
+    print_success "Copied ${env_count} .env file(s) from main working tree"
+  else
+    print_in_blue "No .env files found in main working tree"
+  fi
+
+  # ── 14. Detect package manager ────────────────────────────────────────────
   local pkg_manager=""
 
   if [ -f "${worktree_dir}/pnpm-lock.yaml" ]; then
@@ -159,7 +183,7 @@ newticket() {
   if [[ -z "$pkg_manager" ]]; then
     print_in_blue "No package.json found — skipping install"
   else
-    # ── 14. Install dependencies ───────────────────────────────────────────
+    # ── 15. Install dependencies ───────────────────────────────────────────
     print_in_blue "Installing dependencies ($pkg_manager install)..."
     ( cd "$worktree_dir" && "$pkg_manager" install )
     if [ $? -eq 0 ]; then
@@ -168,7 +192,7 @@ newticket() {
       print_error "$pkg_manager install failed (see output above)"
     fi
 
-    # ── 15. Setup git hooks (only if husky is configured) ─────────────────
+    # ── 16. Setup git hooks (only if husky is configured) ─────────────────
     local has_husky=false
     if [ -f "${worktree_dir}/.husky/_/husky.sh" ] || \
        [ -f "${worktree_dir}/.husky/pre-commit" ] || \
@@ -189,7 +213,7 @@ newticket() {
     fi
   fi
 
-  # ── 16. Launch Claude Code ────────────────────────────────────────────────
+  # ── 17. Launch Claude Code ────────────────────────────────────────────────
   echo ""
   print_success "Worktree ready. Launching Claude Code..."
   echo ""

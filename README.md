@@ -50,6 +50,20 @@ Shared Claude and Codex skills live in `.ai/skills`.
 - Context7 is configured as a user-scoped remote HTTP MCP server with OAuth. After setup, finish the one-time login in Claude Code with `/mcp`, select `context7`, then `Authenticate`.
 - For Codex, `scripts/config_codex.sh` configures both `context7` and `openaiDeveloperDocs`. Finish the one-time OAuth flow for Context7 with `codex mcp login context7`.
 
+### Vendored skills (external repos)
+
+Third-party skill collections (currently [`mattpocock/skills`](https://github.com/mattpocock/skills)) are cloned into `.ai/vendor/` and exposed via symlinks under `.ai/skills/`. Your own real directories in `.ai/skills/` always win on name collision.
+
+- `scripts/sync_vendor_skills.sh` clones (first run) or `git pull`s each vendor repo, then refreshes the symlinks. It also prunes symlinks whose upstream skill was removed.
+- `.ai/vendor/` is gitignored — the vendored clones aren't tracked by this repo. Only the symlinks inside `.ai/skills/` are committed.
+- **`git pull` on this repo does not update vendor skills** — it only updates the dotfiles and any committed symlinks. To refresh Matt's skills, run:
+
+```bash
+./scripts/sync_vendor_skills.sh
+```
+
+To add another upstream repo, append a `"local-name|git-url"` entry to `VENDOR_SKILL_REPOS` in that script.
+
 See [`.ai/README.md`](.ai/README.md) for the rationale and layout details.
 
 ## cmux

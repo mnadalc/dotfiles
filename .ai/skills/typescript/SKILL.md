@@ -3,9 +3,8 @@ name: typescript-best-practices
 description: Strict TypeScript best practices for application code. Use this skill when writing, reviewing, or refactoring TypeScript — especially types, interfaces, generics, React component props, runtime validation, and tsconfig.
 license: MIT
 metadata:
-  author: bajostudios
-  version: '1.0.0'
-  source: 'https://www.totaltypescript.com/articles'
+  version: "1.0.0"
+  source: "https://www.totaltypescript.com/articles"
 ---
 
 # TypeScript Best Practices (Strict Mode)
@@ -52,12 +51,12 @@ Reason: interfaces allow accidental **declaration merging** (two interfaces with
 type Invoice = {
   id: string;
   amount: number;
-  status: 'draft' | 'sent' | 'paid';
+  status: "draft" | "sent" | "paid";
 };
 
 // EXCEPTION: use interface when extending (perf benefit)
-interface ButtonProps extends ComponentProps<'button'> {
-  variant: 'primary' | 'ghost';
+interface ButtonProps extends ComponentProps<"button"> {
+  variant: "primary" | "ghost";
 }
 ```
 
@@ -70,17 +69,17 @@ Model state with discriminated unions, not bags of optionals. Each branch carrie
 ```typescript
 // WRONG: allows impossible states
 type RequestState = {
-  status: 'idle' | 'loading' | 'success' | 'error';
+  status: "idle" | "loading" | "success" | "error";
   data?: Invoice[];
   error?: Error;
 };
 
 // CORRECT: each state is explicit
 type RequestState =
-  | { status: 'idle' }
-  | { status: 'loading' }
-  | { status: 'success'; data: Invoice[] }
-  | { status: 'error'; error: Error };
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "success"; data: Invoice[] }
+  | { status: "error"; error: Error };
 ```
 
 Use `status` (or `type`, `kind`) as the discriminant. Narrow with `if`/`switch` on that property.
@@ -91,14 +90,14 @@ Use `status` (or `type`, `kind`) as the discriminant. Narrow with `if`/`switch` 
 
 ```typescript
 type User = { id: string; name: string; email: string; role: Role };
-type UserSummary = Pick<User, 'id' | 'name'>;
+type UserSummary = Pick<User, "id" | "name">;
 ```
 
 **Decouple** types when they serve different concerns (e.g., DB row vs UI component props):
 
 ```typescript
 // DB type (from Supabase)
-type DbProject = Database['public']['Tables']['projects']['Row'];
+type DbProject = Database["public"]["Tables"]["projects"]["Row"];
 
 // UI type (independent — can evolve separately)
 type ProjectCardProps = {
@@ -123,13 +122,13 @@ enum Status {
 }
 
 // CORRECT: union literal
-type Status = 'draft' | 'active' | 'archived';
+type Status = "draft" | "active" | "archived";
 
 // CORRECT: as const object (when you need runtime values + type)
 const STATUS = {
-  Draft: 'draft',
-  Active: 'active',
-  Archived: 'archived',
+  Draft: "draft",
+  Active: "active",
+  Archived: "archived",
 } as const;
 
 type Status = (typeof STATUS)[keyof typeof STATUS];
@@ -208,7 +207,9 @@ Enable `@typescript-eslint/no-explicit-any`. Ban `any` from the codebase. Accept
 ```typescript
 // any[] is necessary here because unknown[] is too restrictive
 // for function parameter positions (contravariance)
-type Parameters<T extends (...args: any[]) => any> = T extends (...args: infer P) => any
+type Parameters<T extends (...args: any[]) => any> = T extends (
+  ...args: infer P
+) => any
   ? P
   : never;
 ```
@@ -216,8 +217,10 @@ type Parameters<T extends (...args: any[]) => any> = T extends (...args: infer P
 **Exception 2 — Conditional return types** in generic functions where TS can't narrow:
 
 ```typescript
-function toggle<T extends 'on' | 'off'>(value: T): T extends 'on' ? 'off' : 'on' {
-  return (value === 'on' ? 'off' : 'on') as any; // eslint-disable-line
+function toggle<T extends "on" | "off">(
+  value: T,
+): T extends "on" ? "off" : "on" {
+  return (value === "on" ? "off" : "on") as any; // eslint-disable-line
   // Unit test covers correctness
 }
 ```
@@ -240,10 +243,10 @@ When extending native HTML element props, use `interface extends` (not `type &`)
 
 ```typescript
 // WRONG: slow in large codebases
-type InputProps = ComponentProps<'input'> & { label: string };
+type InputProps = ComponentProps<"input"> & { label: string };
 
 // CORRECT: fast
-interface InputProps extends ComponentProps<'input'> {
+interface InputProps extends ComponentProps<"input"> {
   label: string;
 }
 ```
@@ -253,16 +256,16 @@ interface InputProps extends ComponentProps<'input'> {
 Use `ComponentProps` (from React) to extract props from native elements or third-party components:
 
 ```typescript
-import { type ComponentProps } from 'react';
+import { type ComponentProps } from "react";
 
 // Native element
-type ButtonProps = ComponentProps<'button'>;
+type ButtonProps = ComponentProps<"button">;
 
 // Third-party component
 type DialogProps = ComponentProps<typeof Dialog>;
 
 // With ref
-type InputProps = ComponentPropsWithRef<'input'>;
+type InputProps = ComponentPropsWithRef<"input">;
 ```
 
 ### react-discriminated-union-props
@@ -271,8 +274,8 @@ Use discriminated unions for component variants instead of optional prop soup:
 
 ```typescript
 type AlertProps =
-  | { variant: 'info'; message: string }
-  | { variant: 'action'; message: string; onAction: () => void };
+  | { variant: "info"; message: string }
+  | { variant: "action"; message: string; onAction: () => void };
 ```
 
 ### react-type-events-properly
@@ -293,9 +296,9 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 Use `React.ElementRef` to strongly type refs:
 
 ```typescript
-import { useRef, type ElementRef } from 'react';
+import { useRef, type ElementRef } from "react";
 
-const inputRef = useRef<ElementRef<'input'>>(null);
+const inputRef = useRef<ElementRef<"input">>(null);
 const dialogRef = useRef<ElementRef<typeof Dialog>>(null);
 ```
 
@@ -313,10 +316,10 @@ Don't manually pass type arguments when TypeScript can infer them from runtime v
 
 ```typescript
 // WRONG: redundant type argument
-const result = useState<string>('hello');
+const result = useState<string>("hello");
 
 // CORRECT: inferred from "hello"
-const result = useState('hello');
+const result = useState("hello");
 ```
 
 Only pass explicit type arguments when inference can't work (e.g., no runtime value to infer from).
@@ -330,7 +333,7 @@ function createRoute<const T extends string>(path: T) {
   return { path };
 }
 
-const route = createRoute('/invoices/:id');
+const route = createRoute("/invoices/:id");
 // route.path is "/invoices/:id", not string
 ```
 
@@ -341,14 +344,14 @@ When an object literal has generic-dependent properties, place the property that
 ```typescript
 // CORRECT: produce sets the type, consume reads it
 createHandler({
-  produce: () => ({ id: '123' }),
+  produce: () => ({ id: "123" }),
   consume: (data) => console.log(data.id), // data inferred correctly
 });
 
 // WRONG: consume evaluated before produce — data is unknown
 createHandler({
   consume: (data) => console.log(data.id),
-  produce: () => ({ id: '123' }),
+  produce: () => ({ id: "123" }),
 });
 ```
 
@@ -374,15 +377,15 @@ Do NOT validate internal function calls or data flowing between your own modules
 Use `t3-env` + Zod to validate environment variables at startup:
 
 ```typescript
-import { createEnv } from '@t3-oss/env-core';
-import { z } from 'zod';
+import { createEnv } from "@t3-oss/env-core";
+import { z } from "zod";
 
 export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   },
-  clientPrefix: 'VITE_',
+  clientPrefix: "VITE_",
   client: {
     VITE_SUPABASE_URL: z.string().url(),
     VITE_SUPABASE_ANON_KEY: z.string().min(1),
@@ -450,7 +453,7 @@ Always enable these base options:
 `noUncheckedIndexedAccess` is critical: it forces you to check that array/object lookups are defined before using them, preventing `undefined` runtime crashes:
 
 ```typescript
-const items = ['a', 'b', 'c'];
+const items = ["a", "b", "c"];
 const first = items[0]; // string | undefined (must check)
 
 if (first !== undefined) {
@@ -463,8 +466,8 @@ if (first !== undefined) {
 Requires explicit `import type` / `export type` for type-only imports. Prevents bundler issues and makes the boundary between types and runtime values explicit:
 
 ```typescript
-import type { Invoice } from './types'; // erased at build
-import { formatCurrency } from './utils'; // kept at build
+import type { Invoice } from "./types"; // erased at build
+import { formatCurrency } from "./utils"; // kept at build
 ```
 
 ---
@@ -491,7 +494,12 @@ Adding return type annotations to exported functions helps the TS compiler avoid
 
 ```typescript
 export function getInvoice(id: string): Promise<Invoice> {
-  return supabase.from('invoices').select('*').eq('id', id).single().then(/* ... */);
+  return supabase
+    .from("invoices")
+    .select("*")
+    .eq("id", id)
+    .single()
+    .then(/* ... */);
 }
 ```
 
@@ -520,9 +528,12 @@ Use `satisfies` to validate a value conforms to a type while preserving its infe
 ```typescript
 // Validates shape but preserves literal types
 const routes = {
-  home: { path: '/', search: {} },
-  invoice: { path: '/invoices/:id', search: { tab: 'details' } },
-} as const satisfies Record<string, { path: string; search: Record<string, string> }>;
+  home: { path: "/", search: {} },
+  invoice: { path: "/invoices/:id", search: { tab: "details" } },
+} as const satisfies Record<
+  string,
+  { path: string; search: Record<string, string> }
+>;
 
 // routes.invoice.path is "/invoices/:id", not string
 ```
@@ -553,7 +564,7 @@ Use assertion functions to narrow types via throwing:
 
 ```typescript
 function assertIsAuthenticated(user: User | null): asserts user is User {
-  if (!user) throw new Error('Not authenticated');
+  if (!user) throw new Error("Not authenticated");
 }
 
 // After this call, user is narrowed to User
@@ -566,15 +577,15 @@ console.log(currentUser.email); // safe
 Use branded types for security-critical values that must not be confused with plain strings/numbers:
 
 ```typescript
-type UserId = string & { readonly __brand: 'UserId' };
-type ProjectId = string & { readonly __brand: 'ProjectId' };
+type UserId = string & { readonly __brand: "UserId" };
+type ProjectId = string & { readonly __brand: "ProjectId" };
 
 function getProject(id: ProjectId): Promise<Project> {
   /* ... */
 }
 
 // Cannot accidentally pass a UserId where ProjectId is expected
-const userId = 'abc' as UserId;
+const userId = "abc" as UserId;
 getProject(userId); // ERROR
 ```
 
@@ -584,12 +595,12 @@ Use `Exclude` to remove members from unions and `Extract` to keep specific membe
 
 ```typescript
 type Event =
-  | { type: 'click'; x: number; y: number }
-  | { type: 'focus' }
-  | { type: 'change'; value: string };
+  | { type: "click"; x: number; y: number }
+  | { type: "focus" }
+  | { type: "change"; value: string };
 
-type NonClickEvent = Exclude<Event, { type: 'click' }>;
-type ClickEvent = Extract<Event, { type: 'click' }>;
+type NonClickEvent = Exclude<Event, { type: "click" }>;
+type ClickEvent = Extract<Event, { type: "click" }>;
 ```
 
 ### pattern-object-keys-safely
@@ -625,8 +636,8 @@ const grouped = items.reduce<Record<string, Invoice[]>>((acc, item) => {
 Prefer `const` over `let`. `const` infers literal types; `let` widens to the base type:
 
 ```typescript
-const status = 'active'; // type: "active"
-let status2 = 'active'; // type: string
+const status = "active"; // type: "active"
+let status2 = "active"; // type: string
 ```
 
 Use `const` by default. Only use `let` when reassignment is genuinely needed.
