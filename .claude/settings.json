@@ -1,214 +1,232 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "env": {
-    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "0",
-    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "ENABLE_TOOL_SEARCH": "true",
-    "FORCE_AUTOUPDATE_PLUGINS": "1"
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "permissions": {
-    "allow": [
-      "Bash(cat:*)",
-      "Bash(cmux:*)",
-      "Bash(docker:*)",
-      "Bash(find:*)",
-      "Bash(gh:*)",
-      "Bash(git:*)",
-      "Bash(grep:*)",
-      "Bash(ls:*)",
-      "Bash(make:*)",
-      "Bash(node:*)",
-      "Bash(npm:*)",
-      "Bash(npx:*)",
-      "Bash(pnpm:*)",
-      "Bash(yarn:*)"
-    ],
-    "deny": [
-      "Bash(rm -rf:*)",
-      "Bash(curl:* | bash)*"
-    ],
-    "defaultMode": "auto"
-  },
-  "deniedMcpServers": [
-    {
-      "serverUrl": "https://mcp.sentry.dev/*"
-    },
-    {
-      "serverName": "Atlassian"
-    },
-    {
-      "serverName": "Context7"
-    },
-    {
-      "serverName": "Google_Calendar"
-    },
-    {
-      "serverName": "Granola"
-    },
-    {
-      "serverName": "HubSpot"
-    },
-    {
-      "serverName": "Intercom"
-    },
-    {
-      "serverName": "Linear"
-    },
-    {
-      "serverName": "Miro"
-    },
-    {
-      "serverName": "monday_com"
-    },
-    {
-      "serverName": "Notion"
-    },
-    {
-      "serverName": "Outline"
-    },
-    {
-      "serverName": "Slack"
-    },
-    {
-      "serverName": "Asana"
-    },
-    {
-      "serverName": "Box"
-    },
-    {
-      "serverName": "Canva"
-    },
-    {
-      "serverName": "Gmail"
-    }
-  ],
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/block-rm.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/block-coauthored-by.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/block-dangerous-git.sh"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/check-ralph-loop.sh"
-          }
-        ]
-      }
-    ]
-  },
-  "worktree": {
-    "symlinkDirectories": [
-      ".next",
-      ".cache",
-      "dist",
-      ".turbo"
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": false,
-    "frontend-design@claude-plugins-official": false,
-    "playwright@claude-plugins-official": false,
-    "ralph-loop@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": false,
-    "telegram@claude-plugins-official": false,
-    "typescript-lsp@claude-plugins-official": false,
-    "celebrate-agentic-tools-latest@celebrate-engineering": true
-  },
-  "extraKnownMarketplaces": {
-    "celebrate-engineering": {
-      "source": {
-        "source": "github",
-        "repo": "kartenmacherei/agent-builder-v2"
-      },
-      "autoUpdate": true
-    }
-  },
-  "sandbox": {
-    "enabled": true,
-    "network": {
-      "allowedDomains": [
-        "api.github.com",
-        "bun.sh",
-        "cdn.jsdelivr.net",
-        "codeload.github.com",
-        "deno.land",
-        "dl.yarnpkg.com",
-        "esm.sh",
-        "files.pythonhosted.org",
-        "formulae.brew.sh",
-        "ghcr.io",
-        "github.com",
-        "nodejs.org",
-        "npmjs.com",
-        "objects.githubusercontent.com",
-        "pypi.org",
-        "raw.githubusercontent.com",
-        "registry.bun.sh",
-        "registry.npmjs.org",
-        "registry.npmmirror.com",
-        "registry.yarnpkg.com",
-        "unpkg.com"
-      ],
-      "allowLocalBinding": true
-    },
-    "filesystem": {
-      "allowWrite": [
-        "~/.claude",
-        "~/.dotfiles"
-      ],
-      "denyWrite": [
-        "~/.ssh",
-        "~/.gnupg",
-        "~/.aws/credentials"
-      ],
-      "denyRead": [
-        "~/.ssh/id_*",
-        "~/.aws/credentials",
-        "~/.gnupg"
-      ]
-    }
-  },
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "xhigh",
-  "plansDirectory": ".plans",
-  "showThinkingSummaries": true,
-  "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true
+	"$schema": "https://json.schemastore.org/claude-code-settings.json",
+	"env": {
+		"CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
+		"CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
+		"CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+		"CLAUDE_CODE_NO_FLICKER": "1",
+		"CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+		"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+		"ENABLE_TOOL_SEARCH": "true",
+		"FORCE_AUTOUPDATE_PLUGINS": "1"
+	},
+	"attribution": {
+		"commit": "",
+		"pr": ""
+	},
+	"permissions": {
+		"allow": [
+			"Bash(cat:*)",
+			"Bash(cmux:*)",
+			"Bash(docker:*)",
+			"Bash(find:*)",
+			"Bash(gh:*)",
+			"Bash(git:*)",
+			"Bash(grep:*)",
+			"Bash(ls:*)",
+			"Bash(make:*)",
+			"Bash(node:*)",
+			"Bash(npm:*)",
+			"Bash(npx:*)",
+			"Bash(pnpm:*)",
+			"Bash(yarn:*)",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__extract_images",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_attachment",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_document",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_initiative",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_issue_status",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_issue",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_milestone",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_project",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_status_updates",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_team",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__get_user",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_comments",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_cycles",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_documents",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_initiatives",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_issue_labels",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_issue_statuses",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_issues",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_milestones",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_project_labels",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_projects",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_teams",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__list_users",
+			"mcp__plugin_celebrate-agentic-tools-latest_linear__search_documentation",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__get_console_message",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__get_network_request",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_console_messages",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_network_requests",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_pages",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__select_page",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__take_screenshot",
+			"mcp__plugin_chrome-devtools-mcp_chrome-devtools__take_snapshot"
+		],
+		"deny": ["Bash(rm -rf:*)", "Bash(curl:* | bash)*"],
+		"defaultMode": "auto"
+	},
+	"deniedMcpServers": [
+		{
+			"serverUrl": "https://mcp.sentry.dev/*"
+		},
+		{
+			"serverName": "Atlassian"
+		},
+		{
+			"serverName": "Context7"
+		},
+		{
+			"serverName": "Google_Calendar"
+		},
+		{
+			"serverName": "Granola"
+		},
+		{
+			"serverName": "HubSpot"
+		},
+		{
+			"serverName": "Intercom"
+		},
+		{
+			"serverName": "Linear"
+		},
+		{
+			"serverName": "Miro"
+		},
+		{
+			"serverName": "monday_com"
+		},
+		{
+			"serverName": "Notion"
+		},
+		{
+			"serverName": "Outline"
+		},
+		{
+			"serverName": "Slack"
+		},
+		{
+			"serverName": "Asana"
+		},
+		{
+			"serverName": "Box"
+		},
+		{
+			"serverName": "Canva"
+		},
+		{
+			"serverName": "Gmail"
+		}
+	],
+	"hooks": {
+		"PreToolUse": [
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/block-rm.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/block-coauthored-by.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/block-dangerous-git.sh"
+					}
+				]
+			}
+		],
+		"UserPromptSubmit": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "bash ~/.claude/hooks/check-ralph-loop.sh"
+					}
+				]
+			}
+		]
+	},
+	"worktree": {
+		"symlinkDirectories": [".next", ".cache", "dist", ".turbo"]
+	},
+	"statusLine": {
+		"type": "command",
+		"command": "~/.claude/statusline.sh"
+	},
+	"enabledPlugins": {
+		"celebrate-agentic-tools-latest@celebrate-engineering": true,
+		"chrome-devtools-mcp@claude-plugins-official": true,
+		"code-simplifier@claude-plugins-official": false,
+		"frontend-design@claude-plugins-official": false,
+		"playwright@claude-plugins-official": false,
+		"ralph-loop@claude-plugins-official": true,
+		"security-guidance@claude-plugins-official": false,
+		"telegram@claude-plugins-official": false,
+		"typescript-lsp@claude-plugins-official": false
+	},
+	"extraKnownMarketplaces": {
+		"celebrate-engineering": {
+			"source": {
+				"source": "github",
+				"repo": "kartenmacherei/agent-builder-v2"
+			},
+			"autoUpdate": true
+		}
+	},
+	"sandbox": {
+		"enabled": true,
+		"network": {
+			"allowedDomains": [
+				"api.github.com",
+				"bun.sh",
+				"cdn.jsdelivr.net",
+				"codeload.github.com",
+				"deno.land",
+				"dl.yarnpkg.com",
+				"esm.sh",
+				"files.pythonhosted.org",
+				"formulae.brew.sh",
+				"ghcr.io",
+				"github.com",
+				"nodejs.org",
+				"npmjs.com",
+				"objects.githubusercontent.com",
+				"pypi.org",
+				"raw.githubusercontent.com",
+				"registry.bun.sh",
+				"registry.npmjs.org",
+				"registry.npmmirror.com",
+				"registry.yarnpkg.com",
+				"unpkg.com"
+			],
+			"allowLocalBinding": true
+		},
+		"filesystem": {
+			"allowWrite": ["~/.claude", "~/.dotfiles"],
+			"denyWrite": ["~/.ssh", "~/.gnupg", "~/.aws/credentials"],
+			"denyRead": ["~/.ssh/id_*", "~/.aws/credentials", "~/.gnupg"]
+		}
+	},
+	"agentPushNotifEnabled": true,
+	"alwaysThinkingEnabled": true,
+	"effortLevel": "xhigh",
+	"plansDirectory": ".plans",
+	"showThinkingSummaries": true,
+	"skipAutoPermissionPrompt": true,
+	"skipDangerousModePermissionPrompt": true,
+	"verbose": true
 }
