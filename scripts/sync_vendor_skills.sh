@@ -48,14 +48,12 @@ sync_vendor_skills() {
     local created=0
     local refreshed=0
     local skipped=0
-    for skill_path in "$clone_path"/*/; do
-      [ -d "$skill_path" ] || continue
-      [ -f "${skill_path}SKILL.md" ] || continue
-
-      local skill_name
-      skill_name="$(basename "$skill_path")"
+    while IFS= read -r skill_md; do
+      local skill_path="$(dirname "$skill_md")"
+      local skill_name="$(basename "$skill_path")"
+      local rel_inside="${skill_path#$clone_path/}"
       local target="${skills_dir}/${skill_name}"
-      local rel_source="../vendor/${name}/${skill_name}"
+      local rel_source="../vendor/${name}/${rel_inside}"
 
       if [ -L "$target" ]; then
         rm "$target"
@@ -68,7 +66,7 @@ sync_vendor_skills() {
         ln -s "$rel_source" "$target"
         created=$((created + 1))
       fi
-    done
+    done < <(find "$clone_path" -path "$clone_path/.git" -prune -o -name SKILL.md -print)
 
     print_in_blue "  ${name}: ${created} linked, ${refreshed} refreshed, ${skipped} skipped"
 
